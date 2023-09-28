@@ -1,0 +1,27 @@
+.container {
+    box-sizing: border-box;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.container p {
+    margin-left: 3rem;
+}
+
+.data {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    font-weight: 100;
+    color: rgb(120, 150, 120);
+    display: block;
+}
+
+.title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.25rem;
+    font-weight: 100;
+    color: rgb(77, 118, 77);
+    display: block;
+    font-weight: bold;
+}

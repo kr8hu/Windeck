@@ -1,0 +1,12 @@
+.container {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(45deg, rgb(146, 136, 219), steelblue);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    border: 0;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
