@@ -5,6 +5,9 @@ import React, {
     useState
 } from 'react';
 
+//useSound
+import useSound from 'use-sound';
+
 //Tauri
 import { exit } from '@tauri-apps/api/process';
 
@@ -23,7 +26,11 @@ import {
     GAMEPAD_KEYS,
     actionTypes
 } from '../../shared/const';
-import { getLauncherData, sortByProperty } from '../../shared/utils';
+import { sortByProperty } from '../../shared/utils';
+
+//Assets
+import clickSound from '../../assets/sounds/click_03.mp3';
+import startSound from '../../assets/sounds/start_02.mp3';
 
 //Styles
 import styles from './Library.module.css';
@@ -35,6 +42,10 @@ let executeTimer: any;
 function Library() {
     //Router
     const navigator = useNavigate();
+
+    //Sound
+    const [playClickSound] = useSound(clickSound);
+    const [playStartSound] = useSound(startSound);
 
     //Context
     const { appState, setAppState } = useContext(AppContext);
@@ -105,6 +116,8 @@ function Library() {
             return;
         }
 
+        playClickSound();
+
         const elem = document.querySelector(`.library-item-${index}`);
         elem?.scrollIntoView({
             behavior: 'smooth'
@@ -123,6 +136,8 @@ function Library() {
 
         //Multiple button press fix
         setGamepadState(actionTypes.gamepad.SET_PRESSED, -1);
+
+        playStartSound();
 
         executeTimer = setTimeout(() => {
             navigator('/launch', {
@@ -168,10 +183,6 @@ function Library() {
                 <span className={styles.name}>
                     {appState.library[appState.selected].name}
                 </span>
-
-                <div className={styles.icon}>
-                    <img src={getLauncherData(appState.library[appState.selected].launcher).image} />
-                </div>
             </div>
         </div>
     )

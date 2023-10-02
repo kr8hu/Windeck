@@ -9,4 +9,16 @@
     border-radius: 5px;
     padding: 1rem 2rem;
     cursor: pointer;
+
+}
+
+.container[data-disabled="false"] {
+    opacity: 1;
+    filter: brightness(1);
+}
+
+.container[data-disabled="true"] {
+    opacity: 0.8;
+    filter: brightness(0.5);
+    cursor: not-allowed;
 }

@@ -21,6 +21,10 @@ function Home() {
         {
             label: "Beállítások",
             path: '/settings'
+        },
+        {
+            label: "Kilépés",
+            path: '/exit'
         }
     ];
 

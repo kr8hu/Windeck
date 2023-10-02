@@ -8,7 +8,7 @@ import btn_L1 from '../assets/images/buttons/L1.png';
 import btn_R1 from '../assets/images/buttons/R1.png';
 
 //Shared
-import { GAMEPAD_KEYS, LAUNCHERS } from "./const";
+import { GAMEPAD_KEYS } from "./const";
 
 
 /**
@@ -33,7 +33,7 @@ export function sortByProperty(property: any) {
  * Visszatér a megadott gomb ikonjával
  * @param key 
  */
-export function getGamepadKeyIcon(key: any) {
+export function getGamepadKeyImage(key: any) {
     switch (key) {
         case GAMEPAD_KEYS.options: return btn_option;
         case GAMEPAD_KEYS.cross: return btn_cross;
@@ -43,38 +43,5 @@ export function getGamepadKeyIcon(key: any) {
         case GAMEPAD_KEYS.L1: return btn_L1
         case GAMEPAD_KEYS.R1: return btn_R1;
         default: return null
-    }
-}
-
-export function getLauncherData(id: number) {
-    switch (id) {
-        case 0: return {
-            name: LAUNCHERS.steam.name,
-            image: LAUNCHERS.steam.logo,
-        }
-        case 1: return {
-            name: LAUNCHERS.ea.name,
-            image: LAUNCHERS.ea.logo,
-        }
-        case 2: return {
-            name: LAUNCHERS.ubisoft.name,
-            image: LAUNCHERS.ubisoft.logo,
-        }
-        case 3: return {
-            name: LAUNCHERS.rockstar.name,
-            image: LAUNCHERS.rockstar.logo,
-        }
-        case 4: return {
-            name: LAUNCHERS.epic.name,
-            image: LAUNCHERS.epic.logo,
-        }
-        case 5: return {
-            name: LAUNCHERS.gog.name,
-            image: LAUNCHERS.gog.logo,
-        }
-        default: return {
-            name: LAUNCHERS.default.name,
-            image: LAUNCHERS.default.logo,
-        }
     }
 }

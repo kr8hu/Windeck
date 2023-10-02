@@ -1,6 +1,9 @@
 //React
 import { useContext, useEffect, useState } from 'react';
 
+//useSound
+import useSound from 'use-sound';
+
 //Tauri
 import { confirm, message, open } from '@tauri-apps/api/dialog';
 import { appWindow } from '@tauri-apps/api/window';
@@ -14,10 +17,12 @@ import Button from '../../components/Button';
 import Template from '../../components/Template';
 
 //Shared
-import { actionTypes, LAUNCHERS } from '../../shared/const';
+import { actionTypes } from '../../shared/const';
 
 //Assets
 import checkmark from '../../assets/images/checkmark.png';
+import alertSound from '../../assets/sounds/alert.mp3';
+import errorSound from '../../assets/sounds/error.mp3';
 
 //Styles
 import styles from './Editor.module.css';
@@ -27,13 +32,16 @@ function Editor() {
     //Ctx
     const { setAppState } = useContext(AppContext);
 
+    //Sound
+    const [playAlertSound] = useSound(alertSound);
+    const [playErrorSound] = useSound(errorSound);
+
     //State
     const [base64, setBase64] = useState<any>('');
     const [data, setData] = useState<any>({
         exe: '',
         img: '',
-        name: '',
-        launcher: ''
+        name: ''
     });
 
 
@@ -49,17 +57,17 @@ function Editor() {
     //Setting options
     const settings = [
         {
-            title: "Indítófájl",
+            title: "Indítás helye",
             value: data.exe,
             type: "button",
-            placeholder: "Megnyitás",
+            placeholder: "Kiválasztás",
             onClick: () => setExecutable()
         },
         {
             title: "Borítókép",
             value: data.img,
             type: "button",
-            placeholder: "Megnyitás",
+            placeholder: "Kiválasztás",
             onClick: () => setCoverImage()
         },
         {
@@ -69,23 +77,12 @@ function Editor() {
             onClick: (value: any) => setApplicationName(value)
         },
         {
-            title: "Indítóprogram",
-            value: data.launcher,
-            type: "select",
-            onClick: (value: any) => setLauncherIcon(value)
+            value: '',
+            type: "button",
+            placeholder: "Hozzáadás",
+            onClick: () => validate()
         }
     ];
-
-
-    //Launcher opts
-    const launcherOptions = [
-        LAUNCHERS.default,
-        LAUNCHERS.steam,
-        LAUNCHERS.ea,
-        LAUNCHERS.ubisoft,
-        LAUNCHERS.epic,
-        LAUNCHERS.rockstar
-    ]
 
 
     useEffect(() => {
@@ -101,21 +98,6 @@ function Editor() {
 
         addTauriListener();
     }, []);
-
-
-    useEffect(() => {
-        let status = true;
-
-        for (let [, value] of Object.entries(data)) {
-            if (value === "") {
-                status = false;
-            }
-        }
-
-        if (status === true) {
-            sendConfirmation();
-        }
-    }, [data]);
 
 
     useEffect(() => {
@@ -139,6 +121,7 @@ function Editor() {
                 }
                 else {
                     return (<Button
+                        className={styles.button}
                         text={data.placeholder}
                         onClick={data.onClick} />)
                 }
@@ -153,23 +136,33 @@ function Editor() {
                         onChange={(e: any) => data.onClick(e.target.value)} />
                 )
             }
-            //Select
-            case "select": {
-                return (
-                    <select
-                        className={styles.select}
-                        value={data.value}
-                        onChange={(e: any) => data.onClick(e.target.value)}>
-                        {launcherOptions.map((option: any, idx: number) => {
-                            return (
-                                <option key={idx} value={option.id}>
-                                    {option.name}
-                                </option>
-                            )
-                        })}
-                    </select>
-                )
+            default: return null;
+        }
+    }
+
+
+    /**
+     * Ellenörzi az adatokat
+     */
+    const validate = () => {
+        //Üres mező vizsgálat
+        let status = true;
+
+        for (let [, value] of Object.entries(data)) {
+            if (value === "") {
+                status = false;
             }
+        }
+
+        //Eredménynek megfelelő kimenetel
+        if (status === true) {
+            sendConfirmation();
+        } else {
+            playErrorSound();
+
+            message("Nem töltöttél ki minden mezőt.", {
+                type: 'error'
+            });
         }
     }
 
@@ -197,20 +190,20 @@ function Editor() {
         const entry = {
             name: data.name,
             path: data.exe,
-            image: 'data:image/jpeg;base64,' + base64img,
-            launcher: data.launcher.length === 0 ? "-1" : data.launcher
+            image: 'data:image/jpeg;base64,' + base64img
         }
 
         console.log(entry);
         setAppState(actionTypes.app.ADD_LIBRARY_ITEM, entry);
+
+        playAlertSound();
 
         message("Az elem hozzáadva a könyvtárhadhoz.")
             .then(() => {
                 setData({
                     exe: '',
                     img: '',
-                    name: '',
-                    launcher: ''
+                    name: ''
                 });
 
                 setBase64('');
@@ -269,17 +262,6 @@ function Editor() {
         setData((prev: any) => ({
             ...prev,
             name: value
-        }));
-    }
-
-
-    /**
-     * Launcher elérési útvonalának megadása
-     */
-    const setLauncherIcon = (value: any) => {
-        setData((prev: any) => ({
-            ...prev,
-            launcher: value
         }));
     }
 

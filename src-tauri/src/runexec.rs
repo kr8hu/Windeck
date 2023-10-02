@@ -1,4 +1,4 @@
-use std::process::Command;
+use std::process::{ Command, Output };
 use tauri::Window;
 
 #[derive(Clone, serde::Serialize)]
@@ -7,46 +7,39 @@ struct Payload {
 }
 
 #[tauri::command]
-pub fn runexec(path: &str, window: Window) {
-    match run_windows_shortcut(path) {
-        Ok(_) => {
-            println!("Execution completed successfully");
-            window.emit("RUNEXEC_PROGRESS", Payload { status: true }).unwrap();
-        },
+pub fn runexec(path: &str, file: &str, window: Window) {
+    match run_exe_from_command_line(path, file) {
+        Ok(output) => {
+            if output.status.success() {
+                //Frontend event trigger
+                window.emit("PROGRESS_RUNEXEC", Payload { status: true }).unwrap();
+
+                let stdout_str = String::from_utf8_lossy(&output.stdout);
+                let stderr_str = String::from_utf8_lossy(&output.stderr);
+                
+                println!("Executable executed successfully.");
+                println!("Standard Output: {} \n", stdout_str);
+                println!("Standard Error: {} \n", stderr_str);
+            } else {
+                //Frontend event trigger
+                window.emit("PROGRESS_RUNEXEC", Payload { status: false }).unwrap();
+
+                eprintln!("Executable failed to execute.");
+            }
+        }
         Err(e) => {
-            eprintln!("Error: {}", e);
-            window.emit("RUNEXEC_PROGRESS", Payload { status: true }).unwrap();
+                //Frontend event trigger
+                window.emit("PROGRESS_RUNEXEC", Payload { status: false }).unwrap();
+
+                eprintln!("Error: {}", e)
         },
     }
 }
 
-fn run_windows_shortcut(shortcut_path: &str) -> std::io::Result<()> {
-    // Use the Windows `start` command to run the shortcut
-    let status = Command::new("cmd").arg("/C").arg("start").arg(shortcut_path).status()?;
+fn run_exe_from_command_line(exe_path: &str, exe_file: &str) -> std::io::Result<Output> {
+    //Parancs futtatása és response átadása a main függvénybe
+    let output = Command::new(format!("{}/{}", exe_path, exe_file)).current_dir(exe_path).output()?;
 
-    if status.success() {
-        println!("Successfully ran shortcut: {}", shortcut_path);
-    } else {
-        eprintln!("Failed to run shortcut: {}", shortcut_path);
-    }
-
-    Ok(())
+    Ok(output)
 }
 
-/*
-pub fn runexec(path: &str, window: Window) {
-    let exe_path = path;
-
-    let output = Command::new(exe_path)
-        .status()
-        .expect("Failed to execute the EXE file");
-
-    if output.success() {
-        window.emit("RUNEXEC_PROGRESS", Payload { status: true }).unwrap();
-        println!("EXE file executed successfully");
-    } else {
-        window.emit("RUNEXEC_PROGRESS", Payload { status: false }).unwrap();
-        eprintln!("Failed to execute the EXE file");
-    }
-}
-*/

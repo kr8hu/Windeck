@@ -1,5 +1,6 @@
 //Pages
 import Editor from '../pages/Editor';
+import Exit from '../pages/Exit';
 import Home from '../pages/Home';
 import Launch from '../pages/Launch';
 import Monitoring from '../pages/Monitoring';
@@ -29,18 +30,25 @@ const PAGES = {
         component: Editor
     },
     monitoring: {
-        id: 3,
+        id: 4,
         key: 'monitoring',
         path: '/monitoring',
         title: 'Monitorozás',
         component: Monitoring
     },
     launch: {
-        id: 4,
+        id: 5,
         key: 'launch',
         path: '/launch',
         title: 'Indítás',
         component: Launch
+    }, 
+    exit: {
+        id: 6,
+        key: 'exit',
+        path: '/exit',
+        title: 'Kilépés',
+        component: Exit
     }
 }
 

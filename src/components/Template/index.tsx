@@ -1,9 +1,7 @@
-//React Router
-import { Link } from 'react-router-dom';
-
 //Components
 import Clock from '../Clock';
 import Background from '../Background';
+import Navigation from '../Navigation';
 
 //Assets
 import logo from '../../assets/images/logo/logo-gradient.png';
@@ -31,16 +29,7 @@ function Template(props: Props) {
                         <img className={styles.logo} src={logo} />
                     </div>
                     <div className={styles.col}>
-                        {props.menuItems && props.menuItems.map((item: any, idx: number) => {
-                            return (
-                                <Link
-                                    key={idx}
-                                    to={item.path}
-                                    className={styles.link}>
-                                    {item.label}
-                                </Link>
-                            )
-                        })}
+                        <Navigation menuItems={props.menuItems} />
                     </div>
                     <div className={styles.col}>
                         <Clock />

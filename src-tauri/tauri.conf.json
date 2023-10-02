@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "windeck",
-    "version": "0.6.0"
+    "productName": "Windeck",
+    "version": "0.6.4"
   },
   "tauri": {
     "bundle": {
@@ -36,7 +36,8 @@
       },
       "shell": {
         "all": false,
-        "open": true
+        "open": true,
+        "execute": true
       }
     },
     "bundle": {

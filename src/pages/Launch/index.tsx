@@ -26,11 +26,27 @@ function Launch() {
     const navigator = useNavigate();
     const location = useLocation();
 
-    //State
-    const [status, setStatus] = useState<any>(undefined);
-
     //Ctx
     const { appState } = useContext(AppContext);
+
+    //State
+    const [status, setStatus] = useState<any>(false);
+
+
+    useEffect(() => {
+        //Progress listener
+        tauriEventListener();
+    }, []);
+
+
+    useEffect(() => {
+        //Program status check
+        if(status) {
+            console.log("A program indítása sikeres.")
+        } else {
+            console.log("Hiba lépett fel a program futtatásakor.")
+        }
+    }, [status]);
 
 
     useEffect(() => {
@@ -38,23 +54,42 @@ function Launch() {
         if (location.state.path === undefined) return;
 
         //Futtatható állomány megnyitása
-        const runExec = async () => {
-            await invoke('runexec', { path: location.state.path });
-        }
-        runExec();
-
-        //Progress listener
-        const tauriEventListener = async () => {
-            await appWindow.listen(
-                'RUNEXEC_PROGRESS',
-                ({ event, payload }: { event: any, payload: { status: boolean } }) => {
-                    console.log('Tauri event fired: ' + event)
-                    setStatus(payload.status);
-                }
-            );
-        }
-        tauriEventListener();
+        runExecutable(location.state.path);
     }, [location.state.path]);
+
+
+    /**
+     * A megadott útvonalon lévő alkalmazás futtatása
+     * @param path 
+     */
+    const runExecutable = async (path: string) => {
+        let filepath: string = "";
+        const splitpath = path.split('\\');
+
+        splitpath.map((arg: string, idx: number) => {
+            if (idx === splitpath.length - 1) return;
+            filepath = filepath + `${arg}\\`;
+        });
+
+        await invoke('runexec', {
+            path: filepath,
+            file: splitpath[splitpath.length - 1]
+        });
+    }
+
+
+    /**
+     * Eseményfigyelő
+     */
+    const tauriEventListener = async () => {
+        await appWindow.listen(
+            'PROGRESS_RUNEXEC',
+            ({ event, payload }: { event: any, payload: { status: boolean } }) => {
+                console.log('Tauri event triggered: ' + event);
+                setStatus(payload.status);
+            }
+        );
+    }
 
 
     return (
@@ -65,7 +100,7 @@ function Launch() {
                 alt="logo" />
 
             <span className={styles.text}>
-                Indítás folyamatban
+                A program futása folyamatban
             </span>
 
             <span className={styles.name}>

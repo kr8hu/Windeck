@@ -5,6 +5,9 @@ import {
     useEffect
 } from 'react';
 
+//useSound
+import useSound from 'use-sound';
+
 //Tauri
 import { confirm } from '@tauri-apps/api/dialog';
 
@@ -13,6 +16,9 @@ import { AppContext } from '../../../context/App';
 
 //Shared
 import { actionTypes } from '../../../shared/const';
+
+//Assets
+import alertSound from "../../../assets/sounds/alert.mp3";
 
 //Styles
 import styles from './LibraryItem.module.css';
@@ -33,12 +39,15 @@ function LibraryItem(props: Props) {
     //Context
     const { setAppState } = useContext(AppContext);
 
+    //Sound
+    const [playAlertSound] = useSound(alertSound);
+
     //State
     const [loaded, setLoaded] = useState<boolean>(false);
 
 
     useEffect(() => {
-        if(props.selected) {
+        if (props.selected) {
             props.onChange(props.id);
         }
     }, [props.id, props.selected]);
@@ -66,7 +75,8 @@ function LibraryItem(props: Props) {
      */
     const deleteItem = () => {
         if (props.selected) {
-            confirm('Biztosan törölni szeretnéd a kijelölt elemet?')
+            playAlertSound();
+            confirm('Biztosan törölni szeretnéd a kijelölt elemet?', { type: 'warning' })
                 .then((res: boolean) => {
                     if (res === true) {
                         setAppState(actionTypes.app.DELETE_LIBRARY_ITEM, props.id);

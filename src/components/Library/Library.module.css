@@ -38,16 +38,3 @@
     margin-left: 3rem;
     margin-bottom: 1rem;
 }
-
-.icon {
-    margin-left: 3rem;
-    width: 4rem;
-    height: 4rem;
-    box-sizing: border-box;
-}
-
-.icon img {
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
-}

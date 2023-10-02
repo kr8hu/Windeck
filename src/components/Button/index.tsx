@@ -9,11 +9,19 @@ interface Props {
     onClick: any;
 }
 function Button(props: Props) {
+
+    
+    const onClick = () => {
+        if(props.disabled) return;
+        if(props.onClick) props.onClick();
+    }
+
+
     return (
         <button
             className={`${styles.container} ${props.className}`}
             data-disabled={props.disabled}
-            onClick={() => props.onClick ? props.onClick() : null}>
+            onClick={onClick}>
             {props.text}
         </button>
     )
