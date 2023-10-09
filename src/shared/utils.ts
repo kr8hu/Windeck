@@ -12,8 +12,11 @@ import { GAMEPAD_KEYS } from "./const";
 
 
 /**
+ * sortByProperty
+ * 
  * A megadott property alapján növekvő sorrendbe rendezi az array elemeit
- * @param property 
+ * 
+ * @param property tulajdonság ami alapján rendezésre kerül az array
  * @returns 
  */
 export function sortByProperty(property: any) {
@@ -30,8 +33,11 @@ export function sortByProperty(property: any) {
 
 
 /**
+ * getGamepadKeyImage
+ * 
  * Visszatér a megadott gomb ikonjával
- * @param key 
+ * 
+ * @param key gamepad gomb
  */
 export function getGamepadKeyImage(key: any) {
     switch (key) {

@@ -7,6 +7,7 @@ import launcher_epic from '../assets/images/launchers/epic.png';
 import launcher_rockstar from '../assets/images/launchers/rockstar.png';
 import launcher_gog from '../assets/images/launchers/gog.png';
 
+
 /**
  * Action Types
  */

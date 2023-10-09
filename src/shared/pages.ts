@@ -7,6 +7,11 @@ import Monitoring from '../pages/Monitoring';
 import Settings from '../pages/Settings';
 
 
+/**
+ * PAGES
+ * 
+ * Oldalak adatait tartalmazó objektum
+ */
 const PAGES = {
     home: {
         id: 1,

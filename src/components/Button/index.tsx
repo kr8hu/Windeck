@@ -2,18 +2,37 @@
 import styles from './Button.module.css';
 
 
+/**
+ * Props
+ * 
+ * Komponens tulajdonságainak meghatározása
+ */
 interface Props {
     className?: any;
     text: string;
     disabled?: boolean;
     onClick: any;
 }
-function Button(props: Props) {
 
-    
+
+/**
+ * Button
+ * 
+ * Gomb komponens
+ * 
+ * @param props komponens tulajdonságai
+ * @returns 
+ */
+function Button(props: Props) {
+    /**
+     * onClick
+     * 
+     * Kattintásra lefutó funkció
+     * @returns 
+     */
     const onClick = () => {
-        if(props.disabled) return;
-        if(props.onClick) props.onClick();
+        if (props.disabled) return;
+        if (props.onClick) props.onClick();
     }
 
 
@@ -25,6 +44,6 @@ function Button(props: Props) {
             {props.text}
         </button>
     )
-}   
+}
 
 export default Button;

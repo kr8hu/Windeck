@@ -1,19 +1,29 @@
-//Components
+//React
 import { useContext } from 'react';
+
+//Components
 import Template from '../../components/Template';
 
-//Styles
-import styles from './Monitoring.module.css';
+//Ctx
 import { AppContext } from '../../context/App';
 import { GamepadContext } from '../../context/Gamepad';
 import { RouteContext } from '../../context/Route';
 
+//Styles
+import styles from './Monitoring.module.css';
 
+
+/**
+ * Monitoring
+ * 
+ * @returns 
+ */
 function Monitoring() {
     //Ctx
     const { appState } = useContext(AppContext);
     const { gamepadState } = useContext(GamepadContext);
     const { routeState } = useContext(RouteContext);
+
 
     //Menu Items
     const menuItems = [

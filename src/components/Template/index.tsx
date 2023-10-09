@@ -11,12 +11,25 @@ import logo from '../../assets/images/logo/logo-gradient.png';
 import styles from './Template.module.css';
 
 
+/**
+ * Props
+ * 
+ * Komponens tulajdonságainak meghatározása
+ */
 interface Props {
     children?: any;
     backgroundImage?: any;
     menuItems?: any;
 }
 
+
+/**
+ * Template
+ * 
+ * @param props komponens tulajdonságai
+ * 
+ * @returns 
+ */
 function Template(props: Props) {
     return (
         <div className={styles.container}>

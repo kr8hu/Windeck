@@ -5,9 +5,24 @@ import React, { useContext, useEffect } from "react";
 import { GamepadContext } from "./context/Gamepad";
 
 
+
+/**
+ * Props
+ * 
+ * Komponens tulajdonságainak meghatározása
+ */
+
 interface Props {
     children: React.ReactNode;
 }
+
+
+/**
+ * Gamepad
+ * 
+ * @param props komponens tulajdonságai
+ * @returns 
+ */
 function Gamepad(props: Props) {
     //Context
     const { gamepadState } = useContext(GamepadContext);

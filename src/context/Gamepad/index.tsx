@@ -18,6 +18,12 @@ let gamepadIndex: any;
 //Gomblenyomás ellenörzése msec-ben
 const sensitivity = 100;
 
+
+/**
+ * Props
+ * 
+ * Komponens tulajdonságainak meghatározása
+ */
 interface Props {
     children: any;
 }
@@ -27,25 +33,44 @@ interface IGamepadState {
     pressed: number;
 }
 
+
+/**
+ * IGamepadContext
+ * 
+ * State tulajdonságainak meghatározása (initialState)
+ */
 interface IGamepadContext {
     gamepadState: IGamepadState;
     setGamepadState: (type: any, payload: any) => void;
 }
 
 
+/**
+ * GamepadContext
+ * 
+ * Context létrehozása
+ */
 export const GamepadContext = createContext<IGamepadContext>({
     gamepadState: initialState,
     setGamepadState: () => null
 });
 
 
+/**
+ * GamepadProvider
+ * 
+ * Wrapper komponens, ami elérhetővé teszi 
+ * magát a state objektumot és state módosító funkciót
+ * 
+ * @param props komponens tulajdonságai
+ * @returns 
+ */
 export const GamepadProvider = (props: Props) => {
     const [gamepadState, dispatch] = useReducer(reducer, initialState);
     const setGamepadState = (type: any, payload: any) => dispatch({ type, payload })
 
 
     useEffect(() => {
-
         //Gamepad API listener inicializálás
         window.addEventListener('gamepadconnected', (event: any) => {
             console.log('gamepad connected')

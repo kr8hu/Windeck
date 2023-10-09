@@ -7,11 +7,20 @@ import styles from './Clock.module.css';
 
 let interval: any;
 
+
+/**
+ * Props
+ * 
+ * Komponens tulajdonságainak meghatározása
+ */
+
 function Clock() {
+    //State
     const [hours, setHours] = useState<string>('00');
     const [minutes, setMinutes] = useState<string>('00');
 
 
+    //Óra és perc frissítése
     useEffect(() => {
         interval = setInterval(() => {
             const date = new Date();

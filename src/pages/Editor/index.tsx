@@ -28,13 +28,14 @@ import errorSound from '../../assets/sounds/error.mp3';
 import styles from './Editor.module.css';
 
 
+/**
+ * Editor
+ * 
+ * @returns 
+ */
 function Editor() {
     //Ctx
     const { setAppState } = useContext(AppContext);
-
-    //Sound
-    const [playAlertSound] = useSound(alertSound);
-    const [playErrorSound] = useSound(errorSound);
 
     //State
     const [base64, setBase64] = useState<any>('');
@@ -43,6 +44,10 @@ function Editor() {
         img: '',
         name: ''
     });
+
+    //Sound
+    const [playAlertSound] = useSound(alertSound);
+    const [playErrorSound] = useSound(errorSound);
 
 
     //Menu Items
@@ -85,21 +90,13 @@ function Editor() {
     ];
 
 
+    //Tauri listener aktiválása
     useEffect(() => {
-        const addTauriListener = async () => {
-            await appWindow.listen(
-                'base64result',
-                ({ event, payload }: { event: any, payload: { result: any } }) => {
-                    console.log(event);
-                    setBase64(payload.result);
-                }
-            );
-        }
-
-        addTauriListener();
+        addTauriEventListener();
     }, []);
 
 
+    //base64 és data hatása a komponensre
     useEffect(() => {
         if (base64.length === 0) return;
 
@@ -107,12 +104,32 @@ function Editor() {
     }, [base64, data]);
 
 
+
     /**
-     * Input render
+     * addTauriListener
+     * 
+     * Tauri eseményfigyelő létrehozása
+     */
+    const addTauriEventListener = async () => {
+        await appWindow.listen(
+            'base64result',
+            ({ event, payload }: { event: any, payload: { result: any } }) => {
+                console.log(event);
+                setBase64(payload.result);
+            }
+        );
+    }
+
+
+    /**
+     * render
+     * 
+     * input renderelése
      * @param data 
+     * 
      * @returns 
      */
-    const renderInput = (data: any) => {
+    const render = (data: any) => {
         switch (data.type) {
             //Button
             case "button": {
@@ -169,6 +186,8 @@ function Editor() {
 
 
     /**
+     * sendConfirmation
+     * 
      * Megerősítés
      */
     const sendConfirmation = async () => {
@@ -186,6 +205,14 @@ function Editor() {
     }
 
 
+    /**
+     * createLibraryEntry
+     * 
+     * Létrehozza az elemet a könyvtárban
+     * 
+     * @param data 
+     * @param base64img 
+     */
     const createLibraryEntry = (data: any, base64img: any) => {
         const entry = {
             name: data.name,
@@ -193,13 +220,16 @@ function Editor() {
             image: 'data:image/jpeg;base64,' + base64img
         }
 
-        console.log(entry);
+        //Felvétel a storeba
         setAppState(actionTypes.app.ADD_LIBRARY_ITEM, entry);
 
+        //Hang lejátszása
         playAlertSound();
 
+        //Visszajelzés a felhasználónak
         message("Az elem hozzáadva a könyvtárhadhoz.")
             .then(() => {
+                //State reset
                 setData({
                     exe: '',
                     img: '',
@@ -212,6 +242,8 @@ function Editor() {
 
 
     /**
+     * setExecutable
+     * 
      * Program elérési útvonalának megadása
      */
     const setExecutable = async () => {
@@ -234,6 +266,8 @@ function Editor() {
 
 
     /**
+     * setCoverImage
+     * 
      * Borítókép útvonalának megadása
      */
     const setCoverImage = async () => {
@@ -256,6 +290,8 @@ function Editor() {
 
 
     /**
+     * setApplicationName
+     * 
      * Program nevének megadása
      */
     const setApplicationName = (value: any) => {
@@ -278,7 +314,7 @@ function Editor() {
                                         {setting.title}
                                     </span>
 
-                                    {renderInput(setting)}
+                                    {render(setting)}
                                 </div>
                             </div>
                         )

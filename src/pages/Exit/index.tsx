@@ -20,14 +20,20 @@ import styles from './Exit.module.css';
 let interval: any;
 
 
+/**
+ * Exit
+ * 
+ * @returns 
+ */
 function Exit() {
-    //Router
+    //Hook
     const navigator = useNavigate();
 
     //State
     const [counter, setCounter] = useState<number>(10);
 
 
+    //Időzítő indítása
     useEffect(() => {
         interval = setInterval(() => {
             setCounter((current: number) => current - 1);
@@ -40,6 +46,7 @@ function Exit() {
     }, []);
 
 
+    //counter hatása a komponensre
     useEffect(() => {
         if (counter === 0) {
             navigator(-1);

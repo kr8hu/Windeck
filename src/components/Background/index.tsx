@@ -5,6 +5,11 @@ import React from 'react';
 import styles from './Background.module.css';
 
 
+/**
+ * Background
+ * 
+ * Háttérelem komponens
+ */
 function Background() {
     return (
         <React.Fragment>

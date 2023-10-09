@@ -39,13 +39,16 @@ import styles from './Library.module.css';
 let executeTimer: any;
 
 
+/**
+ * Library
+ * 
+ * Játékkönyvtár komponens
+ * 
+ * @returns 
+ */
 function Library() {
     //Router
     const navigator = useNavigate();
-
-    //Sound
-    const [playClickSound] = useSound(clickSound);
-    const [playStartSound] = useSound(startSound);
 
     //Context
     const { appState, setAppState } = useContext(AppContext);
@@ -55,6 +58,10 @@ function Library() {
     const [index, setIndex] = useState<number>(0);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
     const [execStatus, setExecStatus] = useState<boolean>(false);
+
+    //Hooks
+    const [playClickSound] = useSound(clickSound);
+    const [playStartSound] = useSound(startSound);
 
 
     //Controller keymap
@@ -86,14 +93,14 @@ function Library() {
     ];
 
 
-    //Keymap beállítása
+    //Keymap alkalmazása
     useEffect(() => {
         setGamepadState(actionTypes.gamepad.SET_KEYMAP, keymap);
         //document.addEventListener('contextmenu', event => event.preventDefault());
     }, []);
 
 
-    //Execute status
+    //execStatus és selectedIndex hatása a komponensre
     useEffect(() => {
         //Ha engedélyezett a launch
         if (execStatus) {
@@ -101,34 +108,43 @@ function Library() {
         }
 
         setExecStatus(false);
-    }, [execStatus, selectedIndex])
+    }, [execStatus, selectedIndex]);
 
 
-    //Elem léptetése és hibakezelés
+    //index és az appState.library hatása a komponensre
     useEffect(() => {
+        //Ha az index kisebb mint nulla a sor végére dobjuk a kijelölést
         if (index < 0) {
             setIndex(appState.library.length - 1);
             return;
         }
 
+        //Ha nagyobb az index mint a könyvtár utolsó elemének indexe, a sor elejére dobjuk a kijelölést
         if (index > appState.library.length - 1) {
             setIndex(0)
             return;
         }
 
+        //Hang lejátszása
         playClickSound();
 
+        //HTML elem meghatározása
         const elem = document.querySelector(`.library-item-${index}`);
+
+        //Smooth scroll effektus alkalmazása
         elem?.scrollIntoView({
             behavior: 'smooth'
         });
 
+        //Tároljuk a storeban az aktuális kijelölt elem indexét
         setAppState(actionTypes.app.SET_SELECTED, index);
     }, [index, appState.library]);
 
 
     /**
-     * Futtatás
+     * handleExecutable
+     * 
+     * Navigáció a program indító képernyőre
      */
     const handleExecutable = (id: number) => {
         //Function spam fix
@@ -137,6 +153,7 @@ function Library() {
         //Multiple button press fix
         setGamepadState(actionTypes.gamepad.SET_PRESSED, -1);
 
+        //Hang lejátszása
         playStartSound();
 
         executeTimer = setTimeout(() => {
@@ -150,9 +167,11 @@ function Library() {
 
 
     /**
+     * render
+     * 
      * Tartalom renderelése
      */
-    const renderLibrary = () => {
+    const render = () => {
         //Fő elem renderelése
         return (
             <React.Fragment>
@@ -177,7 +196,7 @@ function Library() {
         <div className={styles.container}>
             <div className={styles.col}>
                 <div className={styles.wrapper}>
-                    {renderLibrary()}
+                    {render()}
                 </div>
 
                 <span className={styles.name}>

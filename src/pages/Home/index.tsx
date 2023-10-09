@@ -12,10 +12,16 @@ import Template from '../../components/Template';
 import styles from './Home.module.css';
 
 
+/**
+ * Home
+ * 
+ * @returns 
+ */
 function Home() {
     //Ctx
     const { appState } = useContext(AppContext);
 
+    
     //Menu Items
     const menuItems = [
         {

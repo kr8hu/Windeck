@@ -9,8 +9,12 @@ import styles from './Settings.module.css';
 import Button from '../../components/Button';
 
 
+/**
+ * Settings
+ * @returns 
+ */
 function Settings() {
-    //Router
+    //Hooks
     const navigator = useNavigate();
 
     //Menu Items
@@ -55,7 +59,7 @@ function Settings() {
             title: "",
             path: -1
         }
-    ]
+    ];
 
 
     return (

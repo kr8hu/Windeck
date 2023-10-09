@@ -27,6 +27,12 @@ import styles from './LibraryItem.module.css';
 let buttonPressTimer: any;
 
 
+/**
+ * Props
+ * 
+ * Komponens tulajdonságainak meghatározása
+ */
+
 interface Props {
     className?: any;
     id: number;
@@ -35,17 +41,28 @@ interface Props {
     selected: boolean;
     onChange?: any;
 }
+
+
+/**
+ * LibraryItem
+ * 
+ * Könyvtár egy eleme
+ * 
+ * @param props komponens tulajdonságai
+ * @returns 
+ */
 function LibraryItem(props: Props) {
     //Context
     const { setAppState } = useContext(AppContext);
 
-    //Sound
-    const [playAlertSound] = useSound(alertSound);
-
     //State
     const [loaded, setLoaded] = useState<boolean>(false);
 
+    //Hooks
+    const [playAlertSound] = useSound(alertSound);
 
+
+    //propsok hatása a komponensre
     useEffect(() => {
         if (props.selected) {
             props.onChange(props.id);
@@ -54,6 +71,8 @@ function LibraryItem(props: Props) {
 
 
     /**
+     * handleButtonPress
+     * 
      * Gombnyomásra lefutó funkció
      */
     const handleButtonPress = () => {
@@ -62,6 +81,8 @@ function LibraryItem(props: Props) {
 
 
     /**
+     * handleButtonRelease
+     * 
      * Gomb elengedésére lefutó funkció
      */
     const handleButtonRelease = () => {
@@ -70,7 +91,10 @@ function LibraryItem(props: Props) {
 
 
     /**
+     * deleteItem
+     * 
      * Elem törlése a könyvtárból
+     * 
      * @param id Elem indexe
      */
     const deleteItem = () => {

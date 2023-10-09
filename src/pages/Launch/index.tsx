@@ -21,6 +21,11 @@ import logo from '../../assets/images/logo/logo-gradient.png';
 import styles from './Launch.module.css';
 
 
+/**
+ * Launch
+ * 
+ * @returns 
+ */
 function Launch() {
     //Router
     const navigator = useNavigate();
@@ -33,12 +38,14 @@ function Launch() {
     const [status, setStatus] = useState<any>(false);
 
 
+    //Tauri listener aktiválása
     useEffect(() => {
         //Progress listener
-        tauriEventListener();
+        addTauriEventListener();
     }, []);
 
 
+    //status hatása a komponensre
     useEffect(() => {
         //Program status check
         if(status) {
@@ -49,6 +56,7 @@ function Launch() {
     }, [status]);
 
 
+    //location.state.path hatása a komponensre
     useEffect(() => {
         //Hibakezelés
         if (location.state.path === undefined) return;
@@ -59,8 +67,11 @@ function Launch() {
 
 
     /**
+     * runExecutable
+     * 
      * A megadott útvonalon lévő alkalmazás futtatása
-     * @param path 
+     * 
+     * @param path program útvonala
      */
     const runExecutable = async (path: string) => {
         let filepath: string = "";
@@ -78,10 +89,13 @@ function Launch() {
     }
 
 
+
     /**
-     * Eseményfigyelő
+     * addTauriEventListener
+     * 
+     * Tauri eseményfigyelő létrehozása
      */
-    const tauriEventListener = async () => {
+    const addTauriEventListener = async () => {
         await appWindow.listen(
             'PROGRESS_RUNEXEC',
             ({ event, payload }: { event: any, payload: { status: boolean } }) => {
