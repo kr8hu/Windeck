@@ -1,10 +1,10 @@
 //Pages
-import Editor from '../pages/Editor';
 import Exit from '../pages/Exit';
 import Home from '../pages/Home';
 import Launch from '../pages/Launch';
 import Monitoring from '../pages/Monitoring';
 import Settings from '../pages/Settings';
+import Manager from '../pages/Manager';
 
 
 /**
@@ -29,10 +29,10 @@ const PAGES = {
     },
     editor: {
         id: 3,
-        key: 'editor',
-        path: '/editor',
-        title: 'Szerkesztő',
-        component: Editor
+        key: 'manager',
+        path: '/manager',
+        title: 'Hozzáadás',
+        component: Manager
     },
     monitoring: {
         id: 4,

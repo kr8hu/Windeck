@@ -83,7 +83,7 @@ function Library() {
             action: () => setIndex(appState.library.length - 1)
         },
         {
-            key: GAMEPAD_KEYS.cross,
+            key: GAMEPAD_KEYS.A,
             action: () => setExecStatus(true)
         },
         {

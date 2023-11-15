@@ -19,7 +19,7 @@
 }
 
 .col {
-    width: calc(100% / 4);
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

@@ -39,10 +39,10 @@ export const GAMEPAD_KEYS = {
     down: 13,
     left: 14,
     right: 15,
-    triangle: 3,
-    square: 2,
-    circle: 1,
-    cross: 0,
+    Y: 3,
+    X: 2,
+    B: 1,
+    A: 0,
 };
 
 //Billentyűzeti iránygombok indexei

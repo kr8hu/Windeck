@@ -42,10 +42,10 @@ export function sortByProperty(property: any) {
 export function getGamepadKeyImage(key: any) {
     switch (key) {
         case GAMEPAD_KEYS.options: return btn_option;
-        case GAMEPAD_KEYS.cross: return btn_cross;
-        case GAMEPAD_KEYS.circle: return btn_circle;
-        case GAMEPAD_KEYS.square: return btn_square;
-        case GAMEPAD_KEYS.triangle: return btn_triangle;
+        case GAMEPAD_KEYS.A: return btn_cross;
+        case GAMEPAD_KEYS.B: return btn_circle;
+        case GAMEPAD_KEYS.X: return btn_square;
+        case GAMEPAD_KEYS.Y: return btn_triangle;
         case GAMEPAD_KEYS.L1: return btn_L1
         case GAMEPAD_KEYS.R1: return btn_R1;
         default: return null
