@@ -59,8 +59,8 @@ export const GamepadContext = createContext<IGamepadContext>({
 /**
  * GamepadProvider
  * 
- * Wrapper komponens, ami elérhetővé teszi 
- * magát a state objektumot és state módosító funkciót
+ * Olyan komponens, ami elérhetővé teszi 
+ * a state objektumot és state módosító funkciót
  * 
  * @param props komponens tulajdonságai
  * @returns 

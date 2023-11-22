@@ -7,7 +7,6 @@ declare module 'use-sound' {
         interrupt?: boolean;
         soundEnabled?: boolean;
         sprite?: { [key: string]: [number, number] };
-        // You can add more properties as needed based on your use case
     }
 
     interface ExposedData {
@@ -16,7 +15,6 @@ declare module 'use-sound' {
         interrupt: boolean;
         soundEnabled: boolean;
         sprite: { [key: string]: [number, number] };
-        // You can add more properties as needed based on your use case
     }
 
     type PlayFunction = (options?: PlayOptions) => void;
@@ -25,7 +23,6 @@ declare module 'use-sound' {
         id?: string;
         forceSoundEnabled?: boolean;
         playbackRate?: number;
-        // You can add more properties as needed based on your use case
     }
 
     interface PlayExposedData extends ExposedData {

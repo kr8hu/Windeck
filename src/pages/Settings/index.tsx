@@ -12,8 +12,6 @@ import styles from './Settings.module.css';
 /**
  * Settings
  * 
- * Beállítások oldal
- * 
  * @returns 
  */
 function Settings() {
