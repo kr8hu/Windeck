@@ -15,7 +15,6 @@ import {
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
 interface Props {
     children: any;
@@ -25,7 +24,6 @@ interface Props {
 /**
  * IAppState
  * 
- * State tulajdonságainak meghatározása (initialState)
  */
 interface IAppState {
     selected: number;
@@ -37,7 +35,6 @@ interface IAppState {
 /**
  * IAppContext
  * 
- * Context tulajdonságainak meghatározása 
  */
 interface IAppContext {
     appState: IAppState;
@@ -48,7 +45,6 @@ interface IAppContext {
 /**
  * AppContext
  * 
- * Context létrehozása
  */
 export const AppContext = createContext<IAppContext>({
     appState: initialState,
@@ -59,10 +55,7 @@ export const AppContext = createContext<IAppContext>({
 /**
  * AppProvider
  * 
- * Wrapper komponens, ami elérhetővé teszi 
- * magát a state objektumot és state módosító funkciót
- * 
- * @param props komponens tulajdonságai
+ * @param props 
  * @returns 
  */
 export const AppProvider = (props: Props) => {

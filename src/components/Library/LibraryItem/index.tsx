@@ -48,7 +48,7 @@ interface Props {
  * 
  * Könyvtár egy eleme
  * 
- * @param props komponens tulajdonságai
+ * @param props 
  * @returns 
  */
 function LibraryItem(props: Props) {

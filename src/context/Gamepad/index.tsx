@@ -22,7 +22,6 @@ const sensitivity = 100;
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
 interface Props {
     children: any;
@@ -37,7 +36,6 @@ interface IGamepadState {
 /**
  * IGamepadContext
  * 
- * State tulajdonságainak meghatározása (initialState)
  */
 interface IGamepadContext {
     gamepadState: IGamepadState;
@@ -48,7 +46,6 @@ interface IGamepadContext {
 /**
  * GamepadContext
  * 
- * Context létrehozása
  */
 export const GamepadContext = createContext<IGamepadContext>({
     gamepadState: initialState,
@@ -59,10 +56,7 @@ export const GamepadContext = createContext<IGamepadContext>({
 /**
  * GamepadProvider
  * 
- * Wrapper komponens, ami elérhetővé teszi 
- * magát a state objektumot és state módosító funkciót
- * 
- * @param props komponens tulajdonságai
+ * @param props 
  * @returns 
  */
 export const GamepadProvider = (props: Props) => {
@@ -71,20 +65,16 @@ export const GamepadProvider = (props: Props) => {
 
 
     useEffect(() => {
-        //Gamepad API listener inicializálás
         window.addEventListener('gamepadconnected', (event: any) => {
             console.log('gamepad connected')
             return gamepadIndex = event.gamepad.index;
         });
 
-        //Kontroller gomblenyomás ellenörzése (x milisec)
+
         setInterval(() => {
-            //Ha található csatlakoztatott kontroller
             if (gamepadIndex !== undefined) {
-                //Kontroller kiválasztása
                 const myGamepad: any = navigator.getGamepads()[gamepadIndex];
 
-                //Gomblenyomás ellenörzése
                 myGamepad.buttons.map((e: any) => e.pressed).forEach((isPressed: any, buttonIndex: any) => {
                     if (isPressed) {
                         setGamepadState(actionTypes.gamepad.SET_PRESSED, buttonIndex);

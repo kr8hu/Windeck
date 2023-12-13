@@ -20,7 +20,7 @@ interface Props {
 /**
  * Gamepad
  * 
- * @param props komponens tulajdonságai
+ * @param props 
  * @returns 
  */
 function Gamepad(props: Props) {
@@ -30,10 +30,8 @@ function Gamepad(props: Props) {
 
     //Gamepad Effect
     useEffect(() => {
-        //Ha még nincs betöltve a keymap
         if (gamepadState.keymap === undefined) return;
 
-        //Lenyomott gombhoz társított funkció
         gamepadState.keymap.forEach((item: any) => {
             if (item.key === gamepadState.pressed) {
                 item.action();

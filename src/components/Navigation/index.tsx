@@ -19,7 +19,7 @@ interface Props {
 /**
  * Navigation
  * 
- * @param props komponens tulajdonságai
+ * @param props 
  * 
  * @returns 
  */

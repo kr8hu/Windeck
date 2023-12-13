@@ -26,7 +26,7 @@ interface Props {
 /**
  * Template
  * 
- * @param props komponens tulajdonságai
+ * @param props 
  * 
  * @returns 
  */

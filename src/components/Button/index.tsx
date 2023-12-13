@@ -20,7 +20,7 @@ interface Props {
  * 
  * Gomb komponens
  * 
- * @param props komponens tulajdonságai
+ * @param props 
  * @returns 
  */
 function Button(props: Props) {

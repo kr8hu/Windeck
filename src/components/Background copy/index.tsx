@@ -19,7 +19,7 @@ interface Props {
  * Background
  * 
  * Háttérelem komponens
- * @param props komponens tulajdonságai
+ * @param props 
  * @returns 
  */
 function Background(props: Props) {
