@@ -1,6 +1,6 @@
 # Windeck
 
-Játékkönyvtár alkalmazás elsősorban a windows rendszert futtató Steam Deck konzolokhoz.
+Launcher a windows rendszert futtató Steam Deck konzolokhoz.
 
 ### Felhasznált keretrendszerek
 
@@ -17,3 +17,7 @@ Játékkönyvtár alkalmazás elsősorban a windows rendszert futtató Steam Dec
 
 ###### Vite dev server (Frontend teszteléshez)
 `npm run dev`
+
+### Előnézet
+
+<img src="https://lh3.googleusercontent.com/drive-viewer/AK7aPaA1gSGt-IzWtdDfsjqEHSOzM4VHjVULj5to8bZC3K-7WxSja9DYli-zgc7rI3Io-Rm7n-l_lsMBz-7QoPauFrvpdLNamQ=s1600">

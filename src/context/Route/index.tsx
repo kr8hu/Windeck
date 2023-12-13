@@ -56,8 +56,8 @@ export const RouteContext = createContext<IRouteContext>({
 /**
  * RouteProvider
  * 
- * Wrapper komponens, ami elérhetővé teszi 
- * magát a state objektumot és state módosító funkciót
+ * Olyan komponens, ami elérhetővé teszi 
+ * a state objektumot és state módosító funkciót
  * 
  * @param props 
  * @returns 
