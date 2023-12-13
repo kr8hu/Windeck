@@ -2,7 +2,6 @@
 import Exit from '../pages/Exit';
 import Home from '../pages/Home';
 import Launch from '../pages/Launch';
-import Monitoring from '../pages/Monitoring';
 import Settings from '../pages/Settings';
 import Manager from '../pages/Manager';
 
@@ -33,13 +32,6 @@ const PAGES = {
         path: '/manager',
         title: 'Hozzáadás',
         component: Manager
-    },
-    monitoring: {
-        id: 4,
-        key: 'monitoring',
-        path: '/monitoring',
-        title: 'Monitorozás',
-        component: Monitoring
     },
     launch: {
         id: 5,

@@ -30,7 +30,6 @@ let buttonPressTimer: any;
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
 
 interface Props {

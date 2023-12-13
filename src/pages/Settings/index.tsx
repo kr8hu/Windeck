@@ -1,5 +1,5 @@
 //Components
-import Option from './Option';
+import Option from './Setting';
 import Template from '../../components/Template';
 
 //Local

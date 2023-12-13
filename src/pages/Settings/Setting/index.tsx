@@ -5,13 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
 
 //Styles
-import styles from './Option.module.css';
+import styles from './Setting.module.css';
 
 
 /**
  * Props
  * 
- * komponens tulajdonságainak meghatározása
  */
 interface Props {
     data: any;
@@ -19,14 +18,14 @@ interface Props {
 
 
 /**
- * Option
+ * Setting
  * 
- * Beállítási lehetőséget megjelenítő komponens
+ * Beállítást megjelenítő komponens
  * 
  * @param props 
  * @returns 
  */
-function Option(props: Props) {
+function Setting(props: Props) {
     //Hook
     const navigator = useNavigate();
 
@@ -44,4 +43,4 @@ function Option(props: Props) {
     )
 }
 
-export default Option;
+export default Setting;
