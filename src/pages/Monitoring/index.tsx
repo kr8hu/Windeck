@@ -7,7 +7,6 @@ import Template from '../../components/Template';
 //Ctx
 import { AppContext } from '../../context/App';
 import { GamepadContext } from '../../context/Gamepad';
-import { RouteContext } from '../../context/Route';
 
 //Styles
 import styles from './Monitoring.module.css';
@@ -22,7 +21,6 @@ function Monitoring() {
     //Ctx
     const { appState } = useContext(AppContext);
     const { gamepadState } = useContext(GamepadContext);
-    const { routeState } = useContext(RouteContext);
 
 
     //Menu Items
@@ -43,11 +41,7 @@ function Monitoring() {
         {
             name: 'gamepadState',
             source: gamepadState,
-        },
-        {
-            name: 'routeState',
-            source: routeState,
-        },
+        }
     ]
 
 

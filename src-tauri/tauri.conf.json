@@ -57,11 +57,11 @@
     },
     "windows": [
       {
-        "fullscreen": true,
-        "resizable": false,
+        "fullscreen": false,
+        "resizable": true,
         "title": "Windeck",
-        "width": 1280,
-        "height": 800,
+        "width": 1200,
+        "height": 700,
         "center": true
       }
     ]

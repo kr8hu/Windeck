@@ -52,9 +52,10 @@ export const KEYBOARD_KEYS = {
     left: 37,
     right: 39,
     esc: 27,
-    R1: 18,
-    L1: 17,
-    insert: 45
+    F1: 112,
+    F12: 123,
+    insert: 45,
+    enter: 13
 }
 
 //Beállítások típusai

@@ -24,6 +24,7 @@ import LibraryItem from './LibraryItem';
 //Shared
 import {
     GAMEPAD_KEYS,
+    KEYBOARD_KEYS,
     actionTypes
 } from '../../shared/const';
 import { sortByProperty } from '../../shared/utils';
@@ -52,7 +53,7 @@ function Library() {
 
     //Context
     const { appState, setAppState } = useContext(AppContext);
-    const { setGamepadState } = useContext(GamepadContext);
+    //const { setGamepadState } = useContext(GamepadContext);
 
     //State
     const [index, setIndex] = useState<number>(0);
@@ -95,8 +96,50 @@ function Library() {
 
     //Keymap alkalmazása
     useEffect(() => {
-        setGamepadState(actionTypes.gamepad.SET_KEYMAP, keymap);
+        //setGamepadState(actionTypes.gamepad.SET_KEYMAP, keymap);
         //document.addEventListener('contextmenu', event => event.preventDefault());
+
+        window.addEventListener('keydown', (e: any) => {
+            console.log(e.keyCode);
+
+            switch (e.keyCode) {
+                case KEYBOARD_KEYS.left: {
+                    setIndex((current: number) => current - 1);
+                    break;
+                }
+                case KEYBOARD_KEYS.right: {
+                    setIndex((current: number) => current + 1);
+                    break;
+                }
+                case KEYBOARD_KEYS.right: {
+                    setIndex((current: number) => current + 1);
+                    break;
+                }
+                case KEYBOARD_KEYS.F1: {
+                    setIndex(0);
+                    break;
+                }
+                case KEYBOARD_KEYS.F12: {
+                    setIndex(appState.library.length - 1);
+                    break;
+                }
+                case KEYBOARD_KEYS.enter: {
+                    setExecStatus(true);
+                    break;
+                }
+                case KEYBOARD_KEYS.esc: {
+                    navigator("/exit");
+                    break;
+                }
+                default: return null;
+            }
+
+            
+        });
+
+        return () => {
+            window.removeEventListener('keydown', () => { });
+        }
     }, []);
 
 
@@ -151,7 +194,7 @@ function Library() {
         clearTimeout(executeTimer);
 
         //Multiple button press fix
-        setGamepadState(actionTypes.gamepad.SET_PRESSED, -1);
+        //setGamepadState(actionTypes.gamepad.SET_PRESSED, -1);
 
         //Hang lejátszása
         playStartSound();

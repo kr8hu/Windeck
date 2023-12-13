@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 //Context
 import { AppProvider } from "./context/App";
-import { RouteProvider } from "./context/Route";
 import { GamepadProvider } from "./context/Gamepad";
 
 //Shared
@@ -32,9 +31,7 @@ function App() {
     <AppProvider>
       <GamepadProvider>
         <Gamepad>
-          <RouteProvider>
-              <RouteStack />
-          </RouteProvider>
+          <RouteStack />
         </Gamepad>
       </GamepadProvider>
     </AppProvider>
