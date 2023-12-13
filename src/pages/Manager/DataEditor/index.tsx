@@ -1,5 +1,9 @@
 //React
-import { useContext, useEffect, useState } from 'react';
+import {
+    useContext,
+    useEffect,
+    useState
+} from 'react';
 
 //useSound
 import useSound from 'use-sound';
@@ -8,7 +12,10 @@ import useSound from 'use-sound';
 import { AppContext } from '../../../context/App';
 
 //Tauri
-import { message, open } from '@tauri-apps/api/dialog';
+import {
+    message,
+    open
+} from '@tauri-apps/api/dialog';
 import { appWindow } from '@tauri-apps/api/window';
 import { invoke } from '@tauri-apps/api';
 
@@ -47,9 +54,7 @@ function ManagerEditor() {
 
     //State
     const [state, setState] = useState<number>(progress.init);
-
     const [base64, setBase64] = useState<any>('');
-
     const [data, setData] = useState<any>({
         exe: '',
         img: '',
@@ -171,8 +176,7 @@ function ManagerEditor() {
             }]
         });
 
-
-        //Ha van result
+        
         if (result !== null) {
             setData((prev: any) => ({
                 ...prev,

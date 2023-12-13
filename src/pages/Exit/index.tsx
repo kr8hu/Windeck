@@ -33,7 +33,6 @@ function Exit() {
     const [counter, setCounter] = useState<number>(10);
 
 
-    //Időzítő indítása
     useEffect(() => {
         interval = setInterval(() => {
             setCounter((current: number) => current - 1);

@@ -1,9 +1,10 @@
 //Components
-import Option from './Setting';
+import Setting from './Setting';
 import Template from '../../components/Template';
 
 //Local
 import options from './options';
+import menuItems from './menuItems';
 
 //Styles
 import styles from './Settings.module.css';
@@ -15,15 +16,6 @@ import styles from './Settings.module.css';
  * @returns 
  */
 function Settings() {
-    //Menu Items
-    const menuItems = [
-        {
-            label: 'Vissza',
-            path: -1
-        }
-    ];
-
-
     return (
         <div className={styles.container}>
             <Template menuItems={menuItems}>
@@ -31,7 +23,7 @@ function Settings() {
                     {options.map((option: any, idx: number) => {
                         return (
                             <div key={idx} className={styles.col}>
-                                <Option data={option} />
+                                <Setting data={option} />
                             </div>
                         )
                     })}

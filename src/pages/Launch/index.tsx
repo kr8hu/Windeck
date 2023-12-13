@@ -1,5 +1,8 @@
 //React
-import { useContext, useEffect, useState } from 'react';
+import {
+    useContext,
+    useEffect
+} from 'react';
 
 //Tauri
 import { appWindow } from '@tauri-apps/api/window';
@@ -9,7 +12,10 @@ import { invoke } from '@tauri-apps/api';
 import { AppContext } from '../../context/App';
 
 //Router
-import { useNavigate, useLocation } from 'react-router-dom';
+import {
+    useNavigate,
+    useLocation
+} from 'react-router-dom';
 
 //Components
 import Button from '../../components/Button';
@@ -34,34 +40,18 @@ function Launch() {
     //Ctx
     const { appState } = useContext(AppContext);
 
-    //State
-    const [status, setStatus] = useState<any>(false);
-
 
     //Tauri listener aktiválása
     useEffect(() => {
-        //Progress listener
         addTauriEventListener();
     }, []);
 
 
-    //status hatása a komponensre
-    useEffect(() => {
-        //Program status check
-        if(status) {
-            console.log("A program indítása sikeres.")
-        } else {
-            console.log("Hiba lépett fel a program futtatásakor.")
-        }
-    }, [status]);
-
-
     //location.state.path hatása a komponensre
     useEffect(() => {
-        //Hibakezelés
         if (location.state.path === undefined) return;
 
-        //Futtatható állomány megnyitása
+        //Futtatás
         runExecutable(location.state.path);
     }, [location.state.path]);
 
@@ -69,7 +59,7 @@ function Launch() {
     /**
      * runExecutable
      * 
-     * A megadott útvonalon lévő alkalmazás futtatása
+     * A megadott útvonalon található alkalmazás futtatása
      * 
      * @param path program útvonala
      */
@@ -99,8 +89,8 @@ function Launch() {
         await appWindow.listen(
             'PROGRESS_RUNEXEC',
             ({ event, payload }: { event: any, payload: { status: boolean } }) => {
-                console.log('Tauri event triggered: ' + event);
-                setStatus(payload.status);
+                console.log(event);
+                console.log(payload);
             }
         );
     }

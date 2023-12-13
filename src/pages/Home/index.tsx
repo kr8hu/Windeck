@@ -8,6 +8,9 @@ import { AppContext } from '../../context/App';
 import Library from '../../components/Library';
 import Template from '../../components/Template';
 
+//Local
+import menuItems from './menuItems';
+
 //Styles
 import styles from './Home.module.css';
 
@@ -20,19 +23,6 @@ import styles from './Home.module.css';
 function Home() {
     //Ctx
     const { appState } = useContext(AppContext);
-
-    
-    //Menu Items
-    const menuItems = [
-        {
-            label: "Beállítások",
-            path: '/settings'
-        },
-        {
-            label: "Kilépés",
-            path: '/exit'
-        }
-    ];
 
 
     return (

@@ -2,6 +2,9 @@
 import Template from '../../components/Template';
 import ManagerEditor from './DataEditor';
 
+//Local
+import menuItems from './menuItems';
+
 //Styles
 import styles from './Manager.module.css';
 
@@ -12,15 +15,6 @@ import styles from './Manager.module.css';
  * @returns 
  */
 function Manager() {
-    //Menu Items
-    const menuItems = [
-        {
-            label: 'Vissza',
-            path: -1
-        }
-    ];
-
-
     return (
         <div className={styles.container}>
             <Template menuItems={menuItems}>

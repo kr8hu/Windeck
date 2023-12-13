@@ -1,5 +1,8 @@
 //React
-import React, { useState, useEffect } from 'react';
+import React, {
+    useState,
+    useEffect
+} from 'react';
 
 //React Router
 import { Routes, Route } from 'react-router-dom';
@@ -18,11 +21,11 @@ function RouteStack() {
     //State
     const [routeStack, setRouteStack] = useState<any>([]);
 
-    
+
     //Stack feltöltése
     useEffect(() => {
-        if(routeStack.length !== 0) return;
-        
+        if (routeStack.length !== 0) return;
+
         for (let [, value] of Object.entries(PAGES)) {
             setRouteStack((prevState: any) => [
                 ...prevState,
@@ -35,8 +38,7 @@ function RouteStack() {
         //eslint-disable-next-line
     }, []);
 
-
-    //Ellenörzés
+    
     useEffect(() => {
         if (routeStack.length === Object.keys(PAGES).length) {
             console.log(routeStack)

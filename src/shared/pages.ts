@@ -9,7 +9,7 @@ import Manager from '../pages/Manager';
 /**
  * PAGES
  * 
- * Oldalak adatait tartalmazó objektum
+ * Oldalak adatait tartalmazó object
  */
 const PAGES = {
     home: {
