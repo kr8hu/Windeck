@@ -1,11 +1,11 @@
 //React
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+
+//Ctx
+import { AppContext } from '../../context/App';
 
 //Styles
 import styles from './Clock.module.css';
-
-
-let interval: any;
 
 
 /**
@@ -15,30 +15,13 @@ let interval: any;
  */
 
 function Clock() {
-    //State
-    const [hours, setHours] = useState<string>('00');
-    const [minutes, setMinutes] = useState<string>('00');
-
-
-    //Óra és perc frissítése
-    useEffect(() => {
-        interval = setInterval(() => {
-            const date = new Date();
-            const hours = date.getHours().toString();
-            const minutes = date.getMinutes().toString();
-
-            setHours(hours.length > 1 ? hours : `0${hours}`);
-            setMinutes(minutes.length > 1 ? minutes : `0${minutes}`);
-        });
-
-        return () => clearInterval(interval);
-    }, []);
+    const { appState } = useContext(AppContext);
 
 
     return (
         <div className={styles.container}>
             <span className={styles.clock}>
-                {`${hours}:${minutes}`}
+                {appState.time}
             </span>
         </div>
     )

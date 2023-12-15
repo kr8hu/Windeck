@@ -64,7 +64,7 @@ function Library() {
 
 
     useEffect(() => {
-        //document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('contextmenu', event => event.preventDefault());
 
         //Billentyűzetkiosztás felvétele
         window.addEventListener('keydown', (e: any) => {

@@ -17,16 +17,9 @@ export const actionTypes = {
         SET_LOCKED: 'SET_LOCKED',
         ADD_LIBRARY_ITEM: 'ADD_LIBRARY_ITEM',
         SET_LIBRARY: 'SET_LIBRARY',
-        DELETE_LIBRARY_ITEM: 'DELETE_LIBRARY_ITEM'
+        DELETE_LIBRARY_ITEM: 'DELETE_LIBRARY_ITEM',
+        SET_TIME: 'SET_TIME'
     },
-    gamepad: {
-        SET_KEYMAP: 'SET_KEYMAP',
-        SET_PRESSED: 'SET_PRESSED'
-    },
-    route: {
-        SET_ACTIVE_PAGE: 'SET_ACTIVE_PAGE',
-        REMOVE_ACTIVE_PAGE: 'REMOVE_ACTIVE_PAGE'
-    }
 }
 
 //Kontrolleren lévő gombok indexei

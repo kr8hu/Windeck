@@ -11,6 +11,9 @@ import {
     initialState
 } from './reducer';
 
+//Shared
+import { actionTypes } from '../../shared/const';
+
 
 /**
  * Props
@@ -28,6 +31,7 @@ interface Props {
 interface IAppState {
     selected: number;
     locked: boolean;
+    time: string;
     library: any;
 }
 
@@ -40,6 +44,9 @@ interface IAppContext {
     appState: IAppState;
     setAppState: (type: any, payload: any) => void;
 }
+
+
+let interval: any;
 
 
 /**
@@ -67,6 +74,24 @@ export const AppProvider = (props: Props) => {
 
 
     useEffect(() => {
+        interval = setInterval(() => {
+            const date = new Date();
+            const hours = date.getHours().toString();
+            const minutes = date.getMinutes().toString();
+
+            const time = {
+                hours: hours.length > 1 ? hours : `0${hours}`,
+                minutes: minutes.length > 1 ? minutes : `0${minutes}`
+            };
+
+            setAppState(actionTypes.app.SET_TIME, `${time.hours}:${time.minutes}`);
+        });
+
+
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
         if (appState.library.length !== 0) {
             localStorage.setItem('windeck__library', JSON.stringify(appState.library))
         } else {
@@ -74,7 +99,7 @@ export const AppProvider = (props: Props) => {
         }
     }, [appState.library]);
 
-    
+
     return (
         <AppContext.Provider value={{
             appState,
