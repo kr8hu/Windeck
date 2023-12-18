@@ -17,6 +17,7 @@ export const actionTypes = {
         SET_LOCKED: 'SET_LOCKED',
         ADD_LIBRARY_ITEM: 'ADD_LIBRARY_ITEM',
         SET_LIBRARY: 'SET_LIBRARY',
+        MODIFY_LIBRARY_ITEM: 'MODIFY_LIBRARY_ITEM',
         DELETE_LIBRARY_ITEM: 'DELETE_LIBRARY_ITEM',
         SET_TIME: 'SET_TIME'
     },

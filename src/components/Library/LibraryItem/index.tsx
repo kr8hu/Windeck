@@ -5,26 +5,18 @@ import {
     useEffect
 } from 'react';
 
-//useSound
-import useSound from 'use-sound';
-
-//Tauri
-import { confirm } from '@tauri-apps/api/dialog';
+//Router
+import { useNavigate } from 'react-router-dom';
 
 //Ctx
 import { AppContext } from '../../../context/App';
 
-//Shared
-import { actionTypes } from '../../../shared/const';
-
-//Assets
-import alertSound from "../../../assets/sounds/alert.mp3";
+//Icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 //Styles
 import styles from './LibraryItem.module.css';
-
-
-let buttonPressTimer: any;
 
 
 /**
@@ -37,6 +29,7 @@ interface Props {
     id: number;
     name: string;
     image: any;
+    path: string;
     selected: boolean;
     onChange?: any;
 }
@@ -45,20 +38,20 @@ interface Props {
 /**
  * LibraryItem
  * 
- * Könyvtár egy eleme
+ * Kollekció egy eleme
  * 
  * @param props 
  * @returns 
  */
 function LibraryItem(props: Props) {
     //Context
-    const { setAppState } = useContext(AppContext);
+    const { appState } = useContext(AppContext);
 
     //State
     const [loaded, setLoaded] = useState<boolean>(false);
 
     //Hooks
-    const [playAlertSound] = useSound(alertSound);
+    const navigate = useNavigate();
 
 
     //propsok hatása a komponensre
@@ -70,42 +63,19 @@ function LibraryItem(props: Props) {
 
 
     /**
-     * handleButtonPress
+     * openEditor
      * 
-     * Gombnyomásra lefutó funkció
+     * Szerkesztő megnyitása az adatokkal
      */
-    const handleButtonPress = () => {
-        buttonPressTimer = setTimeout(() => deleteItem(), 1500);
-    }
-
-
-    /**
-     * handleButtonRelease
-     * 
-     * Gomb elengedésére lefutó funkció
-     */
-    const handleButtonRelease = () => {
-        clearTimeout(buttonPressTimer);
-    }
-
-
-    /**
-     * deleteItem
-     * 
-     * Elem törlése a könyvtárból
-     * 
-     * @param id Elem indexe
-     */
-    const deleteItem = () => {
-        if (props.selected) {
-            playAlertSound();
-            confirm('Biztosan törölni szeretnéd a kijelölt elemet?', { type: 'warning' })
-                .then((res: boolean) => {
-                    if (res === true) {
-                        setAppState(actionTypes.app.DELETE_LIBRARY_ITEM, props.id);
-                    }
-                });
-        }
+    const openEditor = () => {
+        navigate('/editor', {
+            state: {
+                id: props.id,
+                name: props.name,
+                image: props.image,
+                path: props.path
+            }
+        });
     }
 
 
@@ -113,6 +83,12 @@ function LibraryItem(props: Props) {
         <div
             className={`${styles.container} ${props.className}`}
             data-selected={props.selected}>
+            <div 
+                className={styles.modify} 
+                data-visibility={appState.locked}
+                onClick={openEditor}>
+                <FontAwesomeIcon icon={faPencil} />
+            </div>
             <img
                 alt="coverpicture"
                 src={props.image}

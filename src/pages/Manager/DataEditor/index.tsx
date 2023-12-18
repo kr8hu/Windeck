@@ -284,7 +284,7 @@ function ManagerEditor() {
 
     return (
         <div className={styles.container}>
-            <span className={styles.title}>
+            <span className={styles.heading}>
                 {progressData[state].title}
             </span>
 
