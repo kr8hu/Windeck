@@ -29,11 +29,20 @@ import { sortByProperty } from '../../shared/utils';
 import clickSound from '../../assets/sounds/click_03.mp3';
 import startSound from '../../assets/sounds/start_02.mp3';
 
+//Icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faLock,
+    faUnlock,
+    faPencil
+} from '@fortawesome/free-solid-svg-icons';
+
 //Styles
 import styles from './Library.module.css';
 
 
-let executeTimer: any;
+let touchTimeout: any;
+let executeTimeout: any;
 let gamepadIndex: any;
 
 const sensitivity = 100;
@@ -64,18 +73,23 @@ function Library() {
 
 
     useEffect(() => {
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('contextmenu', (e: any) => {
+            e.preventDefault();
+        });
 
-        //Billentyűzetkiosztás felvétele
         window.addEventListener('keydown', (e: any) => {
             setKeyboardLayout(e.keyCode);
         });
 
-        //Kontroller gombkiosztás felvétele
         window.addEventListener('gamepadconnected', (e: any) => {
             return gamepadIndex = e.gamepad.index;
         });
 
+        window.addEventListener('touchstart', () => {
+            setLockStatus();
+        });
+
+    
         setInterval(() => {
             if (gamepadIndex !== undefined) {
                 const gamepad: any = navigator.getGamepads()[gamepadIndex];
@@ -91,50 +105,49 @@ function Library() {
 
         return () => {
             window.removeEventListener('keydown', () => { });
+            window.removeEventListener('touchstart', () => { });
+            window.removeEventListener('contextmenu', () => { });
             window.removeEventListener('gamepadconnected', () => { });
         }
     }, []);
 
 
+    //index változásának hatása a komponensre
+    useEffect(() => {
+        const elem = document.querySelector(`.library-item-${index}`);
+
+        elem?.scrollIntoView({
+            behavior: 'smooth'
+        });
+
+        playClickSound();
+    }, [index]);
+
+
+    //index és az appState.library hatása a komponensre
+    useEffect(() => {
+        if (index < 0) {
+            setIndex(appState.library.length - 1);
+            return;
+        }
+
+        if (index > appState.library.length - 1) {
+            setIndex(0);
+            return;
+        }
+
+        setAppState(actionTypes.app.SET_SELECTED, index);
+    }, [index, appState.library]);
+
+
     //execStatus és selectedIndex hatása a komponensre
     useEffect(() => {
-        //Ha engedélyezett a launch
         if (execStatus) {
             handleExecutable(selectedIndex);
         }
 
         setExecStatus(false);
     }, [execStatus, selectedIndex]);
-
-
-    //index és az appState.library hatása a komponensre
-    useEffect(() => {
-        //Ha az index kisebb mint nulla a sor végére dobjuk a kijelölést
-        if (index < 0) {
-            setIndex(appState.library.length - 1);
-            return;
-        }
-
-        //Ha nagyobb az index mint a könyvtár utolsó elemének indexe, a sor elejére dobjuk a kijelölést
-        if (index > appState.library.length - 1) {
-            setIndex(0)
-            return;
-        }
-
-        //Hang lejátszása
-        playClickSound();
-
-        //HTML elem meghatározása
-        const elem = document.querySelector(`.library-item-${index}`);
-
-        //Smooth scroll effektus alkalmazása
-        elem?.scrollIntoView({
-            behavior: 'smooth'
-        });
-
-        //Tároljuk a storeban a kijelölt elem indexét
-        setAppState(actionTypes.app.SET_SELECTED, index);
-    }, [index, appState.library]);
 
 
     /**
@@ -183,7 +196,8 @@ function Library() {
      * 
      * @param buttonIndex lenyomott gomb azonosítója
      */
-    const setControllerLayout = (buttonIndex: number) => {
+    const setControllerLayout = (buttonIndex: any) => {
+
         switch (buttonIndex) {
             case GAMEPAD_KEYS.left: {
                 setIndex((current: number) => current - 1);
@@ -215,18 +229,34 @@ function Library() {
 
 
     /**
+     * setLockStatus
+     * 
+     * Zárolást módosító funkció
+     */
+    const setLockStatus = () => {
+        clearTimeout(touchTimeout);
+
+        touchTimeout = setTimeout(() => {
+            if (appState.locked) {
+                setAppState(actionTypes.app.SET_LOCKED, false);
+                return;
+            }
+
+            setAppState(actionTypes.app.SET_LOCKED, true);
+        }, 2000);
+    }
+
+
+    /**
      * handleExecutable
      * 
      * Navigáció a program indító képernyőre
      */
     const handleExecutable = (id: number) => {
-        //Function spam fix
-        clearTimeout(executeTimer);
-
-        //Hang lejátszása
+        clearTimeout(executeTimeout);
         playStartSound();
 
-        executeTimer = setTimeout(() => {
+        executeTimeout = setTimeout(() => {
             navigate('/launch', {
                 state: {
                     path: appState.library[id].path
@@ -238,20 +268,24 @@ function Library() {
 
     return (
         <div className={styles.container}>
+            <div className={styles.status}>
+                <FontAwesomeIcon icon={appState.locked ? faLock : faUnlock} />
+            </div>
             <div className={styles.col}>
                 <div className={styles.wrapper}>
-                    {appState.library.sort(sortByProperty('name')).map((item: any, idx: number) => {
-                        return (
-                            <LibraryItem
-                                key={idx}
-                                id={idx}
-                                className={`library-item-${idx}`}
-                                name={item.name}
-                                image={item.image}
-                                selected={idx === index ? true : false}
-                                onChange={setSelectedIndex} />
-                        )
-                    })}
+                    {appState.library.sort(sortByProperty('name'))
+                        .map((item: any, idx: number) => {
+                            return (
+                                <LibraryItem
+                                    key={idx}
+                                    id={idx}
+                                    className={`library-item-${idx}`}
+                                    name={item.name}
+                                    image={item.image}
+                                    selected={idx === index ? true : false}
+                                    onChange={setSelectedIndex} />
+                            )
+                        })}
                 </div>
 
                 <span className={styles.name}>

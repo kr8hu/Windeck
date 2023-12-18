@@ -46,7 +46,7 @@ export const reducer = (state: any, action: any) => {
 
 export const initialState = {
     selected: 0,
-    locked: false,
+    locked: true,
     time: "",
     library: localStorage.getItem('windeck__library') ? JSON.parse(`${localStorage.getItem('windeck__library')}`) : []
 }

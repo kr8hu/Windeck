@@ -111,11 +111,6 @@ function LibraryItem(props: Props) {
 
     return (
         <div
-            onTouchStart={handleButtonPress}
-            onTouchEnd={handleButtonRelease}
-            onMouseDown={handleButtonPress}
-            onMouseUp={handleButtonRelease}
-            onMouseLeave={handleButtonRelease}
             className={`${styles.container} ${props.className}`}
             data-selected={props.selected}>
             <img
