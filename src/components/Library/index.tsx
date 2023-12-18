@@ -33,15 +33,13 @@ import startSound from '../../assets/sounds/start_02.mp3';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faLock,
-    faUnlock,
-    faPencil
+    faUnlock
 } from '@fortawesome/free-solid-svg-icons';
 
 //Styles
 import styles from './Library.module.css';
 
 
-let touchTimeout: any;
 let executeTimeout: any;
 let gamepadIndex: any;
 
@@ -85,11 +83,7 @@ function Library() {
             return gamepadIndex = e.gamepad.index;
         });
 
-        window.addEventListener('touchstart', () => {
-            setLockStatus();
-        });
 
-    
         setInterval(() => {
             if (gamepadIndex !== undefined) {
                 const gamepad: any = navigator.getGamepads()[gamepadIndex];
@@ -105,7 +99,6 @@ function Library() {
 
         return () => {
             window.removeEventListener('keydown', () => { });
-            window.removeEventListener('touchstart', () => { });
             window.removeEventListener('contextmenu', () => { });
             window.removeEventListener('gamepadconnected', () => { });
         }
@@ -234,16 +227,7 @@ function Library() {
      * Zárolást módosító funkció
      */
     const setLockStatus = () => {
-        clearTimeout(touchTimeout);
-
-        touchTimeout = setTimeout(() => {
-            if (appState.locked) {
-                setAppState(actionTypes.app.SET_LOCKED, false);
-                return;
-            }
-
-            setAppState(actionTypes.app.SET_LOCKED, true);
-        }, 2000);
+        setAppState(actionTypes.app.SET_LOCKED, !appState.locked);
     }
 
 
@@ -268,7 +252,7 @@ function Library() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.status}>
+            <div className={styles.status} onClick={setLockStatus}>
                 <FontAwesomeIcon icon={appState.locked ? faLock : faUnlock} />
             </div>
             <div className={styles.col}>
@@ -283,6 +267,7 @@ function Library() {
                                     name={item.name}
                                     image={item.image}
                                     selected={idx === index ? true : false}
+                                    path={item.path}
                                     onChange={setSelectedIndex} />
                             )
                         })}

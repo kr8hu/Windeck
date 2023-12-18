@@ -1,9 +1,10 @@
 //Pages
 import Exit from '../pages/Exit';
 import Home from '../pages/Home';
+import Editor from '../pages/Editor';
 import Launch from '../pages/Launch';
-import Settings from '../pages/Settings';
 import Manager from '../pages/Manager';
+import Settings from '../pages/Settings';
 
 
 /**
@@ -26,7 +27,7 @@ const PAGES = {
         title: 'Beállítások',
         component: Settings
     },
-    editor: {
+    manager: {
         id: 3,
         key: 'manager',
         path: '/manager',
@@ -46,6 +47,13 @@ const PAGES = {
         path: '/exit',
         title: 'Kilépés',
         component: Exit
+    }, 
+    editor: {
+        id: 6,
+        key: 'editor',
+        path: '/editor',
+        title: 'Szerkesztő',
+        component: Editor
     }
 }
 

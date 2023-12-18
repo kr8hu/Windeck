@@ -24,6 +24,11 @@ export const reducer = (state: any, action: any) => {
                 ...state,
                 library: state.library.filter((_: any, index: number) => index !== action.payload)
             }
+        case actionTypes.app.MODIFY_LIBRARY_ITEM:
+            return {
+                ...state,
+                library: state.library.map((item: any, index: number) => index === action.payload.id ? action.payload : item)
+            }
         case actionTypes.app.SET_SELECTED:
             return {
                 ...state,

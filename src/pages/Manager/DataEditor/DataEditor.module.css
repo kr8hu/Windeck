@@ -14,7 +14,7 @@
 }
 
 
-.title, 
+.heading, 
 .text {
     color: white;
     filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.4));
@@ -22,7 +22,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.title {
+.heading {
     font-size: 1.5rem;
     font-weight: bold;
 }
