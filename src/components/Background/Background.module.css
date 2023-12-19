@@ -13,6 +13,39 @@
 
 .layer {
     z-index: -1;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+.wrapper {
+    background-size: 100% 100%;
+    z-index: -2;
+}
+
+.background {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: -3;
+}
+
+
+
+/* 
+.layer,
+.background,
+.wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+}
+
+.layer {
+    z-index: -1;
 }
 
 .wrapper {
@@ -81,4 +114,5 @@ head::after {
     to {
         transform: rotate(360deg) scale(18) translateX(20px);
     }
-}
+} 
+*/
