@@ -1,8 +1,5 @@
 //React
-import React, { useContext } from 'react';
-
-//Context
-import { AppContext } from '../../context/App';
+import React from 'react';
 
 //Styles
 import styles from './Background.module.css';
@@ -14,19 +11,11 @@ import styles from './Background.module.css';
  * Háttérelem komponens
  */
 function Background() {
-    //Context
-    const { appState } = useContext(AppContext);
-
-
     return (
         <React.Fragment>
             <div className={styles.layer} />
             <div className={styles.wrapper}>
-                <div
-                    className={styles.background}
-                    style={{
-                        backgroundImage: `url(${appState.library[appState.selected].image})`
-                    }} />
+                <div className={styles.background} />
             </div>
         </React.Fragment>
     )
