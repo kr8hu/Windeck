@@ -1,4 +1,4 @@
-.layer,
+ .layer,
 .background,
 .wrapper {
     box-sizing: border-box;
@@ -81,4 +81,4 @@ head::after {
     to {
         transform: rotate(360deg) scale(18) translateX(20px);
     }
-}
+} 

@@ -23,7 +23,6 @@ import styles from './LibraryItem.module.css';
  * Props
  * 
  */
-
 interface Props {
     className?: any;
     id: number;
