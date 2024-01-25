@@ -6,7 +6,7 @@ import { AppContext } from '../../context/App';
 
 //Components
 import Library from '../../components/Library';
-import Template from '../../components/Template';
+import DefaultLayout from '../../layouts/DefaultLayout';
 
 //Local
 import menuItems from './menuItems';
@@ -27,7 +27,7 @@ function Home() {
 
     return (
         <div className={styles.container}>
-            <Template
+            <DefaultLayout
                 menuItems={menuItems}>
                 {appState.library.length !== 0 ?
                     <Library />
@@ -36,7 +36,7 @@ function Home() {
                         A könyvtárad jelenleg üres.
                     </span>
                 }
-            </Template>
+            </DefaultLayout>
         </div>
     )
 }

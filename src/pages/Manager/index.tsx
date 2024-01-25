@@ -1,5 +1,5 @@
 //Components
-import Template from '../../components/Template';
+import DefaultLayout from '../../layouts/DefaultLayout';
 import ManagerEditor from './DataEditor';
 
 //Local
@@ -17,13 +17,13 @@ import styles from './Manager.module.css';
 function Manager() {
     return (
         <div className={styles.container}>
-            <Template menuItems={menuItems}>
+            <DefaultLayout menuItems={menuItems}>
                 <div className={styles.row}>
                     <div className={styles.col}>
                        <ManagerEditor />
                     </div>
                 </div>
-            </Template>
+            </DefaultLayout>
         </div>
     )
 }

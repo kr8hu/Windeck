@@ -1,14 +1,13 @@
 //Components
-import Clock from '../Clock';
-import Background from '../Background';
-import Navigation from '../Navigation';
+import Clock from '../../components/Clock';
+import Background from '../../components/Background';
+import Navigation from '../../components/Navigation';
 
 //Assets
 import logo from '../../assets/images/logo/logo-gradient.png';
-//import background from '../../assets/images/backgrounds/steamdeckbg.jpeg';
 
 //Styles
-import styles from './Template.module.css';
+import styles from './DefaultLayout.module.css';
 
 
 /**

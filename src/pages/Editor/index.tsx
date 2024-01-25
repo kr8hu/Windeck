@@ -21,7 +21,7 @@ import { confirm, message } from '@tauri-apps/api/dialog';
 
 //Components
 import Button from '../../components/Button';
-import Template from '../../components/Template';
+import DefaultLayout from '../../layouts/DefaultLayout';
 
 //Local
 import menuItems from './menuItems';
@@ -92,7 +92,7 @@ function Editor() {
 
     return (
         <div className={styles.container}>
-            <Template menuItems={menuItems}>
+            <DefaultLayout menuItems={menuItems}>
                 <div className={styles.row}>
                     <div className={styles.col}>
                         <div className={styles.editor}>
@@ -138,7 +138,7 @@ function Editor() {
                         </div>
                     </div>
                 </div>
-            </Template>
+            </DefaultLayout>
         </div>
     )
 }

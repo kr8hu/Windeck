@@ -1,6 +1,6 @@
 //Components
 import Setting from './Setting';
-import Template from '../../components/Template';
+import DefaultLayout from '../../layouts/DefaultLayout';
 
 //Local
 import options from './options';
@@ -18,7 +18,7 @@ import styles from './Settings.module.css';
 function Settings() {
     return (
         <div className={styles.container}>
-            <Template menuItems={menuItems}>
+            <DefaultLayout menuItems={menuItems}>
                 <div className={styles.row}>
                     {options.map((option: any, idx: number) => {
                         return (
@@ -28,7 +28,7 @@ function Settings() {
                         )
                     })}
                 </div>
-            </Template>
+            </DefaultLayout>
         </div>
     )
 }
