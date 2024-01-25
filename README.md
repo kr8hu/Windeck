@@ -20,4 +20,4 @@ Launcher a windows rendszert futtató Steam Deck konzolokhoz.
 
 ### Előnézet
 
-<img src="https://lh3.googleusercontent.com/drive-viewer/AK7aPaA1gSGt-IzWtdDfsjqEHSOzM4VHjVULj5to8bZC3K-7WxSja9DYli-zgc7rI3Io-Rm7n-l_lsMBz-7QoPauFrvpdLNamQ=s1600">
+<a href="https://lh3.googleusercontent.com/drive-viewer/AEYmBYQoGSiTRDWWNU80EAhpj9-cROeJQbzRKLx7y6P9UYp7zhWSkQR-7R4baKJP2wvOH2DT9RRP99oSYyXc8uY-IvJw9Nd44Q=s1600?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/drive-viewer/AEYmBYQoGSiTRDWWNU80EAhpj9-cROeJQbzRKLx7y6P9UYp7zhWSkQR-7R4baKJP2wvOH2DT9RRP99oSYyXc8uY-IvJw9Nd44Q=s1600" /> </a>
