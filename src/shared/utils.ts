@@ -1,11 +1,16 @@
 //Assets
 import btn_option from '../assets/images/buttons/fixed/options.png';
-import btn_cross from '../assets/images/buttons/cross.png';
+/* import btn_cross from '../assets/images/buttons/cross.png';
 import btn_circle from '../assets/images/buttons/circle.png';
 import btn_square from '../assets/images/buttons/square.png';
-import btn_triangle from '../assets/images/buttons/triangle.png';
+import btn_triangle from '../assets/images/buttons/triangle.png'; */
+import btn_a from '../assets/images/buttons/A.png';
+import btn_b from '../assets/images/buttons/B.png';
+import btn_x from '../assets/images/buttons/X.png';
+import btn_y from '../assets/images/buttons/Y.png';
 import btn_L1 from '../assets/images/buttons/fixed/L1.png';
 import btn_R1 from '../assets/images/buttons/fixed/R1.png';
+
 
 //Shared
 import { GAMEPAD_BUTTONS } from "./const";
@@ -44,10 +49,10 @@ export function sortByProperty(property: string) {
 export function getGamepadButton(key: number) {
     switch (key) {
         case GAMEPAD_BUTTONS.options: return btn_option;
-        case GAMEPAD_BUTTONS.A: return btn_cross;
-        case GAMEPAD_BUTTONS.B: return btn_circle;
-        case GAMEPAD_BUTTONS.X: return btn_square;
-        case GAMEPAD_BUTTONS.Y: return btn_triangle;
+        case GAMEPAD_BUTTONS.A: return btn_a;
+        case GAMEPAD_BUTTONS.B: return btn_b;
+        case GAMEPAD_BUTTONS.X: return btn_x;
+        case GAMEPAD_BUTTONS.Y: return btn_y;
         case GAMEPAD_BUTTONS.L1: return btn_L1
         case GAMEPAD_BUTTONS.R1: return btn_R1;
         default: return undefined
