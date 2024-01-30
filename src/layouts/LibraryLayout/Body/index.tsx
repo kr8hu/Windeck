@@ -1,9 +1,6 @@
 //React
 import { useContext } from 'react';
 
-//React Router
-import { useNavigate } from 'react-router-dom';
-
 //Ctx
 import { AppContext } from '../../../context/App';
 
@@ -25,27 +22,6 @@ function Body() {
     //Context
     const { appState } = useContext(AppContext);
 
-
-    //Variables
-    const navigate = useNavigate();
-
-
-
-    /**
-     * openEditor
-     * 
-     * Szerkesztő megnyitása az adatokkal
-     */
-    const openEditor = () => {
-        navigate('/editor', {
-            state: {
-                id: appState.selected,
-                name: appState.library[appState.selected].name,
-                image: appState.library[appState.selected].image,
-                path: appState.library[appState.selected].path,
-            }
-        });
-    }
 
     return (
         <div className={styles.container}>
