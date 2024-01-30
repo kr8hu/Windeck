@@ -1,0 +1,9 @@
+:root {
+    --color-main: black;
+    --color-highlight: grey;
+}
+
+html,
+body {
+    background-color: transparent;
+}

@@ -2,18 +2,18 @@ declare module 'use-sound' {
     import { Howl, Howler } from 'howler';
 
     interface HookOptions {
-        volume?: number;
-        playbackRate?: number;
         interrupt?: boolean;
+        playbackRate?: number;
         soundEnabled?: boolean;
+        volume?: number;
         sprite?: { [key: string]: [number, number] };
     }
 
     interface ExposedData {
-        volume: number;
-        playbackRate: number;
         interrupt: boolean;
+        playbackRate: number;
         soundEnabled: boolean;
+        volume: number;
         sprite: { [key: string]: [number, number] };
     }
 

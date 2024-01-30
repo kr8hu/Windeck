@@ -1,0 +1,21 @@
+.background,
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.background {
+    background-size: 100% auto;
+    background-position: center center;
+    z-index: -1;
+}
+
+.layer {
+    z-index: 0;
+    background: radial-gradient(rgba(0, 0, 0, 0.5) 50%, black 100%);
+    backdrop-filter: blur(20px);
+}

@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;700&display=swap');
 
+@font-face {
+    font-family: "Gogh";
+    src: url(./assets/fonts/gogh/Gogh-ExtraBold.woff2);
+}
+
+@font-face {
+    font-family: "Gogh Italic";
+    src: url(./assets/fonts/gogh/Gogh-ExtraBoldItalic.woff2);
+}
+
+@font-face {
+    font-family: "Nexa Heavy";
+    src: url(./assets/fonts/nexa/Nexa-Heavy.ttf);
+}
+
+@font-face {
+    font-family: "Nexa Light";
+    src: url(./assets/fonts/nexa/Nexa-ExtraLight.ttf);
+}
+
 body {
     margin: 0;
     padding: 0;

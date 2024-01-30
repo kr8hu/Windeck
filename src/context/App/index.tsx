@@ -66,30 +66,15 @@ export const AppContext = createContext<IAppContext>({
  * @returns 
  */
 export const AppProvider = (props: Props) => {
-    //Getter
     const [appState, dispatch] = useReducer(reducer, initialState);
-
-    //Setter
     const setAppState = (type: any, payload: any) => dispatch({ type, payload });
 
 
     useEffect(() => {
-        interval = setInterval(() => {
-            const date = new Date();
-            const hours = date.getHours().toString();
-            const minutes = date.getMinutes().toString();
-
-            const time = {
-                hours: hours.length > 1 ? hours : `0${hours}`,
-                minutes: minutes.length > 1 ? minutes : `0${minutes}`
-            };
-
-            setAppState(actionTypes.app.SET_TIME, `${time.hours}:${time.minutes}`);
-        });
-
-
+        interval = setInterval(() => syncTime(), 500);
         return () => clearInterval(interval);
     }, []);
+
 
     useEffect(() => {
         if (appState.library.length !== 0) {
@@ -100,11 +85,26 @@ export const AppProvider = (props: Props) => {
     }, [appState.library]);
 
 
+    /**
+     * syncTime
+     * 
+     */
+    const syncTime = () => {
+        const date = new Date();
+        const hours = date.getHours().toString();
+        const minutes = date.getMinutes().toString();
+
+        const time = {
+            hours: hours.length > 1 ? hours : `0${hours}`,
+            minutes: minutes.length > 1 ? minutes : `0${minutes}`
+        };
+
+        setAppState(actionTypes.app.SET_TIME, `${time.hours}:${time.minutes}`);
+    }
+
+
     return (
-        <AppContext.Provider value={{
-            appState,
-            setAppState
-        }}>
+        <AppContext.Provider value={{ appState, setAppState }}>
             {props.children}
         </AppContext.Provider>
     )

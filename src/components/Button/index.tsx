@@ -11,7 +11,7 @@ interface Props {
     className?: any;
     text: string;
     disabled?: boolean;
-    onClick: any;
+    onClick?: any;
 }
 
 

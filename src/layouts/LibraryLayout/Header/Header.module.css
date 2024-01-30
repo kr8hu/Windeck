@@ -1,28 +1,10 @@
 .container {
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
-    background: black;
-}
-
-.header,
-.body {
-    box-sizing: border-box;
-    width: 100%;
-    display: block;
-}
-
-.header {
     height: 20%;
+    position: relative;
+    z-index: 2;
     padding: 1rem 2rem;
-}
-
-.body {
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .row {
@@ -43,6 +25,7 @@
 
 .col:nth-child(1) {
     max-width: 10%;
+    padding-right: 1rem;
 }
 
 .col:nth-child(1),
@@ -59,4 +42,8 @@
     height: 100%;
     width: auto;
     filter: drop-shadow(1px 1px 10px rgba(255, 255, 255, 0.5));
+}
+
+.pill {
+    margin-right: 1rem;
 }

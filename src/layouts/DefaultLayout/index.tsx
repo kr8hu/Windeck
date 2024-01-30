@@ -1,6 +1,5 @@
 //Components
 import Clock from '../../components/Clock';
-import Background from '../../components/Background';
 import Navigation from '../../components/Navigation';
 
 //Assets
@@ -13,7 +12,6 @@ import styles from './DefaultLayout.module.css';
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
 interface Props {
     children?: any;
@@ -32,9 +30,7 @@ interface Props {
 function Template(props: Props) {
     return (
         <div className={styles.container}>
-            {/* <Background image={props.backgroundImage || background} /> */}
-            <Background />
-
+            {/* Fejléc */}
             <div className={styles.header}>
                 <div className={styles.row}>
                     <div className={styles.col}>
@@ -48,6 +44,8 @@ function Template(props: Props) {
                     </div>
                 </div>
             </div>
+            
+            {/* Tartalom */}
             <div className={styles.body}>
                 {props.children}
             </div>

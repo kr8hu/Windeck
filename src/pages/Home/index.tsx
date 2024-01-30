@@ -1,15 +1,5 @@
-//React
-import { useContext } from 'react';
-
-//Ctx
-import { AppContext } from '../../context/App';
-
 //Components
-import Library from '../../components/Library';
-import DefaultLayout from '../../layouts/DefaultLayout';
-
-//Local
-import menuItems from './menuItems';
+import LibraryLayout from '../../layouts/LibraryLayout';
 
 //Styles
 import styles from './Home.module.css';
@@ -21,22 +11,9 @@ import styles from './Home.module.css';
  * @returns 
  */
 function Home() {
-    //Ctx
-    const { appState } = useContext(AppContext);
-
-
     return (
         <div className={styles.container}>
-            <DefaultLayout
-                menuItems={menuItems}>
-                {appState.library.length !== 0 ?
-                    <Library />
-                    :
-                    <span className={styles.placeholder}>
-                        A könyvtárad jelenleg üres.
-                    </span>
-                }
-            </DefaultLayout>
+            <LibraryLayout />
         </div>
     )
 }

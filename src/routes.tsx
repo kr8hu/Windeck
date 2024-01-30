@@ -5,21 +5,33 @@ import React, {
 } from 'react';
 
 //React Router
-import { Routes, Route } from 'react-router-dom';
+import {
+    Routes,
+    Route
+} from 'react-router-dom';
 
 //Shared
 import PAGES from './shared/pages';
 
 
 /**
+ * RouteItem
+ */
+type RouteItem = {
+    path: string;
+    component: React.ComponentType<any>;
+};
+
+
+/**
  * RouteStack
  * 
- * Ez a komponens az oldalakat és útvonalakat generálja.
+ * Oldalakat és a hozzá tartozó útvonalakat generáló komponens.
  * @returns 
  */
 function RouteStack() {
     //State
-    const [routeStack, setRouteStack] = useState<any>([]);
+    const [routeStack, setRouteStack] = useState<RouteItem[]>([]);
 
 
     //Stack feltöltése
@@ -27,7 +39,7 @@ function RouteStack() {
         if (routeStack.length !== 0) return;
 
         for (let [, value] of Object.entries(PAGES)) {
-            setRouteStack((prevState: any) => [
+            setRouteStack((prevState: RouteItem[]) => [
                 ...prevState,
                 {
                     path: value.path,
@@ -38,7 +50,8 @@ function RouteStack() {
         //eslint-disable-next-line
     }, []);
 
-    
+
+    //Ellenörzés
     useEffect(() => {
         if (routeStack.length === Object.keys(PAGES).length) {
             console.log(routeStack)
@@ -46,17 +59,27 @@ function RouteStack() {
     }, [routeStack]);
 
 
+    /**
+     * renderRoutes
+     * 
+     * @returns 
+     */
+    const renderRoutes = () => {
+        return routeStack.map((route: RouteItem, key: number) => {
+            return (
+                <Route
+                    key={key}
+                    path={'/' + route.path}
+                    element={<route.component />} />
+            )
+        })
+    }
+
+
     return (
         <React.Fragment>
             <Routes>
-                {routeStack.map((route: any, key: number) => {
-                    return (
-                        <Route
-                            key={key}
-                            path={'/' + route.path}
-                            element={<route.component />} />
-                    )
-                })}
+                {renderRoutes()}
             </Routes>
         </React.Fragment>
     )

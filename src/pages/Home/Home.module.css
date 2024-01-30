@@ -69,11 +69,3 @@
 
     filter: drop-shadow(1px 1px 10px rgba(255, 255, 255, 0.25));
 }
-
-.placeholder {
-    margin-left: 3rem;
-    font-size: 2rem;
-    font-weight: 400;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-}
