@@ -7,9 +7,11 @@ import { useNavigate } from 'react-router-dom';
 //Ctx
 import { AppContext } from '../../../context/App';
 
+//Components
+import ButtonGroup from './ButtonGroup';
+
 //Styles
 import styles from './Body.module.css';
-import Button from '../../../components/Button';
 
 
 /**
@@ -23,7 +25,7 @@ function Body() {
     //Context
     const { appState } = useContext(AppContext);
 
-    
+
     //Variables
     const navigate = useNavigate();
 
@@ -64,11 +66,7 @@ function Body() {
                     </div>
                 </div>
                 <div className={styles.col}>
-                    <Button className={styles.button} text="Indítás" />
-                    <Button 
-                        className={styles.button} 
-                        text="Szerkesztés" 
-                        onClick={openEditor}/>
+                    <ButtonGroup />
                 </div>
                 <div className={styles.col}>
 

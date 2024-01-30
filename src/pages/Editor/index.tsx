@@ -126,11 +126,12 @@ function Editor() {
 
                                     <div className={styles.buttonGroup}>
                                         <Button
+                                            className={styles.modify}
                                             text="Módosítások mentése"
                                             onClick={modifyItem} />
                                         <Button
-                                            text="Eltávolítás"
                                             className={styles.delete}
+                                            text="Eltávolítás"
                                             onClick={deleteItem} />
                                     </div>
                                 </div>

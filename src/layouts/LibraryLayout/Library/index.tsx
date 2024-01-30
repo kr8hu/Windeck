@@ -205,6 +205,10 @@ function Library() {
                 setExecStatus(true);
                 break;
             }
+            case GAMEPAD_BUTTONS.Y: {
+                navigate("/settings");
+                break;
+            }
             case GAMEPAD_BUTTONS.options: {
                 navigate("/exit");
                 break;
