@@ -43,6 +43,8 @@ export const KEYBOARD_BUTTONS = {
     F1: 112,
     F12: 123,
     insert: 45,
-    enter: 13
+    enter: 13,
+    rshift: 16,
+    backspace: 8
 }
 

@@ -27,13 +27,13 @@ import { sortByProperty } from '../../../shared/utils';
 
 //Assets
 import clickSound from '../../../assets/sounds/click_03.mp3';
-import startSound from '../../../assets/sounds/start_02.mp3';
+//import startSound from '../../../assets/sounds/start_02.mp3';
 
 //Styles
 import styles from './Library.module.css';
 
 
-let executeTimeout: any;
+let navigateTimeout: any;
 let gamepadIndex: any;
 
 const sensitivity = 100;
@@ -55,12 +55,12 @@ function Library() {
 
     //State
     const [index, setIndex] = useState<number>(0);
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [, setSelectedIndex] = useState<number>(0);
     const [execStatus, setExecStatus] = useState<boolean>(false);
 
     //Hooks
     const [playClickSound] = useSound(clickSound);
-    const [playStartSound] = useSound(startSound);
+//    const [playStartSound] = useSound(startSound);
 
 
     useEffect(() => {
@@ -81,11 +81,12 @@ function Library() {
             if (gamepadIndex !== undefined) {
                 const gamepad: any = navigator.getGamepads()[gamepadIndex];
 
-                gamepad.buttons.map((e: any) => e.pressed).forEach((isPressed: any, buttonIndex: any) => {
-                    if (isPressed) {
-                        setControllerLayout(buttonIndex);
-                    }
-                });
+                gamepad.buttons.map((e: any) => e.pressed)
+                    .forEach((isPressed: any, buttonIndex: any) => {
+                        if (isPressed) {
+                            setGamepadLayout(buttonIndex);
+                        }
+                    });
             }
         }, sensitivity);
 
@@ -129,11 +130,31 @@ function Library() {
     //execStatus és selectedIndex hatása a komponensre
     useEffect(() => {
         if (execStatus) {
-            handleExecutable(selectedIndex);
+            const data = {
+                path: appState.library[appState.selected].path
+            };
+
+            handleNavigation("/launch", data);
         }
 
         setExecStatus(false);
-    }, [execStatus, selectedIndex]);
+    }, [execStatus]);
+
+
+    /**
+     * handleNavigation
+     * 
+     * Navigáció kezelése
+     */
+    const handleNavigation = (route: string, state?: any) => {
+        clearTimeout(navigateTimeout);
+
+        navigateTimeout = setTimeout(() => {
+            navigate(route, {
+                state: state || undefined
+            });
+        }, 750);
+    }
 
 
     /**
@@ -141,7 +162,7 @@ function Library() {
      * 
      * Billentyűzetkiosztás alkalmazása
      * 
-     * @param keyCode Lenyomott billentyű azonosítója
+     * @param keyCode
      * @returns 
      */
     const setKeyboardLayout = (keyCode: number) => {
@@ -152,6 +173,10 @@ function Library() {
             }
             case KEYBOARD_BUTTONS.right: {
                 setIndex((current: number) => current + 1);
+                break;
+            }
+            case KEYBOARD_BUTTONS.rshift: {
+                handleNavigation('/settings');
                 break;
             }
             case KEYBOARD_BUTTONS.F1: {
@@ -167,7 +192,7 @@ function Library() {
                 break;
             }
             case KEYBOARD_BUTTONS.esc: {
-                navigate("/exit");
+                handleNavigation("/exit");
                 break;
             }
             default: return null;
@@ -176,14 +201,13 @@ function Library() {
 
 
     /**
-     * setControllerLayout
+     * setGamepadLayout
      * 
      * Kontroller gombkiosztás alkalmazása
      * 
-     * @param buttonIndex lenyomott gomb azonosítója
+     * @param buttonIndex 
      */
-    const setControllerLayout = (buttonIndex: any) => {
-
+    const setGamepadLayout = (buttonIndex: any) => {
         switch (buttonIndex) {
             case GAMEPAD_BUTTONS.left: {
                 setIndex((current: number) => current - 1);
@@ -198,7 +222,7 @@ function Library() {
                 break;
             }
             case GAMEPAD_BUTTONS.R1: {
-                setIndex(appState.library.length - 1)
+                setIndex(appState.library.length - 1);
                 break;
             }
             case GAMEPAD_BUTTONS.A: {
@@ -206,33 +230,15 @@ function Library() {
                 break;
             }
             case GAMEPAD_BUTTONS.Y: {
-                navigate("/settings");
+                handleNavigation("/settings");
                 break;
             }
             case GAMEPAD_BUTTONS.options: {
-                navigate("/exit");
+                handleNavigation("/exit");
                 break;
             }
             default: return null;
         }
-    }
-
-    /**
-     * handleExecutable
-     * 
-     * Navigáció a program indító képernyőre
-     */
-    const handleExecutable = (id: number) => {
-        clearTimeout(executeTimeout);
-        playStartSound();
-
-        executeTimeout = setTimeout(() => {
-            navigate('/launch', {
-                state: {
-                    path: appState.library[id].path
-                }
-            });
-        }, 1500);
     }
 
 
@@ -244,11 +250,11 @@ function Library() {
                         .map((item: any, idx: number) => {
                             return (
                                 <LibraryItem
+                                    className={`library-item-${idx}`}
                                     key={idx}
                                     id={idx}
-                                    className={`library-item-${idx}`}
-                                    name={item.name}
                                     image={item.image}
+                                    name={item.name}
                                     selected={idx === index ? true : false}
                                     path={item.path}
                                     onChange={setSelectedIndex} />
