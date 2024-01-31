@@ -24,29 +24,27 @@ function Body() {
 
 
     return (
-        <div className={styles.container}>
-            <div className={styles.row}>
-                <div className={styles.col}>
+        <div className={styles.row}>
+            <div className={styles.col}>
 
+            </div>
+            <div className={styles.col}>
+                <div className={styles.data}>
+                    <img
+                        className={styles.cover}
+                        src={appState.library[appState.selected].image}
+                        alt="cover"
+                    />
+                    <span className={styles.title}>
+                        {appState.library[appState.selected].name}
+                    </span>
                 </div>
-                <div className={styles.col}>
-                    <div className={styles.data}>
-                        <img
-                            className={styles.cover}
-                            src={appState.library[appState.selected].image}
-                            alt="cover"
-                        />
-                        <span className={styles.title}>
-                            {appState.library[appState.selected].name}
-                        </span>
-                    </div>
-                </div>
-                <div className={styles.col}>
-                    <ButtonGroup />
-                </div>
-                <div className={styles.col}>
+            </div>
+            <div className={styles.col}>
+                <ButtonGroup />
+            </div>
+            <div className={styles.col}>
 
-                </div>
             </div>
         </div>
     )

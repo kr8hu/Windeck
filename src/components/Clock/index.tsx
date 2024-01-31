@@ -9,11 +9,10 @@ import styles from './Clock.module.css';
 
 
 /**
- * Props
+ * Clock
  * 
- * Komponens tulajdonságainak meghatározása
+ * @returns 
  */
-
 function Clock() {
     const { appState } = useContext(AppContext);
 

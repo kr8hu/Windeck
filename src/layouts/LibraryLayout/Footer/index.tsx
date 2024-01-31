@@ -21,10 +21,10 @@ import styles from './Footer.module.css';
 function Footer() {
     //Context
     const { appState } = useContext(AppContext);
-    
+
 
     return (
-        <div className={styles.container}>
+        <>
             {appState.library.length !== 0 ?
                 <Library />
                 :
@@ -32,7 +32,7 @@ function Footer() {
                     A könyvtárad jelenleg üres.
                 </span>
             }
-        </div>
+        </>
     )
 }
 

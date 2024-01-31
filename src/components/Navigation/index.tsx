@@ -8,9 +8,7 @@ import styles from './Navigation.module.css';
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
-
 interface Props {
     menuItems: any;
 }

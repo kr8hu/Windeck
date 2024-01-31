@@ -5,7 +5,6 @@ import styles from './Button.module.css';
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
 interface Props {
     className?: any;
@@ -18,16 +17,13 @@ interface Props {
 /**
  * Button
  * 
- * Gomb komponens
- * 
  * @param props 
  * @returns 
  */
 function Button(props: Props) {
     /**
      * onClick
-     * 
-     * Kattintásra lefutó funkció
+     * s
      * @returns 
      */
     const onClick = () => {

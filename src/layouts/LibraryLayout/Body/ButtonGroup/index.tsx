@@ -9,10 +9,6 @@ import { AppContext } from '../../../../context/App';
 
 //Components
 import Button from '../../../../components/Button';
-import Pill from '../../../../components/Pill';
-
-//Shared
-import { GAMEPAD_BUTTONS } from '../../../../shared/const';
 
 //Styles
 import styles from './ButtonGroup.module.css';
@@ -29,41 +25,41 @@ function ButtonGroup() {
     const { appState } = useContext(AppContext);
 
 
-    //Variables
+    //Hooks
     const navigate = useNavigate();
 
 
-    /**
-     * openEditor
-     * 
-     * Szerkesztő megnyitása az adatokkal
-     */
-    const openEditor = () => {
-        navigate('/editor', {
+    //Variables
+    const buttons = [
+        {
+            text: "Indítás",
+            path: "/launch",
+            state: {
+                path: appState.library[appState.selected].path,
+            }
+        },
+        {
+            text: "Szerkesztés",
+            path: "/editor",
             state: {
                 id: appState.selected,
                 name: appState.library[appState.selected].name,
                 image: appState.library[appState.selected].image,
                 path: appState.library[appState.selected].path,
             }
-        });
-    }
+        }
+    ]
 
 
-    return (
-        <>
-            <Pill
-                icon={GAMEPAD_BUTTONS.A}
-                text="Start" />
-
-            <div className={styles.divider} />
-
+    return buttons.map((button: any, idx: number) => {
+        return (
             <Button
+                key={idx}
                 className={styles.button}
-                text="Szerkesztés"
-                onClick={openEditor} />
-        </>
-    )
+                text={button.text}
+                onClick={() => navigate(button.path, { state: button.state })} />
+        )
+    })
 }
 
 export default ButtonGroup;

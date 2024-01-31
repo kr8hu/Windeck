@@ -1,8 +1,5 @@
 //React
-import {
-    useState,
-    useEffect
-} from 'react';
+import { useState } from 'react';
 
 //Styles
 import styles from './LibraryItem.module.css';
@@ -19,29 +16,20 @@ interface Props {
     image: any;
     path: string;
     selected: boolean;
-    onChange?: any;
 }
 
 
 /**
  * LibraryItem
  * 
- * Kollekció egy eleme
+ * Könyvtár egy eleme
  * 
  * @param props 
  * @returns 
  */
 function LibraryItem(props: Props) {
-    //State
+    //States
     const [loaded, setLoaded] = useState<boolean>(false);
-
-
-    //propsok hatása a komponensre
-    useEffect(() => {
-        if (props.selected) {
-            props.onChange(props.id);
-        }
-    }, [props.id, props.selected]);
 
 
     return (
@@ -49,7 +37,7 @@ function LibraryItem(props: Props) {
             className={`${styles.container} ${props.className}`}
             data-selected={props.selected}>
             <img
-                alt="coverpicture"
+                alt="libraryItem"
                 src={props.image}
                 className={styles.image}
                 data-loaded={loaded}

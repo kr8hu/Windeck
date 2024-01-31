@@ -1,9 +1,5 @@
 //Components
-import Clock from '../../components/Clock';
-import Navigation from '../../components/Navigation';
-
-//Assets
-import logo from '../../assets/images/logo/logo-gradient.png';
+import Header from './Header';
 
 //Styles
 import styles from './DefaultLayout.module.css';
@@ -21,28 +17,17 @@ interface Props {
 
 
 /**
- * Template
+ * DefaultLayout
  * 
  * @param props 
- * 
  * @returns 
  */
-function Template(props: Props) {
+function DefaultLayout(props: Props) {
     return (
         <div className={styles.container}>
             {/* Fejléc */}
             <div className={styles.header}>
-                <div className={styles.row}>
-                    <div className={styles.col}>
-                        <img className={styles.logo} src={logo} />
-                    </div>
-                    <div className={styles.col}>
-                        <Navigation menuItems={props.menuItems} />
-                    </div>
-                    <div className={styles.col}>
-                        <Clock />
-                    </div>
-                </div>
+                <Header menuItems={props.menuItems} />
             </div>
             
             {/* Tartalom */}
@@ -53,4 +38,4 @@ function Template(props: Props) {
     )
 }
 
-export default Template;
+export default DefaultLayout;

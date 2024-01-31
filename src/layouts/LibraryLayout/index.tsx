@@ -19,7 +19,6 @@ import styles from './LibraryLayout.module.css';
  * LibraryLayout
  * 
  * @param props 
- * 
  * @returns 
  */
 function LibraryLayout() {
@@ -29,18 +28,17 @@ function LibraryLayout() {
 
     return (
         <div className={styles.container}>
-            {/* Háttér */}
             <Background image={appState.library[appState.selected].image} />
 
-            {/* Fejléc */}
-            <Header />
-
-
-            {/* Tartalom */}
-            <Body />
-
-            {/* Lábléc */}
-            <Footer />
+            <div className={styles.header}>
+                <Header />
+            </div>
+            <div className={styles.body}>
+                <Body />
+            </div>
+            <div className={styles.footer}>
+                <Footer />
+            </div>
         </div>
     )
 }

@@ -27,7 +27,6 @@ import { sortByProperty } from '../../../shared/utils';
 
 //Assets
 import clickSound from '../../../assets/sounds/click_03.mp3';
-//import startSound from '../../../assets/sounds/start_02.mp3';
 
 //Styles
 import styles from './Library.module.css';
@@ -47,20 +46,17 @@ const sensitivity = 100;
  * @returns 
  */
 function Library() {
-    //Router
-    const navigate = useNavigate();
-
     //Context
     const { appState, setAppState } = useContext(AppContext);
 
-    //State
-    const [index, setIndex] = useState<number>(0);
-    const [, setSelectedIndex] = useState<number>(0);
-    const [execStatus, setExecStatus] = useState<boolean>(false);
 
     //Hooks
+    const navigate = useNavigate();
     const [playClickSound] = useSound(clickSound);
-//    const [playStartSound] = useSound(startSound);
+
+
+    //States
+    const [index, setIndex] = useState<number>(0);
 
 
     useEffect(() => {
@@ -127,26 +123,13 @@ function Library() {
     }, [index, appState.library]);
 
 
-    //execStatus és selectedIndex hatása a komponensre
-    useEffect(() => {
-        if (execStatus) {
-            const data = {
-                path: appState.library[appState.selected].path
-            };
-
-            handleNavigation("/launch", data);
-        }
-
-        setExecStatus(false);
-    }, [execStatus]);
-
-
     /**
-     * handleNavigation
+     * openPage
      * 
-     * Navigáció kezelése
+     * Oldal megnyitására szolgáló funkció
+     * (TO-DO: megoldást találni a timeout elhagyására)
      */
-    const handleNavigation = (route: string, state?: any) => {
+    const openPage = (route: string, state?: any) => {
         clearTimeout(navigateTimeout);
 
         navigateTimeout = setTimeout(() => {
@@ -176,7 +159,7 @@ function Library() {
                 break;
             }
             case KEYBOARD_BUTTONS.rshift: {
-                handleNavigation('/settings');
+                openPage('/settings');
                 break;
             }
             case KEYBOARD_BUTTONS.F1: {
@@ -187,12 +170,8 @@ function Library() {
                 setIndex(appState.library.length - 1)
                 break;
             }
-            case KEYBOARD_BUTTONS.enter: {
-                setExecStatus(true);
-                break;
-            }
             case KEYBOARD_BUTTONS.esc: {
-                handleNavigation("/exit");
+                openPage("/exit");
                 break;
             }
             default: return null;
@@ -225,16 +204,12 @@ function Library() {
                 setIndex(appState.library.length - 1);
                 break;
             }
-            case GAMEPAD_BUTTONS.A: {
-                setExecStatus(true);
-                break;
-            }
             case GAMEPAD_BUTTONS.Y: {
-                handleNavigation("/settings");
+                openPage("/settings");
                 break;
             }
             case GAMEPAD_BUTTONS.options: {
-                handleNavigation("/exit");
+                openPage("/exit");
                 break;
             }
             default: return null;
@@ -256,8 +231,7 @@ function Library() {
                                     image={item.image}
                                     name={item.name}
                                     selected={idx === index ? true : false}
-                                    path={item.path}
-                                    onChange={setSelectedIndex} />
+                                    path={item.path} />
                             )
                         })}
                 </div>

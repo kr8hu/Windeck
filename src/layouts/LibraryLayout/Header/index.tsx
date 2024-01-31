@@ -39,21 +39,19 @@ function Header() {
 
 
     return (
-        <div className={styles.container}>
-            <div className={styles.row}>
-                <div className={styles.col}>
-                    <img
-                        className={styles.logo}
-                        src={logo} />
+        <div className={styles.row}>
+            <div className={styles.col}>
+                <img
+                    className={styles.logo}
+                    src={logo} />
+            </div>
+            <div className={styles.col}>
+                <div className={styles.pills}>
+                    {renderPills()}
                 </div>
-                <div className={styles.col}>
-                    <div className={styles.pills}>
-                        {renderPills()}
-                    </div>
-                </div>
-                <div className={styles.col}>
-                    <Clock />
-                </div>
+            </div>
+            <div className={styles.col}>
+                <Clock />
             </div>
         </div>
     )

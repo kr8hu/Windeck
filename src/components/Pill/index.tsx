@@ -5,6 +5,10 @@ import { getGamepadButton } from '../../shared/utils';
 import styles from './Pill.module.css';
 
 
+/**
+ * Props
+ * 
+ */
 interface Props {
     icon: any;
     text: string;
@@ -14,8 +18,7 @@ interface Props {
 
 /**
  * Pill
- * 
- * Gamepad gombját és hozzá társított funkcióját megjelenítő komponens.
+ *
  */
 function Pill(props: Props) {
     return (
