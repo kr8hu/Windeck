@@ -17,10 +17,15 @@ import {
 import useSound from 'use-sound';
 
 //Tauri
-import { confirm, message } from '@tauri-apps/api/dialog';
+import { 
+    confirm, 
+    message 
+} from '@tauri-apps/api/dialog';
 
 //Components
 import Button from '../../components/Button';
+
+//Layout
 import DefaultLayout from '../../layouts/DefaultLayout';
 
 //Local

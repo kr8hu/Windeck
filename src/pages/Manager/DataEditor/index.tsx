@@ -43,8 +43,6 @@ import styles from './DataEditor.module.css';
 /**
  * Editor
  * 
- * Szerkesztőfelület komponens
- * 
  * @param props 
  * @returns 
  */
@@ -52,7 +50,8 @@ function ManagerEditor() {
     //Ctx
     const { setAppState } = useContext(AppContext);
 
-    //State
+
+    //States
     const [state, setState] = useState<number>(progress.init);
     const [base64, setBase64] = useState<any>('');
     const [data, setData] = useState<any>({
@@ -62,17 +61,16 @@ function ManagerEditor() {
     });
 
 
-    //Sound
+    //Hooks
     const [playAlertSound] = useSound(alertSound);
 
 
-    //Tauri listener aktiválása
+    //Tauri listener hozzáadása
     useEffect(() => {
         addTauriEventListener();
     }, []);
 
 
-    //base64 és data hatása a komponensre
     useEffect(() => {
         if (data.img.length === 0) return;
 
@@ -83,7 +81,7 @@ function ManagerEditor() {
     /**
      * addTauriListener
      * 
-     * Tauri eseményfigyelő létrehozása
+     * Tauri listener létrehozása
      */
     const addTauriEventListener = async () => {
         await appWindow.listen(
@@ -113,7 +111,7 @@ function ManagerEditor() {
     /**
      * createLibraryEntry
      * 
-     * Létrehozza az elemet a könyvtárban
+     * Létrehoz egy elemet a könyvtárban
      * 
      * @param data 
      * @param base64img 
@@ -125,13 +123,10 @@ function ManagerEditor() {
             image: 'data:image/jpeg;base64,' + base64img
         }
 
-        //Felvétel a storeba
         setAppState(actionTypes.app.ADD_LIBRARY_ITEM, entry);
 
-        //Hang lejátszása
         playAlertSound();
 
-        //Visszajelzés a felhasználónak
         message("Az elem hozzáadva a könyvtárhadhoz.")
             .then(() => clear());
     }
@@ -140,7 +135,8 @@ function ManagerEditor() {
     /**
      * setExecutable
      * 
-     * Megnyitja a fájlkezelőt az exe fájl kiválasztásához majd az érték továbbítása a statebe
+     * Megnyitja a fájlkezelőt az exe fájl kiválasztásához, 
+     * és a kiválasztott program útvonalának továbbítása a statebe
      */
     const setExecutable = async () => {
         const result = await open({
@@ -166,7 +162,8 @@ function ManagerEditor() {
     /**
      * setImage
      * 
-     * Megnyitja a fájlkezelőt a borítókép fájl kiválasztásához majd az érték továbbítása a statebe
+     * Megnyitja a fájlkezelőt az kép fájl kiválasztásához, 
+     * és a kiválasztott kép útvonalának továbbítása a statebe
      */
     const setImage = async () => {
         const result = await open({
@@ -205,7 +202,6 @@ function ManagerEditor() {
     /**
      * onClick
      * 
-     * Kattintásra lefutó funkció
      */
     const onClick = () => {
         switch (state) {
@@ -237,7 +233,7 @@ function ManagerEditor() {
     /**
      * clear
      * 
-     * Alaphelyzetbe állítja a state elemeit
+     * Stateben szereplő adatok törlése
      */
     const clear = () => {
         //Data értékei
@@ -257,9 +253,6 @@ function ManagerEditor() {
 
     /**
      * render
-     * 
-     * Komponensek renderelése a folyamat állapota alapján
-     * 
      */
     const render = () => {
         switch (state) {

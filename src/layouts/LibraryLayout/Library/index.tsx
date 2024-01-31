@@ -33,15 +33,13 @@ import styles from './Library.module.css';
 
 
 let navigateTimeout: any;
-let gamepadIndex: any;
+let gamepadactiveIndex: any;
 
 const sensitivity = 100;
 
 
 /**
  * Library
- * 
- * Játékkönyvtár komponens
  * 
  * @returns 
  */
@@ -50,13 +48,13 @@ function Library() {
     const { appState, setAppState } = useContext(AppContext);
 
 
+    //States
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    
     //Hooks
     const navigate = useNavigate();
     const [playClickSound] = useSound(clickSound);
-
-
-    //States
-    const [index, setIndex] = useState<number>(0);
 
 
     useEffect(() => {
@@ -69,18 +67,18 @@ function Library() {
         });
 
         window.addEventListener('gamepadconnected', (e: any) => {
-            return gamepadIndex = e.gamepad.index;
+            return gamepadactiveIndex = e.gamepad.activeIndex;
         });
 
 
         setInterval(() => {
-            if (gamepadIndex !== undefined) {
-                const gamepad: any = navigator.getGamepads()[gamepadIndex];
+            if (gamepadactiveIndex !== undefined) {
+                const gamepad: any = navigator.getGamepads()[gamepadactiveIndex];
 
                 gamepad.buttons.map((e: any) => e.pressed)
-                    .forEach((isPressed: any, buttonIndex: any) => {
+                    .forEach((isPressed: any, buttonactiveIndex: any) => {
                         if (isPressed) {
-                            setGamepadLayout(buttonIndex);
+                            setGamepadLayout(buttonactiveIndex);
                         }
                     });
             }
@@ -95,32 +93,36 @@ function Library() {
     }, []);
 
 
-    //index változásának hatása a komponensre
+    /**
+     * Elemek közti váltáskor smooth scroll alkalmazása
+     */
     useEffect(() => {
-        const elem = document.querySelector(`.library-item-${index}`);
+        const elem = document.querySelector(`.library-item-${activeIndex}`);
 
         elem?.scrollIntoView({
             behavior: 'smooth'
         });
 
         playClickSound();
-    }, [index]);
+    }, [activeIndex]);
 
 
-    //index és az appState.library hatása a komponensre
+    /**
+     * Elemek közti váltáskor activeIndex kezelése
+     */
     useEffect(() => {
-        if (index < 0) {
-            setIndex(appState.library.length - 1);
+        if (activeIndex < 0) {
+            setActiveIndex(appState.library.length - 1);
             return;
         }
 
-        if (index > appState.library.length - 1) {
-            setIndex(0);
+        if (activeIndex > appState.library.length - 1) {
+            setActiveIndex(0);
             return;
         }
 
-        setAppState(actionTypes.app.SET_SELECTED, index);
-    }, [index, appState.library]);
+        setAppState(actionTypes.app.SET_SELECTED, activeIndex);
+    }, [activeIndex, appState.library]);
 
 
     /**
@@ -151,11 +153,11 @@ function Library() {
     const setKeyboardLayout = (keyCode: number) => {
         switch (keyCode) {
             case KEYBOARD_BUTTONS.left: {
-                setIndex((current: number) => current - 1);
+                setActiveIndex((current: number) => current - 1);
                 break;
             }
             case KEYBOARD_BUTTONS.right: {
-                setIndex((current: number) => current + 1);
+                setActiveIndex((current: number) => current + 1);
                 break;
             }
             case KEYBOARD_BUTTONS.rshift: {
@@ -163,11 +165,11 @@ function Library() {
                 break;
             }
             case KEYBOARD_BUTTONS.F1: {
-                setIndex(0);
+                setActiveIndex(0);
                 break;
             }
             case KEYBOARD_BUTTONS.F12: {
-                setIndex(appState.library.length - 1)
+                setActiveIndex(appState.library.length - 1)
                 break;
             }
             case KEYBOARD_BUTTONS.esc: {
@@ -184,24 +186,24 @@ function Library() {
      * 
      * Kontroller gombkiosztás alkalmazása
      * 
-     * @param buttonIndex 
+     * @param buttonactiveIndex 
      */
-    const setGamepadLayout = (buttonIndex: any) => {
-        switch (buttonIndex) {
+    const setGamepadLayout = (buttonactiveIndex: any) => {
+        switch (buttonactiveIndex) {
             case GAMEPAD_BUTTONS.left: {
-                setIndex((current: number) => current - 1);
+                setActiveIndex((current: number) => current - 1);
                 break;
             }
             case GAMEPAD_BUTTONS.right: {
-                setIndex((current: number) => current + 1);
+                setActiveIndex((current: number) => current + 1);
                 break;
             }
             case GAMEPAD_BUTTONS.L1: {
-                setIndex(0);
+                setActiveIndex(0);
                 break;
             }
             case GAMEPAD_BUTTONS.R1: {
-                setIndex(appState.library.length - 1);
+                setActiveIndex(appState.library.length - 1);
                 break;
             }
             case GAMEPAD_BUTTONS.Y: {
@@ -230,7 +232,7 @@ function Library() {
                                     id={idx}
                                     image={item.image}
                                     name={item.name}
-                                    selected={idx === index ? true : false}
+                                    selected={idx === activeIndex ? true : false}
                                     path={item.path} />
                             )
                         })}

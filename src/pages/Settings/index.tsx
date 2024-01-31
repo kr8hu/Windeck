@@ -1,5 +1,7 @@
 //Components
 import Setting from './Setting';
+
+//Layout
 import DefaultLayout from '../../layouts/DefaultLayout';
 
 //Local

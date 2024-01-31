@@ -35,7 +35,7 @@ function ButtonGroup() {
             text: "Indítás",
             path: "/launch",
             state: {
-                path: appState.library[appState.selected].path,
+                path: appState.library[appState.selected]?.path,
             }
         },
         {
@@ -43,9 +43,9 @@ function ButtonGroup() {
             path: "/editor",
             state: {
                 id: appState.selected,
-                name: appState.library[appState.selected].name,
-                image: appState.library[appState.selected].image,
-                path: appState.library[appState.selected].path,
+                name: appState.library[appState.selected]?.name,
+                image: appState.library[appState.selected]?.image,
+                path: appState.library[appState.selected]?.path,
             }
         }
     ]

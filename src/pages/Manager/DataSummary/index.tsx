@@ -4,7 +4,6 @@ import styles from './DataSummary.module.css';
 /**
  * Props
  * 
- * Komponens tulajdonságainak meghatározása
  */
 interface Props {
     data: any;
@@ -15,8 +14,6 @@ interface Props {
 /**
  * DataSummary
  * 
- * A megadott adatokat összegző komponens
- * 
  * @param props 
  * @returns 
  */
@@ -24,6 +21,7 @@ function DataSummary(props: Props) {
     return (
         <div className={styles.container}>
             <div className={styles.row}>
+
                 <div className={styles.col}>
                     <span className={styles.title}>
                         Indítás helye
@@ -32,12 +30,14 @@ function DataSummary(props: Props) {
                         {props.data.exe}
                     </span>
                 </div>
+
                 <div className={styles.col}>
                     <span className={styles.title}>
                         Borítókép
                     </span>
                     <img src={`data:image/jpeg;base64,${props.base64}`} className={styles.preview} />
                 </div>
+
                 <div className={styles.col}>
                     <span className={styles.title}>
                         Megnevezés
@@ -46,6 +46,7 @@ function DataSummary(props: Props) {
                         {props.data.name}
                     </span>
                 </div>
+                
             </div>
         </div>
     )

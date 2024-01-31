@@ -1,6 +1,8 @@
 //Components
-import DefaultLayout from '../../layouts/DefaultLayout';
 import ManagerEditor from './DataEditor';
+
+//Layout
+import DefaultLayout from '../../layouts/DefaultLayout';
 
 //Local
 import menuItems from './menuItems';

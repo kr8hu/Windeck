@@ -22,8 +22,6 @@ interface Props {
 /**
  * LibraryItem
  * 
- * Könyvtár egy eleme
- * 
  * @param props 
  * @returns 
  */

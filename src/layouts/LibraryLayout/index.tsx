@@ -28,7 +28,7 @@ function LibraryLayout() {
 
     return (
         <div className={styles.container}>
-            <Background image={appState.library[appState.selected].image} />
+            <Background image={appState.library[appState.selected]?.image} />
 
             <div className={styles.header}>
                 <Header />

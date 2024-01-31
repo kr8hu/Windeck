@@ -12,9 +12,7 @@ import styles from './Footer.module.css';
 
 
 /**
- * Footer
- * 
- * Tartalmi részt megjelenítő komponens
+ * Footer (LibraryLayout)
  * 
  * @returns 
  */
@@ -29,7 +27,7 @@ function Footer() {
                 <Library />
                 :
                 <span className={styles.placeholder}>
-                    A könyvtárad jelenleg üres.
+                    A könyvtárad jelenleg üres. A felvételhez nyisd meg a beállításokat.
                 </span>
             }
         </>

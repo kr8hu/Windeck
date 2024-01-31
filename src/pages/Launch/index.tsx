@@ -33,21 +33,24 @@ import styles from './Launch.module.css';
  * @returns 
  */
 function Launch() {
-    //Router
-    const navigator = useNavigate();
-    const location = useLocation();
-
     //Ctx
     const { appState } = useContext(AppContext);
 
 
-    //Tauri listener aktiválása
+    //Hooks
+    const navigator = useNavigate();
+    const location = useLocation();
+
+
+    //Tauri listener hozzáadása
     useEffect(() => {
         addTauriEventListener();
     }, []);
 
 
-    //location.state.path hatása a komponensre
+    /**
+     * Elérési útvonalon található program futtatása
+     */
     useEffect(() => {
         if (location.state.path === undefined) return;
 
@@ -59,9 +62,9 @@ function Launch() {
     /**
      * runExecutable
      * 
-     * A megadott útvonalon található alkalmazás futtatása
+     * Alkalmazás futtatása
      * 
-     * @param path program útvonala
+     * @param path 
      */
     const runExecutable = async (path: string) => {
         let filepath: string = "";
@@ -83,7 +86,7 @@ function Launch() {
     /**
      * addTauriEventListener
      * 
-     * Tauri eseményfigyelő létrehozása
+     * Tauri listener létrehozása
      */
     const addTauriEventListener = async () => {
         await appWindow.listen(

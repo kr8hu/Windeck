@@ -1,5 +1,8 @@
 //React
-import { useEffect, useState } from 'react';
+import { 
+    useEffect, 
+    useState 
+} from 'react';
 
 //Tauri
 import { exit } from '@tauri-apps/api/process';
@@ -29,6 +32,7 @@ function Exit() {
     //Hook
     const navigator = useNavigate();
 
+
     //State
     const [counter, setCounter] = useState<number>(10);
 
@@ -45,7 +49,6 @@ function Exit() {
     }, []);
 
 
-    //counter hatása a komponensre
     useEffect(() => {
         if (counter === 0) {
             navigator(-1);

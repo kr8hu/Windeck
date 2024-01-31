@@ -13,9 +13,7 @@ import styles from './Header.module.css';
 
 
 /**
- * Header
- * 
- * Fejléc komponens
+ * Header (LibraryLayout)
  * 
  * @returns 
  */
