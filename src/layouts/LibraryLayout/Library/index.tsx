@@ -33,7 +33,7 @@ import styles from './Library.module.css';
 
 
 let navigateTimeout: any;
-let gamepadactiveIndex: any;
+let gamepadIndex: any;
 
 const sensitivity = 100;
 
@@ -67,18 +67,18 @@ function Library() {
         });
 
         window.addEventListener('gamepadconnected', (e: any) => {
-            return gamepadactiveIndex = e.gamepad.activeIndex;
+            return gamepadIndex = e.gamepad.index;
         });
 
 
         setInterval(() => {
-            if (gamepadactiveIndex !== undefined) {
-                const gamepad: any = navigator.getGamepads()[gamepadactiveIndex];
+            if (gamepadIndex !== undefined) {
+                const gamepad: any = navigator.getGamepads()[gamepadIndex];
 
                 gamepad.buttons.map((e: any) => e.pressed)
-                    .forEach((isPressed: any, buttonactiveIndex: any) => {
+                    .forEach((isPressed: any, buttonIndex: any) => {
                         if (isPressed) {
-                            setGamepadLayout(buttonactiveIndex);
+                            setGamepadLayout(buttonIndex);
                         }
                     });
             }
