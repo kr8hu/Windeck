@@ -38,17 +38,13 @@ function RouteStack() {
     useEffect(() => {
         if (routeStack.length !== 0) return;
 
-        for (let [, value] of Object.entries(PAGES)) {
-            setRouteStack((prevState: RouteItem[]) => [
-                ...prevState,
-                {
-                    path: value.path,
-                    component: value.component
-                }
-            ]);
-        }
-        //eslint-disable-next-line
-    }, []);
+        const routes = Object.values(PAGES).map(page => ({
+            path: page.path,
+            component: page.component
+        }));
+
+        setRouteStack(routes);
+    }, [routeStack]);
 
 
     //Ellenörzés
@@ -65,14 +61,12 @@ function RouteStack() {
      * @returns 
      */
     const renderRoutes = () => {
-        return routeStack.map((route: RouteItem, key: number) => {
-            return (
-                <Route
-                    key={key}
-                    path={'/' + route.path}
-                    element={<route.component />} />
-            )
-        })
+        return routeStack.map((route: RouteItem, key: number) => (
+            <Route
+                key={key}
+                path={'/' + route.path}
+                element={<route.component />} />
+        ))
     }
 
 

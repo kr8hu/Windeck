@@ -23,7 +23,7 @@ interface Props {
 function Button(props: Props) {
     /**
      * onClick
-     * s
+     * 
      * @returns 
      */
     const onClick = () => {

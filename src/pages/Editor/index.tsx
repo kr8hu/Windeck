@@ -17,9 +17,9 @@ import {
 import useSound from 'use-sound';
 
 //Tauri
-import { 
-    confirm, 
-    message 
+import {
+    confirm,
+    message
 } from '@tauri-apps/api/dialog';
 
 //Components
@@ -96,56 +96,50 @@ function Editor() {
 
 
     return (
-        <div className={styles.container}>
-            <DefaultLayout menuItems={menuItems}>
+        <DefaultLayout menuItems={menuItems}>
+            <div className={styles.container}>
                 <div className={styles.row}>
                     <div className={styles.col}>
-                        <div className={styles.editor}>
-                            <div className={styles.row}>
-                                <div className={styles.col}>
-                                    <span className={styles.heading}>
-                                        Borítókép
-                                    </span>
-                                    <img
-                                        className={styles.picture}
-                                        src={location.state.image}
-                                        alt="boritokep" />
-                                </div>
-                                <div className={styles.col}>
-                                    <span className={styles.heading}>
-                                        Név
-                                    </span>
-                                    <input
-                                        className={styles.input}
-                                        value={name}
-                                        onChange={(e: any) => setName(e.target.value)} />
+                        <span className={styles.heading}>
+                            Borítókép
+                        </span>
+                        <img
+                            className={styles.picture}
+                            src={location.state.image}
+                            alt="boritokep" />
+                    </div>
+                    <div className={styles.col}>
+                        <span className={styles.heading}>
+                            Név
+                        </span>
+                        <input
+                            className={styles.input}
+                            value={name}
+                            onChange={(e: any) => setName(e.target.value)} />
 
-                                    <span className={styles.heading}>
-                                        Elérési útvonal
-                                    </span>
-                                    <input
-                                        className={styles.input}
-                                        value={path}
-                                        readOnly
-                                        onChange={(e: any) => setPath(e.target.value)} />
+                        <span className={styles.heading}>
+                            Elérési útvonal
+                        </span>
+                        <input
+                            className={styles.input}
+                            value={path}
+                            readOnly
+                            onChange={(e: any) => setPath(e.target.value)} />
 
-                                    <div className={styles.buttonGroup}>
-                                        <Button
-                                            className={styles.modify}
-                                            text="Módosítások mentése"
-                                            onClick={modifyItem} />
-                                        <Button
-                                            className={styles.delete}
-                                            text="Eltávolítás"
-                                            onClick={deleteItem} />
-                                    </div>
-                                </div>
-                            </div>
+                        <div className={styles.buttonGroup}>
+                            <Button
+                                className={styles.modify}
+                                text="Módosítások mentése"
+                                onClick={modifyItem} />
+                            <Button
+                                className={styles.delete}
+                                text="Eltávolítás"
+                                onClick={deleteItem} />
                         </div>
                     </div>
                 </div>
-            </DefaultLayout>
-        </div>
+            </div>
+        </DefaultLayout>
     )
 }
 

@@ -17,9 +17,9 @@
 .heading, 
 .text {
     color: white;
-    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.4));
     margin-bottom: 2rem;
     font-family: 'Roboto', sans-serif;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .heading {

@@ -59,7 +59,7 @@ function Library() {
 
     useEffect(() => {
         document.addEventListener('contextmenu', (e: any) => {
-            e.preventDefault();
+            //e.preventDefault();
         });
 
         window.addEventListener('keydown', (e: any) => {

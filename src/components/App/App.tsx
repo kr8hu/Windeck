@@ -10,9 +10,6 @@ import { AppProvider } from "../../context/App";
 //Shared
 import RouteStack from "../../routes";
 
-//Styles
-import "./App.css";
-
 
 /**
  * App
