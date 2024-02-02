@@ -63,7 +63,7 @@ function Library() {
         });
 
         window.addEventListener('keydown', (e: any) => {
-            setKeyboardLayout(e.keyCode);
+            onKeyPress(e.keyCode);
         });
 
         window.addEventListener('gamepadconnected', (e: any) => {
@@ -78,7 +78,7 @@ function Library() {
                 gamepad.buttons.map((e: any) => e.pressed)
                     .forEach((isPressed: any, buttonIndex: any) => {
                         if (isPressed) {
-                            setGamepadLayout(buttonIndex);
+                            onButtonPress(buttonIndex);
                         }
                     });
             }
@@ -143,14 +143,12 @@ function Library() {
 
 
     /**
-     * setKeyboardLayout
-     * 
-     * Billentyűzetkiosztás alkalmazása
+     * onKeyPress
      * 
      * @param keyCode
      * @returns 
      */
-    const setKeyboardLayout = (keyCode: number) => {
+    const onKeyPress = (keyCode: number) => {
         switch (keyCode) {
             case KEYBOARD_BUTTONS.left: {
                 setActiveIndex((current: number) => current - 1);
@@ -182,13 +180,11 @@ function Library() {
 
 
     /**
-     * setGamepadLayout
-     * 
-     * Kontroller gombkiosztás alkalmazása
+     * onButtonPress
      * 
      * @param buttonactiveIndex 
      */
-    const setGamepadLayout = (buttonactiveIndex: any) => {
+    const onButtonPress = (buttonactiveIndex: any) => {
         switch (buttonactiveIndex) {
             case GAMEPAD_BUTTONS.left: {
                 setActiveIndex((current: number) => current - 1);

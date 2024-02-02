@@ -1,7 +1,7 @@
 //React
-import { 
-    useEffect, 
-    useState 
+import {
+    useEffect,
+    useState
 } from 'react';
 
 //Tauri
@@ -13,11 +13,8 @@ import { useNavigate } from 'react-router-dom';
 //Components
 import Button from '../../components/Button';
 
-//Assets
-import logo from '../../assets/images/logo/logo-gradient.png';
-
-//Styles
-import styles from './Exit.module.css';
+//Layouts
+import ActionLayout from '../../layouts/ActionLayout';
 
 
 let interval: any;
@@ -50,31 +47,19 @@ function Exit() {
 
 
     useEffect(() => {
-        if (counter === 0) {
-            navigator(-1);
-        }
+        if (counter === 0) exit();
     }, [counter]);
 
 
     return (
-        <div className={styles.container}>
-            <img
-                className={styles.logo}
-                src={logo}
-                alt="logo" />
-
-            <span className={styles.text}>
-                Biztosan ki szeretnél lépni?
-            </span>
-
-            <span className={styles.name}>
-                Kilépés megszakítása {counter} másodpercen belül.
-            </span>
+        <ActionLayout
+            title="Kilépés az alkalmazásból"
+            text={`Az alkalmazás bezárása ${counter} másodperc múlva.`}>
 
             <Button
-                text="Kilépés megerősítése"
-                onClick={() => exit()} />
-        </div>
+                text="Folyamat megszakítása"
+                onClick={() => navigator(-1)} />
+        </ActionLayout>
     )
 }
 

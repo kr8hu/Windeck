@@ -18,15 +18,15 @@ import styles from './Manager.module.css';
  */
 function Manager() {
     return (
-        <div className={styles.container}>
-            <DefaultLayout menuItems={menuItems}>
+        <DefaultLayout menuItems={menuItems}>
+            <div className={styles.container}>
                 <div className={styles.row}>
                     <div className={styles.col}>
-                       <ManagerEditor />
+                        <ManagerEditor />
                     </div>
                 </div>
-            </DefaultLayout>
-        </div>
+            </div>
+        </DefaultLayout>
     )
 }
 

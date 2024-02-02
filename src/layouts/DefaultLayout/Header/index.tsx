@@ -1,9 +1,7 @@
 //Components
+import Logo from '../../../components/Logo';
 import Clock from '../../../components/Clock';
 import Navigation from '../../../components/Navigation';
-
-//Assets
-import logo from '../../../assets/images/logo/logo-gradient.png';
 
 //Styles
 import styles from './Header.module.css';
@@ -27,7 +25,7 @@ function Header(props: Props) {
         <>
             <div className={styles.row}>
                 <div className={styles.col}>
-                    <img className={styles.logo} src={logo} />
+                    <Logo />
                 </div>
                 <div className={styles.col}>
                     <Navigation menuItems={props.menuItems} />

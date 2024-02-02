@@ -1,9 +1,7 @@
 //Components
+import Logo from '../../../components/Logo';
 import Pill from '../../../components/Pill';
 import Clock from '../../../components/Clock';
-
-//Assets
-import logo from '../../../assets/images/logo/logo-gradient.png';
 
 //Local
 import menuItems from './menuItems';
@@ -39,9 +37,7 @@ function Header() {
     return (
         <div className={styles.row}>
             <div className={styles.col}>
-                <img
-                    className={styles.logo}
-                    src={logo} />
+                <Logo />
             </div>
             <div className={styles.col}>
                 <div className={styles.pills}>

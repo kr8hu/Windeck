@@ -19,8 +19,8 @@ import styles from './Settings.module.css';
  */
 function Settings() {
     return (
-        <div className={styles.container}>
-            <DefaultLayout menuItems={menuItems}>
+        <DefaultLayout menuItems={menuItems}>
+            <div className={styles.container}>
                 <div className={styles.row}>
                     {options.map((option: any, idx: number) => {
                         return (
@@ -30,8 +30,8 @@ function Settings() {
                         )
                     })}
                 </div>
-            </DefaultLayout>
-        </div>
+            </div>
+        </DefaultLayout>
     )
 }
 

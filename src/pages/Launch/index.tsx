@@ -20,11 +20,8 @@ import {
 //Components
 import Button from '../../components/Button';
 
-//Assets
-import logo from '../../assets/images/logo/logo-gradient.png';
-
-//Styles
-import styles from './Launch.module.css';
+//Layouts
+import ActionLayout from '../../layouts/ActionLayout';
 
 
 /**
@@ -100,24 +97,14 @@ function Launch() {
 
 
     return (
-        <div className={styles.container}>
-            <img
-                className={styles.logo}
-                src={logo}
-                alt="logo" />
-
-            <span className={styles.text}>
-                A program futása folyamatban
-            </span>
-
-            <span className={styles.name}>
-                {appState.library[appState.selected].name}
-            </span>
+        <ActionLayout
+            title="A program futtatása folyamatban"
+            text={appState.library[appState.selected].name}>
 
             <Button
-                text="Vissza a könyvtárhoz"
+                text="Vissza a könyvtárba"
                 onClick={() => navigator(-1)} />
-        </div>
+        </ActionLayout>
     )
 }
 

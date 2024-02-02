@@ -27,17 +27,23 @@ function LibraryLayout() {
 
 
     return (
-        <div className={styles.container}>
+        <div
+            className={styles.container}
+            style={{
+                backgroundColor: appState.library.length === 0 ? 'black' : 'transparent'
+            }}>
             <Background image={appState.library[appState.selected]?.image} />
 
-            <div className={styles.header}>
-                <Header />
-            </div>
-            <div className={styles.body}>
-                <Body />
-            </div>
-            <div className={styles.footer}>
-                <Footer />
+            <div className={styles.row}>
+                <div className={styles.col}>
+                    <Header />
+                </div>
+                <div className={styles.col}>
+                    <Body />
+                </div>
+                <div className={styles.col}>
+                    <Footer />
+                </div>
             </div>
         </div>
     )

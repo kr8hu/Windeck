@@ -26,16 +26,15 @@ function DefaultLayout(props: Props) {
     return (
         <div className={styles.container}>
             <div className={styles.row}>
+                {/* Fejléc */}
+                <div className={styles.col}>
+                    <Header menuItems={props.menuItems} />
+                </div>
 
-            </div>
-            {/* Fejléc */}
-            <div className={styles.col}>
-                <Header menuItems={props.menuItems} />
-            </div>
-            
-            {/* Tartalom */}
-            <div className={styles.col}>
-                {props.children}
+                {/* Tartalom */}
+                <div className={styles.col}>
+                    {props.children}
+                </div>
             </div>
         </div>
     )

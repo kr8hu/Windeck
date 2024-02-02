@@ -108,6 +108,7 @@ function Editor() {
                             src={location.state.image}
                             alt="boritokep" />
                     </div>
+                    
                     <div className={styles.col}>
                         <span className={styles.heading}>
                             Név
