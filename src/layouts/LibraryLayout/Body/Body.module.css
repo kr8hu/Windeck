@@ -27,7 +27,7 @@
 .col:nth-child(3) {
     width: 30%;
     padding: 0 1rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .col:nth-child(4) {

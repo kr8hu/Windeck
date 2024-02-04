@@ -30,9 +30,10 @@ interface Props {
  */
 interface IAppState {
     selected: number;
-    locked: boolean;
     time: string;
     library: any;
+    keyboardLayout: any;
+    gamepadLayout: any;
 }
 
 

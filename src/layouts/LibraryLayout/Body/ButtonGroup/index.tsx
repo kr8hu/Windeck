@@ -1,65 +1,43 @@
-//React
-import { useContext } from 'react';
-
-//React Router
-import { useNavigate } from 'react-router-dom';
-
-//Ctx
-import { AppContext } from '../../../../context/App';
-
 //Components
-import Button from '../../../../components/Button';
+import Pill from '../../../../components/Pill';
+
+//Shared
+import { gamepadButtons } from '../../../../shared/const';
 
 //Styles
-import styles from './ButtonGroup.module.css';
+import styles from './Operations.module.css';
 
 
 /**
- * ButtonGroup
+ * Operations
  * 
  * 
  * @returns 
  */
-function ButtonGroup() {
-    //Context
-    const { appState } = useContext(AppContext);
-
-
-    //Hooks
-    const navigate = useNavigate();
-
-
+function Operations() {
     //Variables
-    const buttons = [
+    const options = [
         {
+            icon: gamepadButtons.A,
             text: "Indítás",
-            path: "/launch",
-            state: {
-                path: appState.library[appState.selected]?.path,
-            }
+            
         },
         {
+            icon: gamepadButtons.X,
             text: "Szerkesztés",
-            path: "/editor",
-            state: {
-                id: appState.selected,
-                name: appState.library[appState.selected]?.name,
-                image: appState.library[appState.selected]?.image,
-                path: appState.library[appState.selected]?.path,
-            }
         }
     ]
 
 
-    return buttons.map((button: any, idx: number) => {
+    return options.map((option: any, idx: number) => {
         return (
-            <Button
+            <Pill
                 key={idx}
-                className={styles.button}
-                text={button.text}
-                onClick={() => navigate(button.path, { state: button.state })} />
+                icon={option.icon}
+                text={option.text}
+                className={styles.pill} />
         )
     })
 }
 
-export default ButtonGroup;
+export default Operations;

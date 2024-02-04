@@ -14,6 +14,12 @@
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }
 
+.container[data-transparent="true"] {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
 .row,
 .col {
     display: flex;
@@ -35,6 +41,11 @@
     align-items: center;
     padding-right: 0.5rem;
     border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.container[data-transparent="true"] .col:nth-child(1)  {
+    border-right: none;
+    align-items: flex-start;
 }
 
 .col:nth-child(2) {

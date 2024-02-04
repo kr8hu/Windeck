@@ -4,6 +4,10 @@ import {
 } from "../../shared/const";
 
 
+//Könyvtár tartalma
+const initialLibrary = localStorage.getItem('windeck__library') ? JSON.parse(`${localStorage.getItem('windeck__library')}`) : []
+
+
 export const reducer = (state: any, action: any) => {
     switch (action.type) {
         /* Elem hozzáadás a könyvtárhoz */
@@ -39,17 +43,23 @@ export const reducer = (state: any, action: any) => {
                 ...state,
                 selected: action.payload
             }
-        /* Könyvtár zárolása */
-        case actionTypes.app.SET_LOCKED:
-            return {
-                ...state,
-                locked: action.payload
-            }
         /* Idő beállítása */
         case actionTypes.app.SET_TIME:
             return {
                 ...state,
                 time: action.payload
+            }
+        /* Billentyűkre funkció kiosztása */
+        case actionTypes.app.SET_KEYBOARD_LAYOUT:
+            return {
+                ...state,
+                keyboardLayout: action.payload
+            }
+        /* Kontroller gombokra funkció kiosztása */
+        case actionTypes.app.SET_GAMEPAD_LAYOUT:
+            return {
+                ...state,
+                gamepadLayout: action.payload
             }
         default:
             return state;
@@ -58,7 +68,8 @@ export const reducer = (state: any, action: any) => {
 
 export const initialState = {
     selected: 0,
-    locked: true,
     time: "",
-    library: localStorage.getItem('windeck__library') ? JSON.parse(`${localStorage.getItem('windeck__library')}`) : []
+    library: initialLibrary,
+    keyboardLayout: undefined,
+    gamepadLayout: undefined,
 }

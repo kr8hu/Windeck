@@ -13,7 +13,7 @@ import btn_R1 from '../assets/images/buttons/fixed/R1.png';
 
 
 //Shared
-import { GAMEPAD_BUTTONS } from "./const";
+import { gamepadButtons } from "./const";
 
 
 /**
@@ -48,13 +48,13 @@ export function sortByProperty(property: string) {
  */
 export function getGamepadButton(key: number) {
     switch (key) {
-        case GAMEPAD_BUTTONS.options: return btn_option;
-        case GAMEPAD_BUTTONS.A: return btn_a;
-        case GAMEPAD_BUTTONS.B: return btn_b;
-        case GAMEPAD_BUTTONS.X: return btn_x;
-        case GAMEPAD_BUTTONS.Y: return btn_y;
-        case GAMEPAD_BUTTONS.L1: return btn_L1
-        case GAMEPAD_BUTTONS.R1: return btn_R1;
+        case gamepadButtons.options: return btn_option;
+        case gamepadButtons.A: return btn_a;
+        case gamepadButtons.B: return btn_b;
+        case gamepadButtons.X: return btn_x;
+        case gamepadButtons.Y: return btn_y;
+        case gamepadButtons.L1: return btn_L1
+        case gamepadButtons.R1: return btn_R1;
         default: return undefined
     }
 }

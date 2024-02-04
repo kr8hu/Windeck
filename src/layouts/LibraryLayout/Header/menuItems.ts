@@ -1,15 +1,15 @@
 //Shared
-import { GAMEPAD_BUTTONS } from "../../../shared/const";
+import { gamepadButtons } from "../../../shared/const";
 
 
 export default [
     {
-        icon: GAMEPAD_BUTTONS.Y,
+        icon: gamepadButtons.Y,
         text: "Beállítások",
         path: '/settings'
     },
     {
-        icon: GAMEPAD_BUTTONS.options,
+        icon: gamepadButtons.options,
         text: "Kilépés",
         path: '/exit'
     }

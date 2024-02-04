@@ -12,10 +12,7 @@ import { invoke } from '@tauri-apps/api';
 import { AppContext } from '../../context/App';
 
 //Router
-import {
-    useNavigate,
-    useLocation
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //Components
 import Button from '../../components/Button';
@@ -36,7 +33,6 @@ function Launch() {
 
     //Hooks
     const navigator = useNavigate();
-    const location = useLocation();
 
 
     //Tauri listener hozzáadása
@@ -49,11 +45,11 @@ function Launch() {
      * Elérési útvonalon található program futtatása
      */
     useEffect(() => {
-        if (location.state.path === undefined) return;
+        if (appState.library[appState.selected].path === undefined) return;
 
         //Futtatás
-        runExecutable(location.state.path);
-    }, [location.state.path]);
+        runExecutable(appState.library[appState.selected].path);
+    }, [appState.library[appState.selected].path]);
 
 
     /**

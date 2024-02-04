@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 //Context
 import { AppProvider } from "../../context/App";
 
-//Shared
+//Components
+import Gamepad from "../Gamepad";
 import RouteStack from "../../routes";
 
 
@@ -18,12 +19,20 @@ import RouteStack from "../../routes";
  * @returns 
  */
 function App() {
-  //React router
+  //Hooks
   const navigate = useNavigate();
 
 
   useEffect(() => {
     navigate('/');
+
+    document.addEventListener('contextmenu', (e: any) => {
+      e.preventDefault();
+    });
+
+    return () => {
+      window.removeEventListener('contextmenu', () => { });
+    }
     //eslint-disable-next-line
   }, []);
 
@@ -31,6 +40,7 @@ function App() {
   return (
     <AppProvider>
       <RouteStack />
+      <Gamepad />
     </AppProvider>
   );
 }

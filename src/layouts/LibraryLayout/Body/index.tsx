@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../../context/App';
 
 //Components
-import ButtonGroup from './ButtonGroup';
+import Operations from './ButtonGroup';
 
 //Styles
 import styles from './Body.module.css';
@@ -53,7 +53,7 @@ function Body() {
                 </div>
             </div>
             <div className={styles.col}>
-                {appState.library.length !== 0 && <ButtonGroup />}
+                {appState.library.length !== 0 && <Operations />}
             </div>
             <div className={styles.col}>
 

@@ -8,10 +8,7 @@ import {
 import { AppContext } from '../../context/App';
 
 //Router
-import {
-    useLocation,
-    useNavigate
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //useSound
 import useSound from 'use-sound';
@@ -48,16 +45,15 @@ import styles from './Editor.module.css';
  */
 function Editor() {
     //Context
-    const { setAppState } = useContext(AppContext);
+    const { appState, setAppState } = useContext(AppContext);
 
     //Hooks
-    const location = useLocation();
     const navigate = useNavigate();
     const [playAlertSound] = useSound(alertSound);
 
     //State
-    const [name, setName] = useState<string>(location.state.name);
-    const [path, setPath] = useState<string>(location.state.path);
+    const [name, setName] = useState<string>(appState.library[appState.selected].name);
+    const [path, setPath] = useState<string>(appState.library[appState.selected].path);
 
 
     /**
@@ -67,10 +63,10 @@ function Editor() {
      */
     const modifyItem = () => {
         setAppState(actionTypes.app.MODIFY_LIBRARY_ITEM, {
-            id: location.state.id,
-            image: location.state.image,
-            name,
-            path
+            id: appState.selected,
+            image: appState.library[appState.selected].image,
+            name: appState.library[appState.selected].name,
+            path: appState.library[appState.selected].path
         });
 
         message("A módosítások végrehajtva.", { type: "info" });
@@ -88,7 +84,7 @@ function Editor() {
         confirm('Biztosan törölni szeretnéd a kijelölt elemet?', { type: 'warning' })
             .then((res: boolean) => {
                 if (res === true) {
-                    setAppState(actionTypes.app.DELETE_LIBRARY_ITEM, location.state.id);
+                    setAppState(actionTypes.app.DELETE_LIBRARY_ITEM, appState.selected);
                     navigate(-1);
                 }
             });
@@ -105,7 +101,7 @@ function Editor() {
                         </span>
                         <img
                             className={styles.picture}
-                            src={location.state.image}
+                            src={appState.library[appState.selected].image}
                             alt="boritokep" />
                     </div>
                     

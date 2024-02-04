@@ -13,6 +13,7 @@ interface Props {
     icon: any;
     text: string;
     className?: any;
+    transparent?: boolean;
 }
 
 
@@ -22,7 +23,9 @@ interface Props {
  */
 function Pill(props: Props) {
     return (
-        <div className={`${styles.container} ${props.className}`}>
+        <div    
+            className={`${styles.container} ${props.className}`}
+            data-transparent={props.transparent}>
             <div className={styles.row}>
                 <div className={styles.col}>
                     <img
