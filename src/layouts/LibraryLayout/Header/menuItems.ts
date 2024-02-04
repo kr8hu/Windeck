@@ -9,7 +9,7 @@ export default [
         path: '/settings'
     },
     {
-        icon: gamepadButtons.options,
+        icon: gamepadButtons.OPTIONS,
         text: "Kilépés",
         path: '/exit'
     }

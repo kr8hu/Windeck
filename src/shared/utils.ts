@@ -48,7 +48,7 @@ export function sortByProperty(property: string) {
  */
 export function getGamepadButton(key: number) {
     switch (key) {
-        case gamepadButtons.options: return btn_option;
+        case gamepadButtons.OPTIONS: return btn_option;
         case gamepadButtons.A: return btn_a;
         case gamepadButtons.B: return btn_b;
         case gamepadButtons.X: return btn_x;
