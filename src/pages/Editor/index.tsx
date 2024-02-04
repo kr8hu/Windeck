@@ -65,8 +65,8 @@ function Editor() {
         setAppState(actionTypes.app.MODIFY_LIBRARY_ITEM, {
             id: appState.selected,
             image: appState.library[appState.selected].image,
-            name: appState.library[appState.selected].name,
-            path: appState.library[appState.selected].path
+            name: name,
+            path: path
         });
 
         message("A módosítások végrehajtva.", { type: "info" });

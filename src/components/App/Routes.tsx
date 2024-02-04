@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 //Shared
-import PAGES from './shared/pages';
+import PAGES from '../../shared/pages';
 
 
 /**

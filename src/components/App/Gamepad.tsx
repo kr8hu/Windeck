@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 let gamepadIndex: any;
 let timeout: any;
-const sensitivity = 150;
+const sensitivity = 125;
 
 
 /**

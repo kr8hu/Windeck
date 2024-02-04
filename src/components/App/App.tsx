@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { AppProvider } from "../../context/App";
 
 //Components
-import Gamepad from "../Gamepad";
-import RouteStack from "../../routes";
+import Gamepad from "./Gamepad";
+import RouteStack from "./Routes";
 
 
 /**
