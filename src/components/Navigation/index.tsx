@@ -1,6 +1,9 @@
 //React Router
 import { Link } from 'react-router-dom';
 
+//Types
+import MenuItem from '../../types/MenuItem';
+
 //Styles
 import styles from './Navigation.module.css';
 
@@ -24,13 +27,13 @@ interface Props {
 function Navigation(props: Props) {
     return (
         <div className={styles.container}>
-            {props.menuItems && props.menuItems.map((item: any, idx: number) => {
+            {props.menuItems && props.menuItems.map((menuItem: MenuItem, idx: number) => {
                 return (
                     <Link
                         key={idx}
-                        to={item.path}
+                        to={menuItem.path}
                         className={styles.link}>
-                        {item.label}
+                        {menuItem.text}
                     </Link>
                 )
             })}

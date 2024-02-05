@@ -1,6 +1,12 @@
-export default [
+//Types
+import MenuItem from "../../types/MenuItem";
+
+
+const menuItems: MenuItem[] = [
     {
-        label: 'Vissza',
+        text: 'Vissza',
         path: -1
     }
 ];
+
+export default menuItems;

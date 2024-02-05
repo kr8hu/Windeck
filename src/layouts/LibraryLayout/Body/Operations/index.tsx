@@ -25,6 +25,14 @@ function Operations() {
         {
             icon: gamepadButtons.X,
             text: "Szerkesztés",
+        },
+        {
+            icon: gamepadButtons.Y,
+            text: "Beállítások",
+        },
+        {
+            icon: gamepadButtons.OPTIONS,
+            text: "Kilépés",
         }
     ]
 

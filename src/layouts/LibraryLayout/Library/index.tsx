@@ -24,6 +24,9 @@ import { sortByProperty } from '../../../shared/utils';
 //Assets
 import clickSound from '../../../assets/sounds/click_03.mp3';
 
+//Types
+import ILibraryItem from '../../../types/LibraryItem';
+
 //Styles
 import styles from './Library.module.css';
 
@@ -149,7 +152,7 @@ function Library() {
             <div className={styles.col}>
                 <div className={styles.wrapper}>
                     {appState.library.sort(sortByProperty('name'))
-                        .map((item: any, idx: number) => {
+                        .map((item: ILibraryItem, idx: number) => {
                             return (
                                 <LibraryItem
                                     className={`library-item-${idx}`}

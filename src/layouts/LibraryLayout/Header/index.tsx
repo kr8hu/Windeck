@@ -1,53 +1,40 @@
 //Components
 import Logo from '../../../components/Logo';
-import Pill from '../../../components/Pill';
 import Clock from '../../../components/Clock';
-
-//Local
-import menuItems from './menuItems';
+import Navigation from '../../../components/Navigation';
 
 //Styles
 import styles from './Header.module.css';
 
 
 /**
- * Header (LibraryLayout)
+ * Props
  * 
+ */
+interface Props {
+    menuItems: any;
+}
+
+
+/**
+ * Header (LibraryLayout)
  * @returns 
  */
-function Header() {
-    /**
-     * renderPills
-     * 
-     * @returns 
-     */
-    const renderPills = () => {
-        return menuItems.map((item: any, idx: number) => {
-            return (
-                <Pill
-                    key={idx}
-                    className={styles.pill}
-                    icon={item.icon}
-                    text={item.text} />
-            )
-        })
-    }
-
-
+function Header(props: Props) {
     return (
-        <div className={styles.row}>
-            <div className={styles.col}>
-                <Logo />
-            </div>
-            <div className={styles.col}>
-                <div className={styles.pills}>
-                    {renderPills()}
+        <>
+            <div className={styles.row}>
+                <div className={styles.col}>
+                    <Logo />
+                </div>
+                <div className={styles.col}>
+                    <Navigation menuItems={props.menuItems} />
+                </div>
+                <div className={styles.col}>
+                    <Clock />
                 </div>
             </div>
-            <div className={styles.col}>
-                <Clock />
-            </div>
-        </div>
+        </>
     )
 }
 

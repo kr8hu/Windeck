@@ -4,8 +4,12 @@ import MenuItem from "../../types/MenuItem";
 
 const menuItems: MenuItem[] = [
     {
-        text: 'Vissza',
-        path: -1
+        text: 'Beállítások',
+        path: '/settings'
+    },
+    {
+        text: 'Kilépés',
+        path: '/exit'
     }
 ];
 

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AppContext } from '../../../context/App';
 
 //Components
-import Operations from './ButtonGroup';
+import Operations from './Operations';
 
 //Styles
 import styles from './Body.module.css';

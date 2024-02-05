@@ -10,17 +10,11 @@ import {
     Route
 } from 'react-router-dom';
 
+//Types
+import RouteItem from '../../types/RouteItem';
+
 //Shared
 import PAGES from '../../shared/pages';
-
-
-/**
- * RouteItem
- */
-type RouteItem = {
-    path: string;
-    component: React.ComponentType<any>;
-};
 
 
 /**

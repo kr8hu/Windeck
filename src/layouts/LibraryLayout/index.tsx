@@ -10,6 +10,9 @@ import Header from './Header';
 import Footer from './Footer';
 import Background from './Background';
 
+//Local
+import menuItems from './menuItems';
+
 //Styles
 import styles from './LibraryLayout.module.css';
 
@@ -36,7 +39,7 @@ function LibraryLayout() {
 
             <div className={styles.row}>
                 <div className={styles.col}>
-                    <Header />
+                    <Header menuItems={menuItems}/>
                 </div>
                 <div className={styles.col}>
                     <Body />

@@ -10,4 +10,13 @@
     font-size: 2rem;
     margin-right: 2rem;
     display: inline-block;
+
+    padding-right: 2rem;
+    border-right: 2px solid rgba(0, 0, 0, 0.075);
+
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.link:last-child {
+    border: 0;
 }
