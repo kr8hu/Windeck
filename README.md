@@ -2,10 +2,9 @@
 
 Launcher a windows rendszert futtató Steam Deck konzolokhoz.
 
-### Felhasznált keretrendszerek
+### Felhasznált keretrendszer
 
-- Tauri
-- React
+- Tauri.js
 
 ### Szkriptek
 
