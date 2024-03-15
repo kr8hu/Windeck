@@ -33,7 +33,6 @@ fn load_and_compress_image(file_path: &str, max_width: u32, max_height: u32) -> 
 
     let img = image::load_from_memory(&buffer).unwrap();
 
-    // Resize the image if needed to fit within the specified dimensions
     if img.width() > max_width || img.height() > max_height {
         img.thumbnail(max_width, max_height);
     }
