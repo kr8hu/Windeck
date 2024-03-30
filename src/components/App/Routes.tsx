@@ -11,7 +11,7 @@ import {
 } from 'react-router-dom';
 
 //Types
-import RouteItem from '../../types/RouteItem';
+import RouteItem from '../../interfaces/RouteItem';
 
 //Shared
 import PAGES from '../../shared/pages';

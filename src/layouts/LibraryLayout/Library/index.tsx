@@ -25,7 +25,7 @@ import { sortByProperty } from '../../../shared/utils';
 import clickSound from '../../../assets/sounds/click_03.mp3';
 
 //Types
-import ILibraryItem from '../../../types/LibraryItem';
+import ILibraryItem from '../../../interfaces/LibraryItem';
 
 //Styles
 import styles from './Library.module.css';

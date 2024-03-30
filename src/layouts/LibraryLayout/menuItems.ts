@@ -1,5 +1,5 @@
 //Types
-import MenuItem from "../../types/MenuItem";
+import MenuItem from "../../interfaces/MenuItem";
 
 
 const menuItems: MenuItem[] = [

@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 
 //Types
-import MenuItem from '../../types/MenuItem';
+import MenuItem from '../../interfaces/MenuItem';
 
 //Styles
 import styles from './Navigation.module.css';
