@@ -7,6 +7,7 @@ import {
 
 //Hooks
 import useSound from 'use-sound';
+import { useNavigate } from 'react-router-dom';
 
 //Context
 import { AppContext } from '../../../context/App';
@@ -47,6 +48,7 @@ function Library() {
 
     //Hooks
     const [playClickSound] = useSound(clickSound);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -147,6 +149,20 @@ function Library() {
     }
 
 
+    /**
+     * onLibraryItemClickHandler
+     * 
+     * @param index 
+     */
+    const onLibraryItemClickHandler = (index: number) => {
+        setActiveIndex(index);
+
+        setTimeout(() => {
+            navigate("/launch");
+        }, 750);
+    }
+
+
     return (
         <div className={styles.container}>
             <div className={styles.col}>
@@ -161,7 +177,8 @@ function Library() {
                                     image={item.image}
                                     name={item.name}
                                     selected={idx === activeIndex ? true : false}
-                                    path={item.path} />
+                                    path={item.path}
+                                    onClick={(index: number) => onLibraryItemClickHandler(index)} />
                             )
                         })}
                 </div>

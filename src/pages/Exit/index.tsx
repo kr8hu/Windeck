@@ -27,7 +27,7 @@ let interval: any;
  */
 function Exit() {
     //Hook
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
 
     //State
@@ -58,7 +58,7 @@ function Exit() {
 
             <Button
                 text="Folyamat megszakítása"
-                onClick={() => navigator(-1)} />
+                onClick={() => navigate(-1)} />
         </ActionLayout>
     )
 }

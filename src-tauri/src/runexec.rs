@@ -6,36 +6,52 @@ struct Payload {
     status: bool,
 }
 
+/**
+ * runexec
+ * 
+ * Program futtatását kezelő funkció
+ */
 #[tauri::command]
 pub fn runexec(path: &str, file: &str, window: Window) {
     match run_exe_from_command_line(path, file) {
         Ok(output) => {
             if output.status.success() {
+                //Válasz a tauri frontendnek
                 window.emit("PROGRESS_RUNEXEC", Payload { status: true }).unwrap();
 
+                //Log
                 let stdout_str = String::from_utf8_lossy(&output.stdout);
-                let stderr_str = String::from_utf8_lossy(&output.stderr);
-                
-                println!("Executable executed successfully.");
-                println!("Standard Output: {} \n", stdout_str);
-                println!("Standard Error: {} \n", stderr_str);
+                println!("{} \n", stdout_str);
+
+                //Error log
+                if !output.stderr.is_empty() {
+                    let stderr_str = String::from_utf8_lossy(&output.stderr);
+                    eprintln!("{} \n", stderr_str);
+                }
             } else {
+                //Válasz a tauri frontendnek
                 window.emit("PROGRESS_RUNEXEC", Payload { status: false }).unwrap();
 
-                eprintln!("Executable failed to execute.");
+                //Error log
+                eprintln!("Hiba lépettt fel a program megnyitásakor.");
             }
         }
         Err(e) => {
-                window.emit("PROGRESS_RUNEXEC", Payload { status: false }).unwrap();
+            //Válasz a tauri frontendnek
+            window.emit("PROGRESS_RUNEXEC", Payload { status: false }).unwrap();
 
-                eprintln!("Error: {}", e)
-        },
+            //Error log
+            eprintln!("Hibaüzenet: {}", e)
+        }
     }
 }
 
+/**
+ * run_exe_from_command_line
+ * 
+ * Program futtatása 
+ */
 fn run_exe_from_command_line(exe_path: &str, exe_file: &str) -> std::io::Result<Output> {
     let output = Command::new(format!("{}/{}", exe_path, exe_file)).current_dir(exe_path).output()?;
-
     Ok(output)
 }
-

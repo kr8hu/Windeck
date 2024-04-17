@@ -32,7 +32,7 @@ function Launch() {
 
 
     //Hooks
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
 
     //Tauri listener hozzáadása
@@ -99,7 +99,7 @@ function Launch() {
 
             <Button
                 text="Vissza a könyvtárba"
-                onClick={() => navigator(-1)} />
+                onClick={() => navigate(-1)} />
         </ActionLayout>
     )
 }

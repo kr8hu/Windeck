@@ -16,6 +16,7 @@ interface Props {
     image: any;
     path: string;
     selected: boolean;
+    onClick?: (index: number) => void;
 }
 
 
@@ -30,10 +31,22 @@ function LibraryItem(props: Props) {
     const [loaded, setLoaded] = useState<boolean>(false);
 
 
+    /**
+     * onClickHandler
+     * 
+     */
+    const onClickHandler = () => {
+        if(!props.onClick) return;
+
+        props.onClick(props.id);
+    }
+
+
     return (
         <div
             className={`${styles.container} ${props.className}`}
-            data-selected={props.selected}>
+            data-selected={props.selected}
+            onClick={onClickHandler}>
             <img
                 alt="libraryItem"
                 src={props.image}

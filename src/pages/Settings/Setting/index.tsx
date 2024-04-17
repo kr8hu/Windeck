@@ -27,7 +27,7 @@ interface Props {
  */
 function Setting(props: Props) {
     //Hook
-    const navigator = useNavigate();
+    const navigate = useNavigate();
 
 
     return (
@@ -38,7 +38,7 @@ function Setting(props: Props) {
 
             <Button
                 text="Megnyitás"
-                onClick={() => navigator(props.data.path)} />
+                onClick={() => navigate(props.data.path)} />
         </div>
     )
 }
