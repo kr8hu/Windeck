@@ -71,5 +71,5 @@ export const initialState = {
     time: "",
     library: initialLibrary,
     keyboardLayout: undefined,
-    gamepadLayout: undefined,
+    gamepadLayout: undefined
 }

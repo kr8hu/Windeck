@@ -49,3 +49,10 @@ export const keyboardButtons = {
     BACKSPACE: 8
 }
 
+/**
+ * permissions
+ */
+export const permissions = {
+    USER: 0,
+    ADMINISTRATOR: 1
+}

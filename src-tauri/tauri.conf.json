@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Windeck",
-    "version": "0.8.3"
+    "version": "0.8.4"
   },
   "tauri": {
     "bundle": {
@@ -57,11 +57,11 @@
     },
     "windows": [
       {
-        "fullscreen": true,
+        "fullscreen": false,
         "resizable": false,
         "title": "Windeck",
-        "width": 1280,
-        "height": 800,
+        "width": 960,
+        "height": 600,
         "center": true
       }
     ]
