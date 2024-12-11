@@ -45,5 +45,5 @@ Fejlesztéshez: [https://v1.tauri.app/v1/guides/getting-started/prerequisites/](
 
 ## Képernyőképek
 <div style="display: flex; justify-content: space-between;">
-<img src="screenshots/screenshot.png" width="100%" height="auto">
+<img src="screenshots/screenshot.jpg" width="100%" height="auto">
 </div>
