@@ -5,7 +5,7 @@ Indítópult alkalmazás a Windows rendszert futtató Steam Deck eszközökre.
 ## Fő funkciók
 
 - **Könnyű vezérlés**: Érintőképernyős és kontrolleres irányítás
-- **Játékkönyvtár**: A könyvtárból könnyedén elérhetők és szerkeszthetők a felvett alkalmazások
+- **Játékkönyvtár**: A könyvtárból könnyedén elérhetők és szerkeszthetők a felvett programok
 - **Autostart**: A fiókba történő bejelentkezés után automatikusan elindul az alkalmazás
 
 ## Telepítési útmutató
