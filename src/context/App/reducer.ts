@@ -1,14 +1,23 @@
 //Shared
-import {
-    actionTypes
-} from "../../shared/const";
+import { actionTypes } from "../../shared/const";
 
 
-//Könyvtár tartalma
-const initialLibrary = localStorage.getItem('windeck__library') ? JSON.parse(`${localStorage.getItem('windeck__library')}`) : []
+/**
+ * initialLibrary
+ * 
+ * Könyvtár tartalma
+ */
+export const initialLibrary = localStorage.getItem('windeck__library') ? JSON.parse(`${localStorage.getItem('windeck__library')}`) : []
 
 
-export const reducer = (state: any, action: any) => {
+/**
+ * reducer
+ * 
+ * @param state 
+ * @param action 
+ * @returns 
+ */
+export const reducer = (state: any, action: any): any => {
     switch (action.type) {
         /* Elem hozzáadás a könyvtárhoz */
         case actionTypes.app.ADD_LIBRARY_ITEM:
@@ -31,31 +40,25 @@ export const reducer = (state: any, action: any) => {
                 ...state,
                 library: state.library.filter((_: any, index: number) => index !== action.payload)
             }
-        /* Elem módosítása a könyvtárból */
+        /* Elem módosítása a könyvtárban */
         case actionTypes.app.MODIFY_LIBRARY_ITEM:
             return {
                 ...state,
                 library: state.library.map((item: any, index: number) => index === action.payload.id ? action.payload : item)
             }
-        /* Megjelölés kiválasztott elemként */
+        /* Kiválasztott elem azonosítójának beállítása */
         case actionTypes.app.SET_SELECTED:
             return {
                 ...state,
                 selected: action.payload
             }
-        /* Idő beállítása */
-        case actionTypes.app.SET_TIME:
+        /* Alkalmazás megnyitásának tiltása/engedélyezése */
+        case actionTypes.app.SET_LOCKED:
             return {
                 ...state,
-                time: action.payload
+                locked: action.payload
             }
-        /* Billentyűkre funkció kiosztása */
-        case actionTypes.app.SET_KEYBOARD_LAYOUT:
-            return {
-                ...state,
-                keyboardLayout: action.payload
-            }
-        /* Kontroller gombokra funkció kiosztása */
+        /* Kontroller gombkiosztása */
         case actionTypes.app.SET_GAMEPAD_LAYOUT:
             return {
                 ...state,
@@ -67,9 +70,8 @@ export const reducer = (state: any, action: any) => {
 }
 
 export const initialState = {
-    selected: 0,
-    time: "",
+    gamepadLayout: [],
     library: initialLibrary,
-    keyboardLayout: undefined,
-    gamepadLayout: undefined
+    locked: false,
+    selected: 0,
 }

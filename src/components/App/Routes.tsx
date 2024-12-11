@@ -24,29 +24,11 @@ import PAGES from '../../shared/pages';
  * @returns 
  */
 function RouteStack() {
-    //State
+    /**
+     * States
+     * 
+     */
     const [routeStack, setRouteStack] = useState<RouteItem[]>([]);
-
-
-    //Stack feltöltése
-    useEffect(() => {
-        if (routeStack.length !== 0) return;
-
-        const routes = Object.values(PAGES).map(page => ({
-            path: page.path,
-            component: page.component
-        }));
-
-        setRouteStack(routes);
-    }, [routeStack]);
-
-
-    //Ellenörzés
-    useEffect(() => {
-        if (routeStack.length === Object.keys(PAGES).length) {
-            console.log(routeStack)
-        }
-    }, [routeStack]);
 
 
     /**
@@ -62,6 +44,23 @@ function RouteStack() {
                 element={<route.component />} />
         ))
     }
+
+    
+    /**
+     * useEffect
+     * 
+     * routeStack feltöltése az oldalakkal
+     */
+    useEffect(() => {
+        if (routeStack.length !== 0) return;
+
+        const routes = Object.values(PAGES).map(page => ({
+            path: page.path,
+            component: page.component
+        }));
+
+        setRouteStack(routes);
+    }, [routeStack]);
 
 
     return (

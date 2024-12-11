@@ -1,5 +1,8 @@
-//React
-import { useState } from 'react';
+//Components
+import Image from '../../../../components/Image';
+
+//Assets
+import placeholderImage from '../../../../assets/images/placeholder.jpg';
 
 //Styles
 import styles from './LibraryItem.module.css';
@@ -13,8 +16,8 @@ interface Props {
     className?: any;
     id: number;
     name: string;
-    image: any;
-    path: string;
+    image: string;
+    location: string;
     selected: boolean;
     onClick?: (index: number) => void;
 }
@@ -27,16 +30,12 @@ interface Props {
  * @returns 
  */
 function LibraryItem(props: Props) {
-    //States
-    const [loaded, setLoaded] = useState<boolean>(false);
-
-
     /**
      * onClickHandler
      * 
      */
     const onClickHandler = () => {
-        if(!props.onClick) return;
+        if (!props.onClick) return;
 
         props.onClick(props.id);
     }
@@ -47,12 +46,10 @@ function LibraryItem(props: Props) {
             className={`${styles.container} ${props.className}`}
             data-selected={props.selected}
             onClick={onClickHandler}>
-            <img
-                alt="libraryItem"
+            <Image
+                className={styles.cover}
                 src={props.image}
-                className={styles.image}
-                data-loaded={loaded}
-                onLoad={() => setLoaded(true)} />
+                placeholder={placeholderImage} />
         </div>
     )
 }

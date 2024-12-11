@@ -1,11 +1,13 @@
 //React
 import {
+    ReactNode,
     useEffect,
+    useRef,
     useState
 } from 'react';
 
 //Tauri
-import { exit } from '@tauri-apps/api/process';
+import { exit } from '@tauri-apps/plugin-process';
 
 //Router
 import { useNavigate } from 'react-router-dom';
@@ -17,35 +19,55 @@ import Button from '../../components/Button';
 import ActionLayout from '../../layouts/ActionLayout';
 
 
-let interval: any;
-
-
 /**
  * Exit
  * 
  * @returns 
  */
-function Exit() {
-    //Hook
+function Exit(): ReactNode {
+    /**
+     * Hooks
+     * 
+     */
     const navigate = useNavigate();
 
 
-    //State
-    const [counter, setCounter] = useState<number>(10);
+    /**
+     * States
+     * 
+     */
+    const [counter, setCounter] = useState<number>(5);
 
 
+    /**
+     * Refs
+     * 
+     */
+    const intervalRef = useRef<any>(null);
+
+
+    /**
+     * useEffect
+     * 
+     * Visszaszámlálás indítás a konponens mountolásakor
+     */
     useEffect(() => {
-        interval = setInterval(() => {
+        intervalRef.current = setInterval(() => {
             setCounter((current: number) => current - 1);
         }, 1000);
 
         return () => {
-            setCounter(10);
-            clearInterval(interval);
+            setCounter(5);
+            clearInterval(intervalRef.current);
         }
     }, []);
 
 
+    /**
+     * useEffect
+     * 
+     * counter vizsgálata és 0 érték esetén az alkalmazás bezárása
+     */
     useEffect(() => {
         if (counter === 0) exit();
     }, [counter]);

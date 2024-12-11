@@ -11,8 +11,8 @@ import {
     initialState
 } from './reducer';
 
-//Shared
-import { actionTypes } from '../../shared/const';
+//Interfaces
+import IGamepadLayout from '../../interfaces/GamepadLayout';
 
 
 /**
@@ -29,11 +29,10 @@ interface Props {
  * 
  */
 interface IAppState {
-    selected: number;
-    time: string;
+    gamepadLayout: IGamepadLayout[];
     library: any;
-    keyboardLayout: any;
-    gamepadLayout: any;
+    locked: boolean;
+    selected: number;
 }
 
 
@@ -45,9 +44,6 @@ interface IAppContext {
     appState: IAppState;
     setAppState: (type: any, payload: any) => void;
 }
-
-
-let interval: any;
 
 
 /**
@@ -71,12 +67,11 @@ export const AppProvider = (props: Props) => {
     const setAppState = (type: any, payload: any) => dispatch({ type, payload });
 
 
-    useEffect(() => {
-        interval = setInterval(() => syncTime(), 500);
-        return () => clearInterval(interval);
-    }, []);
-
-
+    /**
+     * useEffect
+     * 
+     * Konyvtár módosulásakor mentés a localStorage-ba
+     */
     useEffect(() => {
         if (appState.library.length !== 0) {
             localStorage.setItem('windeck__library', JSON.stringify(appState.library))
@@ -84,24 +79,6 @@ export const AppProvider = (props: Props) => {
             localStorage.setItem('windeck__library', '[]')
         }
     }, [appState.library]);
-
-
-    /**
-     * syncTime
-     * 
-     */
-    const syncTime = () => {
-        const date = new Date();
-        const hours = date.getHours().toString();
-        const minutes = date.getMinutes().toString();
-
-        const time = {
-            hours: hours.length > 1 ? hours : `0${hours}`,
-            minutes: minutes.length > 1 ? minutes : `0${minutes}`
-        };
-
-        setAppState(actionTypes.app.SET_TIME, `${time.hours}:${time.minutes}`);
-    }
 
 
     return (

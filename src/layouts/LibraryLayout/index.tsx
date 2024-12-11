@@ -1,7 +1,10 @@
 //React
-import { useContext } from 'react';
+import { 
+    CSSProperties, 
+    useContext 
+} from 'react';
 
-//Ctx
+//Context
 import { AppContext } from '../../context/App';
 
 //Components
@@ -12,6 +15,9 @@ import Background from './Background';
 
 //Local
 import menuItems from './menuItems';
+
+//Assets
+import placeholderBackground from '../../assets/images/backgrounds/placeholderBackground.jpg';
 
 //Styles
 import styles from './LibraryLayout.module.css';
@@ -25,21 +31,29 @@ import styles from './LibraryLayout.module.css';
  * @returns 
  */
 function LibraryLayout() {
-    //Context
+    /**
+     * Context
+     * 
+     */
     const { appState } = useContext(AppContext);
+
+
+    /**
+     * containerStyles
+     * 
+     */
+    const containerStyles: CSSProperties = { backgroundColor: appState.library.length === 0 ? 'black' : 'transparent' }
 
 
     return (
         <div
             className={styles.container}
-            style={{
-                backgroundColor: appState.library.length === 0 ? 'black' : 'transparent'
-            }}>
-            <Background image={appState.library[appState.selected]?.image} />
+            style={containerStyles}>
+            <Background image={appState.library[appState.selected]?.image || placeholderBackground} />
 
             <div className={styles.row}>
                 <div className={styles.col}>
-                    <Header menuItems={menuItems}/>
+                    <Header menuItems={menuItems} />
                 </div>
                 <div className={styles.col}>
                     <Body />

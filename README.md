@@ -1,18 +1,49 @@
 # Windeck
 
-Launcher a windows rendszert futtató Steam Deck konzolokhoz.
+Indítópult alkalmazás a Windows rendszert futtató Steam Deck eszközökre.
 
-### Felhasznált keretrendszer
+## Fő funkciók
 
-- Tauri.js (v1)
+- **Könnyű vezérlés**: Érintőképernyős és kontrolleres irányítás
+- **Játékkönyvtár**: A könyvtárból könnyedén elérhetők és szerkeszthetők a felvett alkalmazások
+- **Autostart**: A fiókba történő bejelentkezés után automatikusan elindul az alkalmazás
 
-### Szkriptek
+## Telepítési útmutató
 
-###### Tauri Build
-`npm run tauri build`
+1. **Csomagok telepítése**:
+```bash
+npm install
+```
 
-###### Vite+Tauri dev server
-`npm run tauri dev`
+## Használati útmutató
 
-###### Vite dev server
-`npm run dev`
+**Frontend teszteléshez**:
+
+```bash
+npm run dev
+```
+
+**Tauri funkciók tesztelése**:
+
+```bash
+npm run tauri dev
+```
+
+**Build**:
+```bash
+npm run tauri dev
+```
+
+A folyamat befejeztével a target/release/bundle/msi könyvtárban található a telepítő.
+
+## Rendszerkövetelmények
+
+- **Platform**: Windows
+- **Szükséges támogatás**: WebView2
+
+Fejlesztéshez: [https://v1.tauri.app/v1/guides/getting-started/prerequisites/](https://v1.tauri.app/v1/guides/getting-started/prerequisites/)
+
+## Képernyőképek
+<div style="display: flex; justify-content: space-between;">
+<img src="screenshots/screenshot.png" width="100%" height="auto">
+</div>

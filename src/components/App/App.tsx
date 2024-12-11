@@ -1,5 +1,11 @@
 //React
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
+
+//Tauri
+import {
+  enable,
+  isEnabled
+} from '@tauri-apps/plugin-autostart';
 
 //React router
 import { useNavigate } from "react-router-dom";
@@ -8,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import { AppProvider } from "../../context/App";
 
 //Components
-import Gamepad from "./Gamepad";
 import RouteStack from "./Routes";
 
 
@@ -18,14 +23,38 @@ import RouteStack from "./Routes";
  * Fő komponens
  * @returns 
  */
-function App() {
-  //Hooks
+function App(): ReactNode {
+  /**
+   * Hooks
+   * 
+   */
   const navigate = useNavigate();
 
 
+  /**
+   * checkAutostart
+   */
+  const checkAutostart = async (): Promise<void> => {
+    const autoStart = await isEnabled();
+
+    if (!autoStart) {
+      await enable();
+    }
+  }
+
+
+  /**
+   * useEffect
+   * 
+   */
   useEffect(() => {
+    //Navigálás a kezdőoldalra
     navigate('/');
 
+    //Alkalmazás beállítása automatikus indításra
+    checkAutostart();
+
+    //Context menu listener
     document.addEventListener('contextmenu', (e: any) => {
       e.preventDefault();
     });
@@ -40,7 +69,6 @@ function App() {
   return (
     <AppProvider>
       <RouteStack />
-      <Gamepad />
     </AppProvider>
   );
 }

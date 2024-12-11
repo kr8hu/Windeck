@@ -1,10 +1,14 @@
-.pill {
-    margin-bottom: 2rem;
+.container {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
 }
 
-.divider {
-    box-sizing: border-box;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    margin: 2rem 0;
+.gamepadLayout > div {
+    padding: 0 !important;
+}
+
+.gamepadLayout > div > div {
+    padding: 0 0.5rem 0 0 !important;
 }

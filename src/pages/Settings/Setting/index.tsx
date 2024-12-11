@@ -1,3 +1,6 @@
+//React
+import { ReactNode } from 'react';
+
 //Router
 import { useNavigate } from 'react-router-dom';
 
@@ -25,20 +28,23 @@ interface Props {
  * @param props 
  * @returns 
  */
-function Setting(props: Props) {
-    //Hook
+function Setting({ data }: Props): ReactNode {
+    /**
+     * Hooks
+     * 
+     */
     const navigate = useNavigate();
 
 
     return (
-        <div className={styles.container} data-disabled={props.data.disabled}>
+        <div className={styles.container} data-disabled={data.disabled}>
             <span className={styles.title}>
-                {props.data.title}
+                {data.title}
             </span>
 
             <Button
                 text="Megnyitás"
-                onClick={() => navigate(props.data.path)} />
+                onClick={() => navigate(data.path)} />
         </div>
     )
 }

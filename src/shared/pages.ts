@@ -3,14 +3,15 @@ import Exit from '../pages/Exit';
 import Home from '../pages/Home';
 import Editor from '../pages/Editor';
 import Launch from '../pages/Launch';
-import Manager from '../pages/Manager';
+import Manager from '../pages/Settings/Setting/Manager';
 import Settings from '../pages/Settings';
+import About from '../pages/Settings/Setting/About';
+import License from '../pages/Settings/Setting/About/License';
 
 
 /**
  * PAGES
  * 
- * Oldalak adatait tartalmazó object
  */
 const PAGES = {
     home: {
@@ -54,6 +55,20 @@ const PAGES = {
         path: '/editor',
         title: 'Szerkesztő',
         component: Editor
+    }, 
+    about: {
+        id: 7,
+        key: 'about',
+        path: '/about',
+        title: 'Névjegy',
+        component: About
+    }, 
+    license: {
+        id: 8,
+        key: 'license',
+        path: '/about/license',
+        title: 'Licensz',
+        component: License
     }
 }
 

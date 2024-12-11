@@ -19,13 +19,13 @@ interface Props {
  * 
  * Háttérkép komponens
  */
-function Background(props: Props) {
+function Background({ image }: Props) {
     return (
         <React.Fragment>
             <div
                 className={styles.background}
                 style={{
-                    backgroundImage: `url(${props.image})`
+                    backgroundImage: `url(${image})`
                 }}
             />
             <div className={styles.layer} />

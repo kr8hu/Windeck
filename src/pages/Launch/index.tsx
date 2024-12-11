@@ -1,12 +1,11 @@
 //React
 import {
+    ReactNode,
     useContext,
     useEffect
 } from 'react';
 
-//Tauri
-import { appWindow } from '@tauri-apps/api/window';
-import { invoke } from '@tauri-apps/api';
+import { open } from '@tauri-apps/plugin-shell';
 
 //Context
 import { AppContext } from '../../context/App';
@@ -20,76 +19,53 @@ import Button from '../../components/Button';
 //Layouts
 import ActionLayout from '../../layouts/ActionLayout';
 
+//Shared
+import { actionTypes } from '../../shared/const';
+
 
 /**
  * Launch
  * 
  * @returns 
  */
-function Launch() {
-    //Ctx
-    const { appState } = useContext(AppContext);
+function Launch(): ReactNode {
+    /**
+     * Context
+     * 
+     */
+    const { appState, setAppState } = useContext(AppContext);
 
 
-    //Hooks
+    /**
+     * Hooks
+     * 
+     */
     const navigate = useNavigate();
 
 
-    //Tauri listener hozzáadása
+    /**
+     * useEffect
+     * 
+     * Alkalmazás lezárása a komponens mountolásakor
+     */
     useEffect(() => {
-        addTauriEventListener();
+        setAppState(actionTypes.app.SET_LOCKED, true);
+
+        return () => {
+            setAppState(actionTypes.app.SET_LOCKED, false);
+        }
     }, []);
 
 
     /**
+     * useEffect
+     * 
      * Elérési útvonalon található program futtatása
      */
     useEffect(() => {
-        if (appState.library[appState.selected].path === undefined) return;
-
-        //Futtatás
-        runExecutable(appState.library[appState.selected].path);
-    }, [appState.library[appState.selected].path]);
-
-
-    /**
-     * runExecutable
-     * 
-     * Alkalmazás futtatása
-     * 
-     * @param path 
-     */
-    const runExecutable = async (path: string) => {
-        let filepath: string = "";
-        const splitpath = path.split('\\');
-
-        splitpath.map((arg: string, idx: number) => {
-            if (idx === splitpath.length - 1) return;
-            filepath = filepath + `${arg}\\`;
-        });
-
-        await invoke('runexec', {
-            path: filepath,
-            file: splitpath[splitpath.length - 1]
-        });
-    }
-
-
-
-    /**
-     * addTauriEventListener
-     * 
-     * Tauri listener létrehozása
-     */
-    const addTauriEventListener = async () => {
-        await appWindow.listen(
-            'PROGRESS_RUNEXEC',
-            ({ event, payload }: { event: any, payload: { status: boolean } }) => {
-                console.log(event);
-                console.log(payload);
-            }
-        );
-    }
+        if (appState.library[appState.selected].location === undefined) return;
+        open(appState.library[appState.selected].location);
+    }, [appState.library[appState.selected].location]);
 
 
     return (

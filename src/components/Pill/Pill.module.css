@@ -58,7 +58,6 @@
 }
 
 .text {
-    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
     text-transform: uppercase;
-    font-weight: 600;
 }

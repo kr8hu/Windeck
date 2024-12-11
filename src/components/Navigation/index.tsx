@@ -6,6 +6,7 @@ import MenuItem from '../../interfaces/MenuItem';
 
 //Styles
 import styles from './Navigation.module.css';
+import { ReactNode } from 'react';
 
 
 /**
@@ -24,10 +25,10 @@ interface Props {
  * 
  * @returns 
  */
-function Navigation(props: Props) {
+function Navigation({ menuItems }: Props): ReactNode {
     return (
         <div className={styles.container}>
-            {props.menuItems && props.menuItems.map((menuItem: MenuItem, idx: number) => {
+            {menuItems && menuItems.map((menuItem: MenuItem, idx: number) => {
                 return (
                     <Link
                         key={idx}

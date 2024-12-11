@@ -1,0 +1,46 @@
+.container {
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+}
+
+.row {
+    width: fit-content;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.cover {
+    width: 15rem;
+    height: 15rem;
+
+    border: 5px solid white;
+    border-radius: 5px;
+
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    display: block;
+
+    width: 100%;
+
+    padding: 0 5px;
+
+    font-size: 2rem;
+    font-weight: bold;
+    font-weight: 600;
+
+    color: white;
+
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}

@@ -1,18 +1,30 @@
 /**
+ * app
+ * 
+ */
+export const app = {
+    name: "Windeck",
+    version: "1.0",
+    build: "1.0.241210.1",
+}
+
+
+/**
  * Action Types
  */
 export const actionTypes = {
     app: {
         SET_SELECTED: 'APP_SET_SELECTED',
-        SET_KEYBOARD_LAYOUT: 'APP_SET_KEYBOARD_LAYOUT',
         SET_GAMEPAD_LAYOUT: 'APP_SET_GAMEPAD_LAYOUT',
         ADD_LIBRARY_ITEM: 'APP_ADD_LIBRARY_ITEM',
         SET_LIBRARY: 'APP_SET_LIBRARY',
         MODIFY_LIBRARY_ITEM: 'APP_MODIFY_LIBRARY_ITEM',
         DELETE_LIBRARY_ITEM: 'APP_DELETE_LIBRARY_ITEM',
-        SET_TIME: 'APP_SET_TIME'
+        SET_TIME: 'APP_SET_TIME',
+        SET_LOCKED: 'APP_SET_LOCKED'
     },
 }
+
 
 /**
  * gamepadButtons
@@ -30,7 +42,9 @@ export const gamepadButtons = {
     X: 2,
     B: 1,
     A: 0,
+    DIRECTIONS: -1
 };
+
 
 /**
  * keyboardButtons
@@ -49,10 +63,9 @@ export const keyboardButtons = {
     BACKSPACE: 8
 }
 
+
 /**
- * permissions
+ * touchKeyboardLocation
+ * 
  */
-export const permissions = {
-    USER: 0,
-    ADMINISTRATOR: 1
-}
+export const touchKeyboardLocation = `C:\\\\Program Files\\\\Common Files\\\\Microsoft Shared\\\\ink\\\\TabTip.exe`;

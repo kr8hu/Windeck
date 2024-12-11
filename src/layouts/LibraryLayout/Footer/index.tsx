@@ -1,7 +1,7 @@
 //React
 import { useContext } from 'react';
 
-//Ctx
+//Context
 import { AppContext } from '../../../context/App';
 
 //Componenets

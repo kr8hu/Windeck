@@ -1,10 +1,11 @@
 //React
 import { useContext } from 'react';
 
-//Ctx
+//Context
 import { AppContext } from '../../../context/App';
 
 //Components
+import Cover from './Cover';
 import Operations from './Operations';
 
 //Styles
@@ -22,24 +23,17 @@ function Body() {
 
 
     /**
-     * renderPreview
+     * renderOperations
      * 
-     * @returns 
      */
-    const renderPreview = () => {
-        return (
-            <>
-                <img
-                    className={styles.cover}
-                    src={appState.library[appState.selected]?.image}
-                    alt="cover"
-                />
-                <span className={styles.title}>
-                    {appState.library[appState.selected]?.name}
-                </span>
-            </>
-        )
-    }
+    const renderOperations = appState.library.length !== 0 && <Operations />;
+
+
+    /**
+     * renderCover
+     * 
+     */
+    const renderCover = appState.library.length !== 0 && <Cover />;
 
 
     return (
@@ -48,12 +42,10 @@ function Body() {
 
             </div>
             <div className={styles.col}>
-                <div className={styles.data}>
-                    {appState.library.length !== 0 && renderPreview()}
+                <div className={styles.wrapper}>
+                    {renderCover}
+                    {renderOperations}
                 </div>
-            </div>
-            <div className={styles.col}>
-                {appState.library.length !== 0 && <Operations />}
             </div>
             <div className={styles.col}>
 

@@ -20,7 +20,7 @@ interface Props {
  * Header (LibraryLayout)
  * @returns 
  */
-function Header(props: Props) {
+function Header({ menuItems }: Props) {
     return (
         <>
             <div className={styles.row}>
@@ -28,7 +28,7 @@ function Header(props: Props) {
                     <Logo />
                 </div>
                 <div className={styles.col}>
-                    <Navigation menuItems={props.menuItems} />
+                    <Navigation menuItems={menuItems} />
                 </div>
                 <div className={styles.col}>
                     <Clock />

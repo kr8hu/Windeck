@@ -1,4 +1,5 @@
 //Shared
+import { ReactNode } from 'react';
 import { getGamepadButton } from '../../shared/utils';
 
 //Styles
@@ -21,22 +22,22 @@ interface Props {
  * Pill
  *
  */
-function Pill(props: Props) {
+function Pill({ icon, text, transparent, className }: Props): ReactNode {
     return (
         <div    
-            className={`${styles.container} ${props.className}`}
-            data-transparent={props.transparent}>
+            className={`${styles.container} ${className}`}
+            data-transparent={transparent}>
             <div className={styles.row}>
                 <div className={styles.col}>
                     <img
                         className={styles.icon}
-                        src={getGamepadButton(props.icon)}
+                        src={getGamepadButton(icon)}
                         alt="icon" />
                 </div>
 
                 <div className={styles.col}>
                     <span className={styles.text}>
-                        {props.text}
+                        {text}
                     </span>
                 </div>
             </div>

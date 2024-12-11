@@ -1,5 +1,7 @@
-//Styles
+//Components
 import Logo from '../../components/Logo';
+
+//Styles
 import styles from './ActionLayout.module.css';
 
 
@@ -20,20 +22,20 @@ interface Props {
  * @param props 
  * @returns 
  */
-function ActionLayout(props: Props) {
+function ActionLayout({ children, title, text }: Props) {
     return (
         <div className={styles.container}>
             <Logo className={styles.logo} />
 
             <span className={styles.title}>
-                {props.title}
+                {title}
             </span>
 
             <span className={styles.text}>
-                {props.text}
+                {text}
             </span>
 
-            {props.children}
+            {children}
         </div>
     )
 }

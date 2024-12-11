@@ -1,7 +1,11 @@
-//Types
+//Interfaces
 import MenuItem from "../../interfaces/MenuItem";
 
 
+/**
+ * menuItems
+ * 
+ */
 const menuItems: MenuItem[] = [
     {
         text: 'Beállítások',

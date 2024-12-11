@@ -1,0 +1,38 @@
+.container {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
+}
+
+.row,
+.col {
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+}
+
+.row {
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    width: 100%;
+
+    padding: 0 0.5rem;
+}
+
+.col {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: fit-content;
+
+    padding: 0 0.5rem;
+
+    display: none;
+}
+
+.col[data-visibility="true"] {
+    display: flex;
+}

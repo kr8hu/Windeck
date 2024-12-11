@@ -1,41 +1,64 @@
 //React
 import {
     useState,
-    useContext
+    useContext,
+    useEffect,
+    ReactNode
 } from 'react';
 
-//Ctx
+//Context
 import { AppContext } from '../../context/App';
 
 //Router
 import { useNavigate } from 'react-router-dom';
 
-//useSound
-import useSound from 'use-sound';
+//Hooks
+import useGamepad from '../../hooks/useGamepad';
 
 //Tauri
 import {
     confirm,
     message
-} from '@tauri-apps/api/dialog';
+} from '@tauri-apps/plugin-dialog';
+import { open } from '@tauri-apps/plugin-shell';
 
 //Components
+import Image from '../../components/Image';
 import Button from '../../components/Button';
 
 //Layout
-import DefaultLayout from '../../layouts/DefaultLayout';
+import MainLayout from '../../layouts/MainLayout';
 
 //Local
 import menuItems from './menuItems';
 
 //Shared
-import { actionTypes } from '../../shared/const';
+import {
+    actionTypes,
+    gamepadButtons,
+    touchKeyboardLocation
+} from '../../shared/const';
 
 //Assets
-import alertSound from "../../assets/sounds/alert.mp3";
+import placeholderImage from '../../assets/images/placeholder.jpg';
+
+//Interfaces
+import IGamepadLayout from '../../interfaces/GamepadLayout';
 
 //Styles
 import styles from './Editor.module.css';
+
+
+/**
+ * IInputFields
+ * 
+ */
+interface IInputFields {
+    readOnly: boolean;
+    title: string;
+    value: any;
+    onChange: (e: any) => any;
+}
 
 
 /**
@@ -43,17 +66,68 @@ import styles from './Editor.module.css';
  * 
  * @returns 
  */
-function Editor() {
-    //Context
+function Editor(): ReactNode {
+    /**
+     * Context
+     * 
+     */
     const { appState, setAppState } = useContext(AppContext);
 
-    //Hooks
-    const navigate = useNavigate();
-    const [playAlertSound] = useSound(alertSound);
 
-    //State
-    const [name, setName] = useState<string>(appState.library[appState.selected].name);
-    const [path, setPath] = useState<string>(appState.library[appState.selected].path);
+    /**
+     * Hooks
+     * 
+     */
+    const navigate = useNavigate();
+    const gamepad = useGamepad();
+
+
+    /**
+     * States
+     * 
+     */
+    const [name, setName] = useState<string>("");
+    const [location, setLocation] = useState<string>("");
+
+
+    /**
+     * inputFields
+     * 
+     */
+    const inputFields: IInputFields[] = [
+        {
+            readOnly: false,
+            title: "Név",
+            value: name,
+            onChange: (e: any) => setName(e.target.value)
+        },
+        {
+            readOnly: true,
+            title: "Elérési útvonal",
+            value: location,
+            onChange: (e: any) => setLocation(e.target.value)
+        }
+    ];
+
+
+    /**
+     * setGamepadLayout
+     * 
+     */
+    const setGamepadLayout = (): void => {
+        const gamepadLayout: IGamepadLayout[] = [
+            {
+                name: "Vissza",
+                button: gamepadButtons.B,
+                route: -1,
+                state: undefined,
+                function: undefined,
+                visibility: true
+            },
+        ];
+
+        gamepad.setLayout(gamepadLayout);
+    }
 
 
     /**
@@ -61,15 +135,15 @@ function Editor() {
      * 
      * Elem módosítása
      */
-    const modifyItem = () => {
+    const modifyItem = (): void => {
         setAppState(actionTypes.app.MODIFY_LIBRARY_ITEM, {
             id: appState.selected,
             image: appState.library[appState.selected].image,
+            location,
             name: name,
-            path: path
         });
 
-        message("A módosítások végrehajtva.", { type: "info" });
+        message("A módosítások végrehajtva.", { kind: 'info' });
     }
 
 
@@ -78,10 +152,8 @@ function Editor() {
      * 
      * Elem törlése
      */
-    const deleteItem = () => {
-        playAlertSound();
-
-        confirm('Biztosan törölni szeretnéd a kijelölt elemet?', { type: 'warning' })
+    const deleteItem = (): void => {
+        confirm('Biztosan törölni szeretnéd a kijelölt elemet?', { kind: 'warning' })
             .then((res: boolean) => {
                 if (res === true) {
                     setAppState(actionTypes.app.DELETE_LIBRARY_ITEM, appState.selected);
@@ -91,37 +163,67 @@ function Editor() {
     }
 
 
+    /**
+     * renderInputFields
+     * 
+     */
+    const renderInputFields = (): ReactNode => {
+        return inputFields.map((input: any) => {
+            return (
+                <>
+                    <span className={styles.heading}>
+                        {input.title}
+                    </span>
+                    <input
+                        className={styles.input}
+                        value={input.value}
+                        readOnly={input.readOnly}
+                        onChange={input.onChange}
+                        onClick={() => open(touchKeyboardLocation)} />
+                </>
+            )
+        });
+    }
+
+
+    /**
+     * useEffect
+     * 
+     * Gombkiosztás alkalmazása komponsens mountolásakor
+     */
+    useEffect(() => {
+        setGamepadLayout();
+    }, []);
+
+
+    /**
+     * useEffect
+     * 
+     * Törlés esetén undefined hibák elkerülése
+     */
+    useEffect(() => {
+        setName(appState.library[appState.selected].name ?? "");
+        setLocation(appState.library[appState.selected].location ?? "");
+    }, [appState.library]);
+
+
     return (
-        <DefaultLayout menuItems={menuItems}>
+        <MainLayout menuItems={menuItems}>
             <div className={styles.container}>
                 <div className={styles.row}>
                     <div className={styles.col}>
                         <span className={styles.heading}>
                             Borítókép
                         </span>
-                        <img
+                        <Image
                             className={styles.picture}
                             src={appState.library[appState.selected].image}
-                            alt="boritokep" />
+                            placeholder={placeholderImage} />
                     </div>
-                    
-                    <div className={styles.col}>
-                        <span className={styles.heading}>
-                            Név
-                        </span>
-                        <input
-                            className={styles.input}
-                            value={name}
-                            onChange={(e: any) => setName(e.target.value)} />
 
-                        <span className={styles.heading}>
-                            Elérési útvonal
-                        </span>
-                        <input
-                            className={styles.input}
-                            value={path}
-                            readOnly
-                            onChange={(e: any) => setPath(e.target.value)} />
+                    <div className={styles.col}>
+                        {/* Beviteli mezők */}
+                        {renderInputFields()}
 
                         <div className={styles.buttonGroup}>
                             <Button
@@ -136,7 +238,7 @@ function Editor() {
                     </div>
                 </div>
             </div>
-        </DefaultLayout>
+        </MainLayout>
     )
 }
 

@@ -1,4 +1,5 @@
 //Styles
+import { ReactNode } from 'react';
 import styles from './Button.module.css';
 
 
@@ -20,24 +21,24 @@ interface Props {
  * @param props 
  * @returns 
  */
-function Button(props: Props) {
+function Button({className, text, disabled, onClick}: Props): ReactNode {
     /**
      * onClick
      * 
      * @returns 
      */
-    const onClick = () => {
-        if (props.disabled) return;
-        if (props.onClick) props.onClick();
+    const onClickHandler = () => {
+        if (disabled) return;
+        if (onClick) onClick();
     }
 
 
     return (
         <button
-            className={`${styles.container} ${props.className}`}
-            data-disabled={props.disabled}
-            onClick={onClick}>
-            {props.text}
+            className={`${styles.container} ${className}`}
+            data-disabled={disabled}
+            onClick={onClickHandler}>
+            {text}
         </button>
     )
 }

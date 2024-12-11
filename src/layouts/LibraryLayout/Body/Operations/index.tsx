@@ -1,8 +1,5 @@
 //Components
-import Pill from '../../../../components/Pill';
-
-//Shared
-import { gamepadButtons } from '../../../../shared/const';
+import GamepadLayout from '../../../../components/GamepadLayout';
 
 //Styles
 import styles from './Operations.module.css';
@@ -15,37 +12,11 @@ import styles from './Operations.module.css';
  * @returns 
  */
 function Operations() {
-    //Variables
-    const options = [
-        {
-            icon: gamepadButtons.A,
-            text: "Indítás",
-            
-        },
-        {
-            icon: gamepadButtons.X,
-            text: "Szerkesztés",
-        },
-        {
-            icon: gamepadButtons.Y,
-            text: "Beállítások",
-        },
-        {
-            icon: gamepadButtons.OPTIONS,
-            text: "Kilépés",
-        }
-    ]
-
-
-    return options.map((option: any, idx: number) => {
-        return (
-            <Pill
-                key={idx}
-                icon={option.icon}
-                text={option.text}
-                className={styles.pill} />
-        )
-    })
+    return (
+        <div className={styles.container}>
+            <GamepadLayout className={styles.gamepadLayout}/>
+        </div>
+    )
 }
 
 export default Operations;

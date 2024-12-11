@@ -1,3 +1,6 @@
+//React
+import { ReactNode } from 'react';
+
 //Components
 import LibraryLayout from '../../layouts/LibraryLayout';
 
@@ -10,7 +13,7 @@ import styles from './Home.module.css';
  * 
  * @returns 
  */
-function Home() {
+function Home(): ReactNode {
     return (
         <div className={styles.container}>
             <LibraryLayout />

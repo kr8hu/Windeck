@@ -1,3 +1,6 @@
+//React
+import { ReactNode } from 'react';
+
 //Assets
 import logo from '../../assets/images/logo/logo-gradient.png';
 
@@ -18,9 +21,9 @@ interface Props {
  * 
  * @returns 
  */
-function Logo(props: Props) {
+function Logo({ className }: Props): ReactNode {
     return (
-        <div className={`${styles.container} ${props.className}`}>
+        <div className={`${styles.container} ${className}`}>
             <img
                 className={styles.logo}
                 src={logo} />
