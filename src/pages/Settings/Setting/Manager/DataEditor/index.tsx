@@ -7,12 +7,15 @@ import {
 } from 'react';
 
 //Tauri
-import * as shell from '@tauri-apps/plugin-shell';
+//import * as shell from '@tauri-apps/plugin-shell';
 import { readFile } from '@tauri-apps/plugin-fs';
 import {
     message,
     open
 } from '@tauri-apps/plugin-dialog';
+
+//Hooks
+import useInput from '../../../../../hooks/useInput';
 
 //Context
 import { AppContext } from '../../../../../context/App';
@@ -31,9 +34,9 @@ import {
 } from './progress';
 
 //Shared
-import { 
+import {
     actionTypes,
-    touchKeyboardLocation
+    /* touchKeyboardLocation */
 } from '../../../../../shared/const';
 import { uint8ArrayToBase64 } from '../../../../../shared/utils';
 
@@ -56,10 +59,17 @@ function DataEditor(): ReactNode {
 
 
     /**
+     * Hooks
+     * 
+     */
+    const { inputValue, resetValue } = useInput();
+
+
+    /**
      * States
      * 
      */
-    const [state, setState] = useState<number>(progress.init);
+    const [state, setState] = useState<number>(progress.setName);
     const [base64, setBase64] = useState<any>('');
     const [error, setError] = useState<string>('');
     const [item, setItem] = useState<ILibraryItem>({
@@ -231,11 +241,21 @@ function DataEditor(): ReactNode {
 
 
     /**
-     * startTabTip
+     * onClickHandler
      * 
      */
-    const startTabTip = (): void => {
-        shell.open(touchKeyboardLocation);
+    const onClickHandler = (): void => {
+        //shell.open(touchKeyboardLocation);
+        setAppState(actionTypes.app.SET_KEYBOARD, true);
+    }
+
+
+    /**
+     * onBlurHandler
+     * 
+     */
+    const onBlurHandler = (): void => {
+        //setAppState(actionTypes.app.SET_KEYBOARD, false);
     }
 
 
@@ -251,9 +271,10 @@ function DataEditor(): ReactNode {
                         className={styles.input}
                         type="text"
                         value={item.name}
-                        onChange={(e: any) => setName(e.target.value)} 
-                        onClick={startTabTip} 
-                        onTouchStart={startTabTip}/>
+                        onChange={(e: any) => setName(e.target.value)}
+                        onClick={onClickHandler}
+                        onTouchStart={onClickHandler}
+                        onBlur={onBlurHandler} />
                 )
             case progress.summary:
                 return (
@@ -293,6 +314,26 @@ function DataEditor(): ReactNode {
 
         createBase64string();
     }, [item.image]);
+
+
+    /**
+     * Effect
+     * 
+     */
+    useEffect(() => {
+        return () => {
+            resetValue();
+        }
+    }, []);
+
+
+    /**
+     * Effect
+     * 
+     */
+    useEffect(() => {
+        setName(inputValue);
+    }, [inputValue]);
 
 
     return (

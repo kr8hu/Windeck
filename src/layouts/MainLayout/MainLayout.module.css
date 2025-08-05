@@ -4,6 +4,7 @@
     height: 100vh;
     background: black;
     position: relative;
+    overflow: hidden;
 }
 
 .backgroundImage {
@@ -37,6 +38,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    overflow: hidden;
+    transition: ease-in-out .5s all;
     width: 100%;
 }
 

@@ -33,6 +33,7 @@ interface IAppState {
     library: any;
     locked: boolean;
     selected: number;
+    keyboard: boolean;
 }
 
 

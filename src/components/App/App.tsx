@@ -15,6 +15,7 @@ import { AppProvider } from "../../context/App";
 
 //Components
 import RouteStack from "./Routes";
+import InputLayout from "../../layouts/InputLayout";
 
 
 /**
@@ -56,7 +57,7 @@ function App(): ReactNode {
 
     //Context menu listener
     document.addEventListener('contextmenu', (e: any) => {
-      e.preventDefault();
+      //e.preventDefault();
     });
 
     return () => {
@@ -69,6 +70,7 @@ function App(): ReactNode {
   return (
     <AppProvider>
       <RouteStack />
+      <InputLayout />
     </AppProvider>
   );
 }

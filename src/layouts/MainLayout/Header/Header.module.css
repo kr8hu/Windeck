@@ -16,15 +16,15 @@
 }
 
 .col:nth-child(1) {
-    max-width: 10%;
-}
-
-.col:nth-child(1),
-.col:nth-child(3) {
-    width: auto;
+    flex: 0 0 auto;
+    padding-right: 1rem;
 }
 
 .col:nth-child(2) {
-    width: 100%;
-    padding: 0 1rem;
+    flex: 1 0 0;
+    padding-left: 1rem;
+}
+
+.col:nth-child(3) {
+    flex: 0 0 auto;
 }

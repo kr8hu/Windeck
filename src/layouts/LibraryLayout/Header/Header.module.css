@@ -16,18 +16,17 @@
 }
 
 .col:nth-child(1) {
-    max-width: 10%;
+    flex: 0 0 auto;
     padding-right: 1rem;
 }
 
-.col:nth-child(1),
-.col:nth-child(3) {
-    width: auto;
+.col:nth-child(2) {
+    flex: 1 0 0;
+    padding: 0 1rem;
 }
 
-.col:nth-child(2) {
-    width: 100%;
-    padding: 0 1rem;
+.col:nth-child(3) {
+    flex: 0 0 auto;
 }
 
 .pill {

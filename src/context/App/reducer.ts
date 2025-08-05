@@ -64,6 +64,12 @@ export const reducer = (state: any, action: any): any => {
                 ...state,
                 gamepadLayout: action.payload
             }
+        /* Billentyűzet */
+        case actionTypes.app.SET_KEYBOARD:
+            return {
+                ...state,
+                keyboard: action.payload
+            }
         default:
             return state;
     }
@@ -73,5 +79,6 @@ export const initialState = {
     gamepadLayout: [],
     library: initialLibrary,
     locked: false,
+    keyboard: false,
     selected: 0,
 }

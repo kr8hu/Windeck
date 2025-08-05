@@ -21,7 +21,8 @@ export const actionTypes = {
         MODIFY_LIBRARY_ITEM: 'APP_MODIFY_LIBRARY_ITEM',
         DELETE_LIBRARY_ITEM: 'APP_DELETE_LIBRARY_ITEM',
         SET_TIME: 'APP_SET_TIME',
-        SET_LOCKED: 'APP_SET_LOCKED'
+        SET_LOCKED: 'APP_SET_LOCKED',
+        SET_KEYBOARD: 'SET_KEYBOARD'
     },
 }
 
