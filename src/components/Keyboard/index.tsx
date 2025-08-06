@@ -136,7 +136,7 @@ function Keyboard({ onKeyPress }: Props) {
     /**
      * renderLeftSideButtons
      */
-    const renderLeftSideButtons = (): React.ReactNode[] => {
+    const renderLeftSideButtons = (): React.ReactNode => {
         return leftSideKeys.map((key: string, idx: number) => {
             return (
                 <button
@@ -155,7 +155,7 @@ function Keyboard({ onKeyPress }: Props) {
      * 
      * @returns 
      */
-    const renderMiddleButtons = (): React.ReactNode[] => {
+    const renderMiddleButtons = (): React.ReactNode => {
         return keys.map((key: string, idx: number) => {
             return (
                 <button
@@ -175,7 +175,7 @@ function Keyboard({ onKeyPress }: Props) {
      * 
      * @returns 
      */
-    const renderRightSideKeys = (): React.ReactNode[] => {
+    const renderRightSideKeys = (): React.ReactNode => {
         return rightSideKeys.map((key: string, idx: number) => {
             return (
                 <button

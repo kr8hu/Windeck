@@ -84,7 +84,7 @@ function Libraries(): React.ReactNode {
      * renderLibraries
      * 
      */
-    const renderLibraries = (): React.ReactNode[] => {
+    const renderLibraries = (): React.ReactNode => {
         return libraries.map((library: ILibraryProps, idx: number) => {
             return (
                 <div

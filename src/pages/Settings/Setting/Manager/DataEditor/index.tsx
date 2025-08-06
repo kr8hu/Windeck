@@ -69,7 +69,7 @@ function DataEditor(): ReactNode {
      * States
      * 
      */
-    const [state, setState] = useState<number>(progress.setName);
+    const [state, setState] = useState<number>(progress.init);
     const [base64, setBase64] = useState<any>('');
     const [error, setError] = useState<string>('');
     const [item, setItem] = useState<ILibraryItem>({

@@ -44,7 +44,7 @@ function Properties(): React.ReactNode {
      * renderProperties
      * 
      */
-    const renderProperties = (): React.ReactNode[] => {
+    const renderProperties = (): React.ReactNode => {
         return properties.map((property: IPropertiesProps, idx: number) => {
             return (
                 <li key={idx}>
