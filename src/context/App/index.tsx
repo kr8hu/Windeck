@@ -11,6 +11,9 @@ import {
     initialState
 } from './reducer';
 
+//Shared
+import { localStorages } from '../../shared/const';
+
 //Interfaces
 import IGamepadLayout from '../../interfaces/GamepadLayout';
 
@@ -74,10 +77,12 @@ export const AppProvider = (props: Props) => {
      * Konyvtár módosulásakor mentés a localStorage-ba
      */
     useEffect(() => {
+        const initialStorage: any = [];
+
         if (appState.library.length !== 0) {
-            localStorage.setItem('windeck__library', JSON.stringify(appState.library))
+            localStorage.setItem(localStorages.library, JSON.stringify(appState.library))
         } else {
-            localStorage.setItem('windeck__library', '[]')
+            localStorage.setItem(localStorages.library, initialStorage)
         }
     }, [appState.library]);
 

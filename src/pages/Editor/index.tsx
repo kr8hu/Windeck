@@ -1,16 +1,16 @@
 //React
 import {
     useState,
-    useContext,
     useEffect,
     ReactNode
 } from 'react';
 
-//Context
-import { AppContext } from '../../context/App';
+//Hooks
+import useApp from '../../hooks/useApp';
+import useInput from '../../hooks/useInput';
 
 //Router
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 //Hooks
 import useGamepad from '../../hooks/useGamepad';
@@ -20,7 +20,7 @@ import {
     confirm,
     message
 } from '@tauri-apps/plugin-dialog';
-import { open } from '@tauri-apps/plugin-shell';
+//import { open } from '@tauri-apps/plugin-shell';
 
 //Components
 import Image from '../../components/Image';
@@ -36,7 +36,7 @@ import menuItems from './menuItems';
 import {
     actionTypes,
     gamepadButtons,
-    touchKeyboardLocation
+    /* touchKeyboardLocation */
 } from '../../shared/const';
 
 //Assets
@@ -68,10 +68,11 @@ interface IInputFields {
  */
 function Editor(): ReactNode {
     /**
-     * Context
+     * Hooks
      * 
      */
-    const { appState, setAppState } = useContext(AppContext);
+    const { appState, setAppState } = useApp();
+    const { inputValue, setValue, resetValue } = useInput();
 
 
     /**
@@ -87,7 +88,7 @@ function Editor(): ReactNode {
      * 
      */
     const [name, setName] = useState<string>("");
-    const [location, setLocation] = useState<string>("");
+    const [path, setPath] = useState<string>("");
 
 
     /**
@@ -104,8 +105,8 @@ function Editor(): ReactNode {
         {
             readOnly: true,
             title: "Elérési útvonal",
-            value: location,
-            onChange: (e: any) => setLocation(e.target.value)
+            value: path,
+            onChange: (e: any) => setPath(e.target.value)
         }
     ];
 
@@ -139,7 +140,7 @@ function Editor(): ReactNode {
         setAppState(actionTypes.app.MODIFY_LIBRARY_ITEM, {
             id: appState.selected,
             image: appState.library[appState.selected].image,
-            location,
+            path,
             name: name,
         });
 
@@ -179,10 +180,19 @@ function Editor(): ReactNode {
                         value={input.value}
                         readOnly={input.readOnly}
                         onChange={input.onChange}
-                        onClick={() => open(touchKeyboardLocation)} />
+                        onClick={onClickHandler} />
                 </>
             )
         });
+    }
+
+
+    /**
+     * onClickHandler
+     * 
+     */
+    const onClickHandler = (): void => {
+        setAppState(actionTypes.app.SET_KEYBOARD, true);
     }
 
 
@@ -193,6 +203,10 @@ function Editor(): ReactNode {
      */
     useEffect(() => {
         setGamepadLayout();
+
+        return () => {
+            resetValue();
+        }
     }, []);
 
 
@@ -202,9 +216,19 @@ function Editor(): ReactNode {
      * Törlés esetén undefined hibák elkerülése
      */
     useEffect(() => {
-        setName(appState.library[appState.selected].name ?? "");
-        setLocation(appState.library[appState.selected].location ?? "");
+        setName(appState.library[appState.selected].name);
+        setPath(appState.library[appState.selected].location);
+        setValue(appState.library[appState.selected].name)
     }, [appState.library]);
+
+
+    /**
+     * useEffect
+     * 
+     */
+    useEffect(() => {
+        setName(inputValue);
+    }, [inputValue]);
 
 
     return (

@@ -1,12 +1,5 @@
-//React
-import {
-    useContext
-} from 'react';
-
-//Context
-import { AppContext } from '../../context/App';
-
 //Hooks
+import useApp from '../../hooks/useApp';
 import useInput from '../../hooks/useInput';
 
 //Components
@@ -23,16 +16,10 @@ import styles from './InputLayout.module.css';
  */
 function InputLayout() {
     /**
-     * Context
-     * 
-     */
-    const { appState } = useContext(AppContext);
-
-
-    /**
      * Hooks
      * 
      */
+    const { appState } = useApp();
     const { inputValue } = useInput();
 
 

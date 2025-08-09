@@ -1,8 +1,5 @@
-//React
-import { useContext } from 'react';
-
-//Context
-import { AppContext } from '../../../context/App';
+//Hooks
+import useApp from '../../../hooks/useApp';
 
 //Components
 import Cover from './Cover';
@@ -19,7 +16,7 @@ import styles from './Body.module.css';
  */
 function Body() {
     //Context
-    const { appState } = useContext(AppContext);
+    const { appState } = useApp();
 
 
     /**

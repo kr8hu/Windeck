@@ -3,12 +3,11 @@ import {
     useState,
     useEffect,
     useCallback,
-    useContext,
     useRef,
 } from "react";
 
-//Context
-import { AppContext } from "../context/App";
+//Hooks
+import useApp from "./useApp";
 
 //React router
 import { useNavigate } from "react-router-dom";
@@ -30,7 +29,7 @@ function useGamepad(): any {
      * Context
      * 
      */
-    const { setAppState } = useContext(AppContext);
+    const { setAppState } = useApp();
 
 
     /**

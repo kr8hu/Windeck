@@ -20,4 +20,5 @@
             var(--color-primary-transparent) 0%,
             var(--color-secondary-transparent) 75%);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }

@@ -1,5 +1,8 @@
 //Shared
-import { actionTypes } from "../../shared/const";
+import {
+    actionTypes,
+    localStorages
+} from "../../shared/const";
 
 
 /**
@@ -7,7 +10,7 @@ import { actionTypes } from "../../shared/const";
  * 
  * Könyvtár tartalma
  */
-export const initialLibrary = localStorage.getItem('windeck__library') ? JSON.parse(`${localStorage.getItem('windeck__library')}`) : []
+export const initialLibrary = localStorage.getItem(localStorages.library) ? JSON.parse(`${localStorage.getItem(localStorages.library)}`) : []
 
 
 /**

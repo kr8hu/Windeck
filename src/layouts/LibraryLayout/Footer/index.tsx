@@ -1,8 +1,5 @@
-//React
-import { useContext } from 'react';
-
-//Context
-import { AppContext } from '../../../context/App';
+//Hooks
+import useApp from '../../../hooks/useApp';
 
 //Componenets
 import Library from '../Library';
@@ -18,7 +15,7 @@ import styles from './Footer.module.css';
  */
 function Footer() {
     //Context
-    const { appState } = useContext(AppContext);
+    const { appState } = useApp();
 
 
     return (

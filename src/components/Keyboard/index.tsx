@@ -1,12 +1,11 @@
 //React
 import React, {
-    useContext,
     useRef,
     useState
 } from 'react';
 
-//Context
-import { AppContext } from '../../context/App';
+//Hooks
+import useApp from '../../hooks/useApp';
 
 //Local
 import {
@@ -37,10 +36,10 @@ interface Props {
  */
 function Keyboard({ onKeyPress }: Props) {
     /**
-     * Context
+     * Hooks
      * 
      */
-    const { setAppState } = useContext(AppContext);
+    const { setAppState } = useApp();
 
 
     /**

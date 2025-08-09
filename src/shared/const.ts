@@ -10,6 +10,15 @@ export const app = {
 
 
 /**
+ * localStorages
+ * 
+ */
+export const localStorages = {
+    library: `${app.name.toLowerCase()}__library`
+}
+
+
+/**
  * Action Types
  */
 export const actionTypes = {

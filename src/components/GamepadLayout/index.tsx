@@ -1,12 +1,11 @@
 //React
 import {
     CSSProperties,
-    ReactNode,
-    useContext
+    ReactNode
 } from 'react';
 
-//Context
-import { AppContext } from '../../context/App';
+//Hooks
+import useApp from '../../hooks/useApp';
 
 //Components
 import Pill from '../Pill';
@@ -38,10 +37,10 @@ interface Props {
  */
 function GamepadLayout({ className, rows }: Props): ReactNode {
     /**
-     * Context
+     * Hooks
      * 
      */
-    const { appState } = useContext(AppContext);
+    const { appState } = useApp();
 
 
     /**
@@ -60,10 +59,10 @@ function GamepadLayout({ className, rows }: Props): ReactNode {
 
         return sortedGamepayLayout.map((gl: IGamepadLayout, idx: number) => {
             return (
-                <div 
-                    key={idx} 
+                <div
+                    key={idx}
                     className={styles.col}
-                    data-visibility={gl.visibility} 
+                    data-visibility={gl.visibility}
                     style={columnStyles}>
                     <Pill
                         icon={gl.button}

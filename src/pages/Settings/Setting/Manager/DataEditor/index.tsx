@@ -1,7 +1,6 @@
 //React
 import {
     ReactNode,
-    useContext,
     useEffect,
     useState
 } from 'react';
@@ -17,8 +16,8 @@ import {
 //Hooks
 import useInput from '../../../../../hooks/useInput';
 
-//Context
-import { AppContext } from '../../../../../context/App';
+//Hooks
+import useApp from '../../../../../hooks/useApp';
 
 //Components
 import DataSummary from './DataSummary';
@@ -55,7 +54,7 @@ function DataEditor(): ReactNode {
      * Context
      * 
      */
-    const { setAppState } = useContext(AppContext);
+    const { setAppState } = useApp();
 
 
     /**

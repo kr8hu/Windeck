@@ -1,7 +1,6 @@
 //React
 import {
     useEffect,
-    useContext,
     useState
 } from 'react';
 
@@ -9,11 +8,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 //Hooks
+import useApp from '../../../hooks/useApp';
 import useSound from 'use-sound';
 import useGamepad from '../../../hooks/useGamepad';
-
-//Context
-import { AppContext } from '../../../context/App';
 
 //Components
 import LibraryItem from './LibraryItem';
@@ -43,12 +40,6 @@ import styles from './Library.module.css';
  */
 function Library() {
     /**
-     * Context
-     */
-    const { appState, setAppState } = useContext(AppContext);
-
-
-    /**
      * States
      * 
      */
@@ -59,6 +50,7 @@ function Library() {
      * Hooks
      * 
      */
+    const { appState, setAppState } = useApp();
     const gamepad = useGamepad();
     const navigate = useNavigate();
     const [playClickSound] = useSound(clickSound);

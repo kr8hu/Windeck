@@ -58,7 +58,6 @@ function Image({ className, src, placeholder }: Props): ReactNode {
     /**
      * useEffect
      * 
-     * placeholder és error vizsgálata
      */
     useEffect(() => {
         if (placeholder) {
@@ -74,7 +73,8 @@ function Image({ className, src, placeholder }: Props): ReactNode {
             alt="Image"
             src={imgSrc}
             className={`${className}`}
-            onError={handleError} />
+            onError={handleError} 
+            data-error={error}/>
     );
 };
 

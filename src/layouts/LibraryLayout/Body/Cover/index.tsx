@@ -1,8 +1,5 @@
-//React
-import { useContext } from 'react';
-
-//Context
-import { AppContext } from '../../../../context/App';
+//Hooks
+import useApp from '../../../../hooks/useApp';
 
 //Components
 import Image from '../../../../components/Image';
@@ -36,7 +33,7 @@ function Cover({ className, compact }: Props) {
      * Context
      * 
      */
-    const { appState } = useContext(AppContext);
+    const { appState } = useApp();
 
 
     return (

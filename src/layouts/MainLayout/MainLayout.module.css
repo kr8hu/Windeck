@@ -31,6 +31,7 @@
     height: 100%;
 
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.3);
 }
 
@@ -44,11 +45,11 @@
 }
 
 .col:nth-child(1) {
-    height: 20%;
+    height: 15%;
 }
 
 .col:nth-child(2) {
-    height: 70%;
+    height: 75%;
 }
 
 .col:nth-child(3) {

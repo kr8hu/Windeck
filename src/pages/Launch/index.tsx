@@ -1,14 +1,13 @@
 //React
 import {
     ReactNode,
-    useContext,
     useEffect
 } from 'react';
 
 import { open } from '@tauri-apps/plugin-shell';
 
-//Context
-import { AppContext } from '../../context/App';
+//Hooks
+import useApp from '../../hooks/useApp';
 
 //Router
 import { useNavigate } from 'react-router-dom';
@@ -33,7 +32,7 @@ function Launch(): ReactNode {
      * Context
      * 
      */
-    const { appState, setAppState } = useContext(AppContext);
+    const { appState, setAppState } = useApp();
 
 
     /**

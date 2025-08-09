@@ -1,11 +1,10 @@
 //React
-import { 
-    CSSProperties, 
-    useContext 
+import {
+    CSSProperties,
 } from 'react';
 
-//Context
-import { AppContext } from '../../context/App';
+//Hooks
+import useApp from '../../hooks/useApp';
 
 //Components
 import Body from './Body';
@@ -32,10 +31,10 @@ import styles from './LibraryLayout.module.css';
  */
 function LibraryLayout() {
     /**
-     * Context
+     * Hooks
      * 
      */
-    const { appState } = useContext(AppContext);
+    const { appState } = useApp();
 
 
     /**
