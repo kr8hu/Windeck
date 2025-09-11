@@ -2,36 +2,33 @@
 
 Indítópult alkalmazás a Windows rendszert futtató Steam Deck eszközökre.
 
-## Fő funkciók
-
-- **Könnyű vezérlés**: Érintőképernyős és kontrolleres irányítás
-- **Játékkönyvtár**: A könyvtárból könnyedén elérhetők és szerkeszthetők a felvett programok
-- **Autostart**: A fiókba történő bejelentkezés után automatikusan elindul az alkalmazás
-
 ## Telepítési útmutató
 
-1. **Csomagok telepítése**:
+1. **Modulok telepítése**:
 ```bash
 npm install
 ```
 
 ## Használati útmutató
 
-**Frontend teszteléshez**:
+####Development
 
+**Futtatás a helyi hálózaton böngészőben teszteléshez**:
 ```bash
 npm run dev
 ```
 
-**Tauri funkciók tesztelése**:
+**Tauri funkciók tesztelése**
 
+**Futtatás a helyi hálózaton natív alkalmazás teszteléséhez**:
 ```bash
 npm run tauri dev
 ```
 
-**Build**:
+####Release
+
 ```bash
-npm run tauri dev
+npm run tauri build
 ```
 
 A folyamat befejeztével a target/release/bundle/msi könyvtárban található a telepítő.
@@ -42,6 +39,11 @@ A folyamat befejeztével a target/release/bundle/msi könyvtárban található a
 - **Szükséges támogatás**: WebView2
 
 Fejlesztéshez: [https://v1.tauri.app/v1/guides/getting-started/prerequisites/](https://v1.tauri.app/v1/guides/getting-started/prerequisites/)
+
+## Tech Stack
+- Vite.js
+- Typescript
+- Tauri.js
 
 ## Képernyőképek
 <div style="display: flex; justify-content: space-between;">
